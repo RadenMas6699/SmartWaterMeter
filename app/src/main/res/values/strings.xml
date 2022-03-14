@@ -1,0 +1,69 @@
+<!--
+  ~ Created by RadenMas on 10/3/2022.
+  ~ Copyright (c) 2022.
+  -->
+
+<resources>
+    <string name="app_name">Smart Water Meter</string>
+    <string name="app_pref">app_pref</string>
+    <string name="level_user">levelUser</string>
+    <string name="dev_name">M Sukron Kurniawan</string>
+    <string name="login">Masuk</string>
+    <string name="login_desc">Lorem ipsum dolor sit amet</string>
+    <string name="username">Username</string>
+    <string name="password">Kata Sandi</string>
+    <string name="forgot_password">Lupa kata sandi?</string>
+    <string name="user">Pelanggan</string>
+    <string name="admin">Pengelola</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="tagihan">Tagihan</string>
+    <string name="rp">Rp.</string>
+    <string name="pemakaian_air">Pemakaian Air</string>
+    <string name="statistik">Statistik</string>
+    <string name="skip">Lewati</string>
+    <string name="m3">m3</string>
+    <string name="pembayaran">Riwayat Pembayaran</string>
+    <string name="view_all">Lihat semua</string>
+    <string name="user_id">ID Pelanggan</string>
+    <string name="phone_number">Nomor HP</string>
+    <string name="alamat">Alamat</string>
+    <string name="akun">Akun</string>
+    <string name="ubah_profil">Ubah Profil</string>
+    <string name="tentang">Tentang</string>
+    <string name="guide">Panduan</string>
+    <string name="terms">Syarat dan Ketentuan</string>
+    <string name="privacy">Kebijakan Privasi</string>
+    <string name="help">Pusat Bantuan</string>
+    <string name="logout">Keluar</string>
+    <string name="profile">Profil</string>
+    <string name="webserver">Webserver</string>
+    <string name="notification">Notifikasi</string>
+    <string name="debit">Debit Air</string>
+    <string name="save">Simpan</string>
+    <string name="pengaduan">Pengaduan</string>
+    <string name="jenis_pengaduan">Jenis Pengaduan</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="send">Kirim</string>
+    <string name="keluhan">Keluhan</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="pdam">PDAM</string>
+    <string name="sambungan">Sambungan</string>
+    <string name="setting">Pengaturan</string>
+    <string name="add_user">Tambah Pelanggan</string>
+    <string name="add">Tambah</string>
+    <string name="data_user">Data Pelanggan</string>
+    <string name="hai">Hai,</string>
+    <string name="dash">-</string>
+    <string name="confirm">Konfirmasi</string>
+    <string name="desc_logout">Apakah Anda yakin ingin keluar dari aplikasi ini?</string>
+    <string name="no">Tidak</string>
+    <string name="yes">Ya</string>
+    <string name="sent">Terkirim</string>
+    <string name="processed">Diproses</string>
+    <string name="finish">Selesai</string>
+    <string name="rejected">Ditolak</string>
+    <string name="reset">Reset</string>
+    <string name="search_user">Cari Nama Pelanggan</string>
+
+
+</resources>

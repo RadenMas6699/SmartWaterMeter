@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by RadenMas on 10/3/2022.
+  ~ Copyright (c) 2022.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.admin.AdminSettingFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_left" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/imgBack"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/setting"
+                android:textColor="@color/primary_text"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Tekanan"
+                android:textAllCaps="true"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp" />
+
+            <RelativeLayout style="@style/BoxSettings">
+
+                <TextView
+                    style="@style/TitleNameSettings"
+                    android:text="Atur Tekanan Air" />
+
+                <TextView style="@style/TitleDescSettings" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Harga"
+                android:textAllCaps="true"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp" />
+
+            <RelativeLayout style="@style/BoxSettings">
+
+                <TextView
+                    style="@style/TitleNameSettings"
+                    android:text="Atur Harga Air" />
+
+                <TextView style="@style/TitleDescSettings" />
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ButtonStyle1"
+                android:layout_marginTop="32dp"
+                android:text="@string/reset"
+                android:textColor="@color/red"
+                app:backgroundTint="@color/white"
+                app:strokeColor="@color/red"
+                app:strokeWidth="1dp" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
