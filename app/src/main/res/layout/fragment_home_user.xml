@@ -4,6 +4,7 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -60,6 +61,7 @@
                 android:layout_height="42dp"
                 android:layout_marginEnd="8dp"
                 android:layout_toStartOf="@id/imgNotif"
+                android:contentDescription="@string/webserver"
                 android:padding="10dp"
                 android:src="@drawable/ic_web_server_outline" />
 
@@ -68,6 +70,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_alignParentEnd="true"
+                android:contentDescription="@string/notification"
                 android:padding="10dp"
                 android:src="@drawable/ic_notification_outline" />
         </RelativeLayout>
@@ -86,9 +89,143 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/view_credit_user" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="172dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/primary"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp">
 
-            <include layout="@layout/view_chart" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/titleTagihan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/tagihan"
+                        android:textColor="@color/white_text"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/titleRp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/titleTagihan"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/rp"
+                        android:textColor="@color/white_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvTagihan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/titleTagihan"
+                        android:layout_marginTop="6dp"
+                        android:layout_toEndOf="@id/titleRp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/dash"
+                        android:textColor="@color/white_text"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/titlePemakaian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvTagihan"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="18dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/pemakaian_air"
+                        android:textColor="@color/white_text"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvPemakaian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/titlePemakaian"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/dash"
+                        android:textColor="@color/white_text"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/tvPemakaian"
+                        android:layout_marginStart="6dp"
+                        android:layout_toEndOf="@id/tvPemakaian"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/m3"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/white_text"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/statistik"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDay"
+                    style="@style/ButtonStyle3"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/_24_jam"
+                    android:textColor="@color/primary_text"
+                    app:strokeColor="@color/primary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnWeek"
+                    style="@style/ButtonStyle3"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/_7_hari"
+                    android:textColor="@color/hint"
+                    app:strokeColor="@color/white_text" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMonth"
+                    style="@style/ButtonStyle3"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/_1_bulan"
+                    android:textColor="@color/hint"
+                    app:strokeColor="@color/white_text" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/chart" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

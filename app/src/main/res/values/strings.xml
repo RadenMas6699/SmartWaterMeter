@@ -64,6 +64,11 @@
     <string name="rejected">Ditolak</string>
     <string name="reset">Reset</string>
     <string name="search_user">Cari Nama Pelanggan</string>
+    <string name="all">Semua</string>
+    <string name="back">back</string>
+    <string name="_24_jam">24 Jam</string>
+    <string name="_7_hari">7 Hari</string>
+    <string name="_1_bulan">1 Bulan</string>
 
 
 </resources>

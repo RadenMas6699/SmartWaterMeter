@@ -5,7 +5,8 @@
 
 package com.radenmas.smart.water.meter.ui.user
 
-import android.content.SharedPreferences
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +16,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.button.MaterialButton
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.adapter.AduanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentPengaduanUserBinding
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.model.DefaultResponse
+import com.radenmas.smart.water.meter.network.Constant
 import com.radenmas.smart.water.meter.network.Retro
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,22 +63,57 @@ class UserPengaduanFragment : Fragment() {
 
         b.btnHistoryAll.setOnClickListener {
             getHistoryAll(args.idPelanggan)
+            setButtonActive(
+                b.btnHistoryAll,
+                b.btnHistorySend,
+                b.btnHistoryProses,
+                b.btnHistoryDone,
+                b.btnHistoryReject
+            )
         }
 
         b.btnHistorySend.setOnClickListener {
             getHistory(args.idPelanggan, resources.getString(R.string.sent))
+            setButtonActive(
+                b.btnHistorySend,
+                b.btnHistoryAll,
+                b.btnHistoryProses,
+                b.btnHistoryDone,
+                b.btnHistoryReject
+            )
         }
 
         b.btnHistoryProses.setOnClickListener {
             getHistory(args.idPelanggan, resources.getString(R.string.processed))
+            setButtonActive(
+                b.btnHistoryProses,
+                b.btnHistoryAll,
+                b.btnHistorySend,
+                b.btnHistoryDone,
+                b.btnHistoryReject
+            )
         }
 
         b.btnHistoryDone.setOnClickListener {
             getHistory(args.idPelanggan, resources.getString(R.string.finish))
+            setButtonActive(
+                b.btnHistoryDone,
+                b.btnHistoryAll,
+                b.btnHistorySend,
+                b.btnHistoryProses,
+                b.btnHistoryReject
+            )
         }
 
         b.btnHistoryReject.setOnClickListener {
             getHistory(args.idPelanggan, resources.getString(R.string.rejected))
+            setButtonActive(
+                b.btnHistoryReject,
+                b.btnHistorySend,
+                b.btnHistoryAll,
+                b.btnHistoryProses,
+                b.btnHistoryDone
+            )
         }
 
         b.fabAddAduan.setOnClickListener {
@@ -103,6 +141,29 @@ class UserPengaduanFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun setButtonActive(
+        btnActive: MaterialButton,
+        btnNotActive1: MaterialButton,
+        btnNotActive2: MaterialButton,
+        btnNotActive3: MaterialButton,
+        btnNotActive4: MaterialButton
+    ) {
+        btnActive.setTextColor(resources.getColor(R.color.primary_text))
+        btnActive.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_primary))
+
+        btnNotActive1.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive1.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+
+        btnNotActive2.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive2.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+
+        btnNotActive3.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive3.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+
+        btnNotActive4.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive4.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
     }
 
     private fun getHistory(kode_pelanggan: String, filter: String) {

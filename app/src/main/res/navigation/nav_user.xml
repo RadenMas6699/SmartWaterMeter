@@ -14,16 +14,32 @@
         tools:layout="@layout/fragment_home_user">
         <action
             android:id="@+id/action_userHomeFragment_to_userWebserverFragment"
-            app:destination="@id/userWebserverFragment" />
+            app:destination="@id/userWebserverFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_userHomeFragment_to_userNotificationFragment"
-            app:destination="@id/userNotificationFragment" />
+            app:destination="@id/userNotificationFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_userHomeFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_userHomeFragment_to_userPaymentFragment"
-            app:destination="@id/userPaymentFragment" />
+            app:destination="@id/userPaymentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -32,16 +48,32 @@
         tools:layout="@layout/fragment_profile_user">
         <action
             android:id="@+id/action_userProfileFragment_to_userChangeProfileFragment"
-            app:destination="@id/userChangeProfileFragment" />
+            app:destination="@id/userChangeProfileFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_userProfileFragment_to_userPengaduanFragment"
-            app:destination="@id/userPengaduanFragment" />
+            app:destination="@id/userPengaduanFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_userProfileFragment_to_guideFragment"
-            app:destination="@id/guideFragment" />
+            app:destination="@id/guideFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_userProfileFragment_to_lihatFotoFragment"
-            app:destination="@id/lihatFotoFragment" />
+            app:destination="@id/lihatFotoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/userPaymentFragment"

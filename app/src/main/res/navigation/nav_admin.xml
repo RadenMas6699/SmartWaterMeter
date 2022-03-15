@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Created by RadenMas on 10/3/2022.
   ~ Copyright (c) 2022.
   -->
@@ -13,37 +12,61 @@
         android:id="@+id/adminHomeFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminHomeFragment"
         android:label="fragment_home_admin"
-        tools:layout="@layout/fragment_home_admin" >
+        tools:layout="@layout/fragment_home_admin">
         <action
             android:id="@+id/action_adminHomeFragment_to_adminProfileFragment"
-            app:destination="@id/adminProfileFragment" />
+            app:destination="@id/adminProfileFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_adminHomeFragment_to_adminWebserverFragment"
-            app:destination="@id/adminWebserverFragment" />
+            app:destination="@id/adminWebserverFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_adminHomeFragment_to_adminPengaduanFragment"
-            app:destination="@id/adminPengaduanFragment" />
+            app:destination="@id/adminPengaduanFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_adminHomeFragment_to_adminUserFragment"
-            app:destination="@id/adminUserFragment" />
+            app:destination="@id/adminUserFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/adminProfileFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminProfileFragment"
         android:label="fragment_profile_admin"
-        tools:layout="@layout/fragment_profile_admin" >
+        tools:layout="@layout/fragment_profile_admin">
         <action
-            android:id="@+id/action_adminProfileFragment_to_lihatFotoFragment2"
-            app:destination="@id/lihatFotoFragment2" />
+            android:id="@+id/action_adminProfileFragment_to_lihatFotoFragment"
+            app:destination="@id/lihatFotoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/adminWebserverFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminWebserverFragment"
         android:label="fragment_webserver_admin"
-        tools:layout="@layout/fragment_webserver_admin" >
+        tools:layout="@layout/fragment_webserver_admin">
         <action
             android:id="@+id/action_adminWebserverFragment_to_adminSettingFragment"
-            app:destination="@id/adminSettingFragment" />
+            app:destination="@id/adminSettingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/adminSettingFragment"
@@ -69,17 +92,34 @@
         android:id="@+id/adminUserFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminUserFragment"
         android:label="fragment_user_admin"
-        tools:layout="@layout/fragment_user_admin" >
+        tools:layout="@layout/fragment_user_admin">
         <action
             android:id="@+id/action_adminUserFragment_to_adminAddUserFragment"
-            app:destination="@id/adminAddUserFragment" />
+            app:destination="@id/adminAddUserFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_adminUserFragment_to_adminDetailUserFragment"
-            app:destination="@id/adminDetailUserFragment" />
+            app:destination="@id/adminDetailUserFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/lihatFotoFragment2"
+        android:id="@+id/lihatFotoFragment"
         android:name="com.radenmas.smart.water.meter.ui.foto.LihatFotoFragment"
         android:label="fragment_lihat_foto"
-        tools:layout="@layout/fragment_lihat_foto" />
+        tools:layout="@layout/fragment_lihat_foto">
+        <argument
+            android:name="image"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="full_name"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>

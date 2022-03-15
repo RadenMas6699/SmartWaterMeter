@@ -26,7 +26,7 @@
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_arrow_left"
                 app:tint="@color/white" />
@@ -37,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/imgBack"
+                android:lines="1"
                 android:textColor="@color/white" />
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>

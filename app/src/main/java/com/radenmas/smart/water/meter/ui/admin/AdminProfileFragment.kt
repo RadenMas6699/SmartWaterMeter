@@ -14,11 +14,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentProfileAdminBinding
 import com.radenmas.smart.water.meter.databinding.LogoutLayoutBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
+import com.radenmas.smart.water.meter.ui.user.UserProfileFragmentDirections
 
 class AdminProfileFragment : Fragment() {
 
@@ -59,7 +61,12 @@ class AdminProfileFragment : Fragment() {
         }
 
         b.imgProfile.setOnClickListener {
-
+            val lihatFoto =
+                AdminProfileFragmentDirections.actionAdminProfileFragmentToLihatFotoFragment(
+                    sharedPref.getString("image", null).toString(),
+                    sharedPref.getString("nama", null).toString(),
+                )
+            findNavController().navigate(lihatFoto)
         }
 
         b.rvChangeProfile.setOnClickListener {
