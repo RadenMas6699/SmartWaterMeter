@@ -172,18 +172,17 @@ class UserPengaduanFragment : Fragment() {
                 call: Call<DefaultResponse>,
                 response: Response<DefaultResponse>
             ) {
-                if (response.body()?.message.toString() == "Success") {
-                    Toast.makeText(context, "Aduan berhasil dikirim", Toast.LENGTH_SHORT).show()
-                    with(bs) {
-                        etTitleAduan.text.clear()
-                        etDescAduan.text.clear()
-                    }
-                    dialog.dismiss()
-                    getHistoryAll(args.idPelanggan)
+                dialog.dismiss()
+                Toast.makeText(context, "Aduan berhasil dikirim", Toast.LENGTH_SHORT).show()
+                with(bs) {
+                    etTitleAduan.text.clear()
+                    etDescAduan.text.clear()
                 }
+                getHistoryAll(args.idPelanggan)
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                dialog.dismiss()
                 Toast.makeText(context, "Aduan gagal dikirim", Toast.LENGTH_SHORT).show()
             }
 

@@ -68,6 +68,7 @@
                 android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/ic_card_outline"
                 android:hint="@string/user_id"
+                android:maxLength="7"
                 android:inputType="number" />
 
             <EditText
@@ -77,6 +78,15 @@
                 android:drawableStart="@drawable/ic_profile_outline"
                 android:hint="@string/full_name"
                 android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etNoKtp"
+                style="@style/EditTextAuth"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_card_outline"
+                android:hint="Nomor KTP"
+                android:inputType="number" />
+
 
             <EditText
                 android:id="@+id/etPhone"
@@ -95,6 +105,7 @@
                 android:inputType="textPostalAddress" />
 
             <EditText
+                android:id="@+id/dateRegitrasi"
                 style="@style/EditTextAuth"
                 android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/ic_calender_outline"
@@ -113,6 +124,7 @@
                 android:textSize="18sp" />
 
             <EditText
+                android:id="@+id/etYearMeteran"
                 style="@style/EditTextAuth"
                 android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/ic_calender_outline"
@@ -121,6 +133,7 @@
                 android:maxLength="4" />
 
             <EditText
+                android:id="@+id/etTypeMeteran"
                 style="@style/EditTextAuth"
                 android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/ic_droplet_outline"
@@ -128,7 +141,7 @@
                 android:inputType="text" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/etAddUser"
+                android:id="@+id/btnAddUser"
                 style="@style/ButtonStyle1"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="@color/primary"

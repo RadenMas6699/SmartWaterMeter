@@ -28,7 +28,7 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
 
         fun bindUser(b: UserResponse) {
 
-            if (b.image !== null) {
+            if (b.image != null) {
                 Glide.with(context)
                     .load(b.image)
                     .into(imgUser)

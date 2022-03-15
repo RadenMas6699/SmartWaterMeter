@@ -84,15 +84,31 @@ class AdminUserFragment : Fragment() {
 
             override fun afterTextChanged(p0: Editable?) {
                 if (p0?.length != 0) {
-                    b.tvSearch.text = p0
+                    Retro.instance.searchUser(p0.toString()).enqueue(object : Callback<List<UserResponse>> {
+                        override fun onResponse(
+                            call: Call<List<UserResponse>>,
+                            response: Response<List<UserResponse>>
+                        ) {
+                            val dataUser = response.body()
+                            for (c in dataUser!!) {
+                                userAdapter.setUser(dataUser)
+                            }
+                            if (dataUser.isNullOrEmpty()){
+                                getDataUser()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
+
+                        }
+
+                    })
+                } else{
+                    getDataUser()
                 }
             }
 
         })
-
-//        b.user1.setOnClickListener {
-//            findNavController().navigate(R.id.action_adminUserFragment_to_adminDetailUserFragment)
-//        }
 
         b.fabAddUser.setOnClickListener {
             findNavController().navigate(R.id.action_adminUserFragment_to_adminAddUserFragment)

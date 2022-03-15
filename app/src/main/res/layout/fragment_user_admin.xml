@@ -54,7 +54,7 @@
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto"
                     android:hint="@string/search_user"
-                    android:inputType="text"
+                    android:inputType="textPersonName"
                     android:textColor="@color/primary_text"
                     android:textColorHint="@color/hint"
                     android:textSize="16sp" />
@@ -74,15 +74,6 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/list_user" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <TextView
-        android:id="@+id/tvSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="54dp"
-        android:gravity="center_horizontal"
-        android:textSize="24sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fabAddUser"

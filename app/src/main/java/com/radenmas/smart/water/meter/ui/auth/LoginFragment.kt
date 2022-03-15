@@ -73,7 +73,6 @@ class LoginFragment : Fragment() {
             if (strUsername.isEmpty() || strPassword.isEmpty()) {
                 Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
             } else {
-
                 progress = Dialog(requireActivity())
                 progress.setContentView(R.layout.progress_layout)
                 progress.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
@@ -130,10 +129,9 @@ class LoginFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(context, "Gagal Masuk", Toast.LENGTH_SHORT).show()
                 progress.dismiss()
+                Toast.makeText(context, "Gagal Masuk", Toast.LENGTH_SHORT).show()
             }
-
         })
     }
 

@@ -34,5 +34,6 @@ object Config {
     const val UPDATE_DATA_USER = "data_pelanggan/update_data_user.php"
     const val GET_COUNT_USER = "data_pelanggan/get_count_user.php"
     const val ADD_USER = "data_pelanggan/add_user.php"
+    const val SEARCH_USER = "data_pelanggan/search_data_user.php"
 
 }

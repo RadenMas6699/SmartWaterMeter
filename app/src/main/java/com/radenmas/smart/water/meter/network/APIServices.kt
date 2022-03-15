@@ -58,23 +58,27 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.ADD_USER)
     fun addUser(
-        @Field("kode_meteran") kode_meteran: String,
-        @Field("tahun") tahun: String,
-        @Field("jenis") jenis: String,
-        @Field("status") status: String,
-        @Field("password") password: String,
+        @Field("kode_meteran") kode_meteran: Int,
         @Field("fullname") fullname: String,
         @Field("no_ktp") no_ktp: String,
         @Field("no_telp") no_telp: String,
         @Field("alamat") alamat: String,
-        @Field("image") image: String,
-        @Field("terdaftar") terdaftar: String
+        @Field("terdaftar") terdaftar: String,
+        @Field("tahun") tahun: String,
+        @Field("jenis") jenis: String,
+        @Field("status") status: Int
     ): Call<DefaultResponse>
 
     @GET(Config.GET_COUNT_USER)
     fun getCountUser(): Call<DefaultResponse>
 
-    @GET("data_pelanggan/get_all_data_user.php")
+    @FormUrlEncoded
+    @POST(Config.SEARCH_USER)
+    fun searchUser(
+        @Field("nama_pelanggan") nama_pelanggan: String
+    ): Call<List<UserResponse>>
+
+    @GET(Config.GET_ALL_USER)
     fun getAllDataUser(): Call<List<UserResponse>>
 
     @POST("keluhan/get_history_keluhan_user.php")
