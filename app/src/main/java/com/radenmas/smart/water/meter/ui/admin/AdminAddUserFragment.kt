@@ -5,6 +5,7 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +20,8 @@ import com.radenmas.smart.water.meter.network.Retro
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class AdminAddUserFragment : Fragment() {
     private lateinit var b: FragmentAddUserAdminBinding
@@ -39,6 +42,10 @@ class AdminAddUserFragment : Fragment() {
     private fun onClick() {
         b.imgBack.setOnClickListener {
             activity?.onBackPressed()
+        }
+
+        b.dateRegitrasi.setOnClickListener {
+
         }
 
         b.btnAddUser.setOnClickListener {

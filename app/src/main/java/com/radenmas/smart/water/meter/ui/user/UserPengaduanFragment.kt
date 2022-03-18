@@ -31,7 +31,7 @@ import retrofit2.Response
 class UserPengaduanFragment : Fragment() {
     private lateinit var b: FragmentPengaduanUserBinding
     private lateinit var aduanUser: AduanAdapterUser
-    private lateinit var bs: com.radenmas.smart.water.meter.databinding.BottomSheetAduanBinding
+    private lateinit var bs: com.radenmas.smart.water.meter.databinding.BottomSheetCreateAduanBinding
     private lateinit var dialog: BottomSheetDialog
     val args: UserPengaduanFragmentArgs by navArgs()
 
@@ -117,7 +117,7 @@ class UserPengaduanFragment : Fragment() {
         }
 
         b.fabAddAduan.setOnClickListener {
-            bs = com.radenmas.smart.water.meter.databinding.BottomSheetAduanBinding.inflate(
+            bs = com.radenmas.smart.water.meter.databinding.BottomSheetCreateAduanBinding.inflate(
                 layoutInflater
             )
             val v = bs.root

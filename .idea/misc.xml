@@ -53,7 +53,12 @@
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/activity_on_boarding.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/activity_user_main.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_aduan.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_create_aduan.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_aduan.xml" value="0.12760416666666666" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_aduan_admin.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_aduan_user.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/chart.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/empty_state.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/frag_keluhan_user.xml" value="0.25" />

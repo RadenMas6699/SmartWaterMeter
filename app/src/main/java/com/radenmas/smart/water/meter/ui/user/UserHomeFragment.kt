@@ -10,6 +10,7 @@ import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,11 +20,16 @@ import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
+import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Constant
+import com.radenmas.smart.water.meter.network.Retro
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.*
 
 class UserHomeFragment : Fragment() {
     private lateinit var b: FragmentHomeUserBinding
-
     private lateinit var sharedPref: SharedPreferences
 
     override fun onCreateView(
@@ -41,6 +47,31 @@ class UserHomeFragment : Fragment() {
         onClick()
 
         return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getTagihan()
+    }
+
+    private fun getTagihan() {
+        Retro.instance.getTotalTagihanUser(
+            sharedPref.getString("idPelanggan", null).toString(),
+            "Belum Lunas"
+        ).enqueue(object : Callback<DefaultResponse>{
+            override fun onResponse(
+                call: Call<DefaultResponse>,
+                response: Response<DefaultResponse>
+            ) {
+                val tagihan :String = String.format("%,d", response.body()?.message.toString().toInt())
+               b.tvTagihan.text = tagihan
+            }
+
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+
+            }
+
+        })
     }
 
     private fun initView() {

@@ -35,5 +35,10 @@ object Config {
     const val GET_COUNT_USER = "data_pelanggan/get_count_user.php"
     const val ADD_USER = "data_pelanggan/add_user.php"
     const val SEARCH_USER = "data_pelanggan/search_data_user.php"
-
+    // TAGIHAN
+    const val GET_TAGIHAN_USER          = "tagihan/get_tagihan_user.php"
+    const val GET_TAGIHAN_USER_FILTER   = "tagihan/get_tagihan_user_filter.php"
+    const val GET_TOTAL_TAGIHAN_USER   = "tagihan/get_total_tagihan_user.php"
+    const val GET_TAGIHAN_ADMIN   = "tagihan/get_tagihan_admin.php"
+    const val UPDATE_STATUS_TAGIHAN     = "tagihan/update_status_tagihan.php"
 }

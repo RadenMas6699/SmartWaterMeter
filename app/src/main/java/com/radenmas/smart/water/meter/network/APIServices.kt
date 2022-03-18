@@ -5,10 +5,7 @@
 
 package com.radenmas.smart.water.meter.network
 
-import com.radenmas.smart.water.meter.model.AduanResponse
-import com.radenmas.smart.water.meter.model.DefaultResponse
-import com.radenmas.smart.water.meter.model.LoginResponse
-import com.radenmas.smart.water.meter.model.UserResponse
+import com.radenmas.smart.water.meter.model.*
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -80,6 +77,34 @@ interface APIServices {
 
     @GET(Config.GET_ALL_USER)
     fun getAllDataUser(): Call<List<UserResponse>>
+
+    @FormUrlEncoded
+    @POST(Config.GET_TAGIHAN_USER)
+    fun getTagihanUser(
+        @Field("kode_pelanggan") username: String
+    ): Call<List<TagihanResponse>>
+
+    @FormUrlEncoded
+    @POST(Config.GET_TAGIHAN_USER_FILTER)
+    fun getTagihanUserFilter(
+        @Field("kode_pelanggan") kode_pelanggan: String,
+        @Field("filter") filter: String
+    ): Call<List<TagihanResponse>>
+
+    @FormUrlEncoded
+    @POST(Config.GET_TOTAL_TAGIHAN_USER)
+    fun getTotalTagihanUser(
+        @Field("kode_pelanggan") kode_pelanggan: String,
+        @Field("filter") filter: String
+    ): Call<DefaultResponse>
+
+    @FormUrlEncoded
+    @POST(Config.UPDATE_STATUS_TAGIHAN)
+    fun updateStatusTagihan(
+        @Field("id_tagihan") id_tagihan: String,
+        @Field("status") status: String
+    ): Call<DefaultResponse>
+
 
     @POST("keluhan/get_history_keluhan_user.php")
     fun getHistoryKeluhanUser(): Call<List<AduanResponse>>

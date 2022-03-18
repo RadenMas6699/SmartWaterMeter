@@ -51,8 +51,9 @@
                 android:layout_marginStart="12dp"
                 android:layout_toStartOf="@id/imgWebServer"
                 android:layout_toEndOf="@id/imgProfile"
+                android:ellipsize="end"
                 android:fontFamily="@font/roboto_bold"
-                android:maxLines="2"
+                android:singleLine="true"
                 android:textColor="@color/primary_text" />
 
             <ImageView

@@ -14,11 +14,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sharedPreferences: SharedPreferences
-        sharedPreferences = this.getSharedPreferences(
-            resources.getString(R.string.app_pref),
-            MODE_PRIVATE
-        )
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+//        val sharedPreferences: SharedPreferences
+//        sharedPreferences = this.getSharedPreferences(
+//            resources.getString(R.string.app_pref),
+//            MODE_PRIVATE
+//        )
+//        val editor: SharedPreferences.Editor = sharedPreferences.edit()
     }
 }

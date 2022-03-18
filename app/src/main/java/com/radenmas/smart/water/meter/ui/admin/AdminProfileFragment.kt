@@ -34,7 +34,7 @@ class AdminProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentProfileAdminBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
