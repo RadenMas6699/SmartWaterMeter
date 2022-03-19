@@ -22,7 +22,6 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.utils.Utils
 import com.google.android.material.button.MaterialButton
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
@@ -62,14 +61,12 @@ class UserHomeFragment : Fragment() {
         kasusLineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         kasusLineDataSet.setDrawFilled(true)
-        if (Utils.getSDKInt() >= 18) {
-            val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
-            kasusLineDataSet.fillDrawable = drawable
-        } else {
-            kasusLineDataSet.fillAlpha = 5
-        }
-
+        kasusLineDataSet.fillDrawable =
+            ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
         kasusLineDataSet.lineWidth = 1.5f
+
+        kasusLineDataSet.color = resources.getColor(R.color.primary)
+
         kasusLineDataSet.setDrawCircles(false)
         kasusLineDataSet.setDrawValues(false)
 
