@@ -75,7 +75,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //chart
-    implementation 'org.quanqi:mpandroidchart:1.7.5'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     //navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.1")
@@ -92,5 +92,5 @@ dependencies {
     implementation 'com.tbuonomo:dotsindicator:4.2'
 
     implementation 'com.airbnb.android:lottie:5.0.3'
-//    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }

@@ -105,7 +105,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="14dp"
             android:padding="7dp"
-            android:src="@drawable/ic_close_outline"
+            android:src="@drawable/ic_close"
             android:textColor="@color/hint"
             android:textSize="24sp"
             app:tint="@color/white" />

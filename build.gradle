@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         google()
+        jcenter()
         mavenCentral()
         maven { url 'https://www.jitpack.io' }
     }
@@ -9,7 +10,9 @@ buildscript {
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.4.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
     }
-}/*
+}
+
+/*
  * Created by RadenMas on 10/3/2022.
  * Copyright (c) 2022.
  */
