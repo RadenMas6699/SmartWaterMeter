@@ -102,13 +102,13 @@ class UserChangeProfileFragment : Fragment() {
                     address
                 )
                 progress.dismiss()
-                Toast.makeText(context, "Berhasil Update Data Pelanggan", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Data Pelanggan Berhasil Diupdate", Toast.LENGTH_SHORT).show()
                 activity?.onBackPressed()
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                 progress.dismiss()
-                Toast.makeText(context, "Gagal Update Data Pelanggan", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Data Pelanggan Gagal Diupdate", Toast.LENGTH_SHORT).show()
             }
 
         })

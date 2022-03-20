@@ -234,7 +234,7 @@ class UserPengaduanFragment : Fragment() {
                 response: Response<DefaultResponse>
             ) {
                 dialog.dismiss()
-                Toast.makeText(context, "Aduan berhasil dikirim", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Aduan Berhasil Dikirim", Toast.LENGTH_SHORT).show()
                 with(bs) {
                     etTitleAduan.text.clear()
                     etDescAduan.text.clear()
@@ -244,7 +244,7 @@ class UserPengaduanFragment : Fragment() {
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                 dialog.dismiss()
-                Toast.makeText(context, "Aduan gagal dikirim", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Aduan Gagal Dikirim", Toast.LENGTH_SHORT).show()
             }
 
         })
