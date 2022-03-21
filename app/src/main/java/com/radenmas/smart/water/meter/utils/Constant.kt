@@ -3,7 +3,7 @@
  * Copyright (c) 2022.
  */
 
-package com.radenmas.smart.water.meter.network
+package com.radenmas.smart.water.meter.utils
 
 /**
  * Created by RadenMas on 14/03/2022.
@@ -67,7 +67,8 @@ object Constant {
     const val processed = "Diproses"
     const val finish = "Selesai"
     const val rejected = "Ditolak"
-
+    const val paid_off = "Lunas"
+    const val not_yet_paid_off = "Belum Lunas"
 
     const val color_primary = "#0091FF"
     const val color_primary_dark = "#033FC0"

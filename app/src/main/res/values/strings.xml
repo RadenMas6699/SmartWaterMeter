@@ -22,7 +22,8 @@
     <string name="statistik">Statistik</string>
     <string name="skip">Lewati</string>
     <string name="m3">m3</string>
-    <string name="pembayaran">Riwayat Pembayaran</string>
+    <string name="billing">Tagihan</string>
+    <string name="billing_history">Riwayat Tagihan</string>
     <string name="view_all">Lihat semua</string>
     <string name="user_id">ID Pelanggan</string>
     <string name="phone_number">Nomor HP</string>

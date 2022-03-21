@@ -79,7 +79,12 @@
         android:id="@+id/userPaymentFragment"
         android:name="com.radenmas.smart.water.meter.ui.user.UserPaymentFragment"
         android:label="fragment_payment_user"
-        tools:layout="@layout/fragment_payment_user" />
+        tools:layout="@layout/fragment_payment_user">
+        <argument
+            android:name="id_pelanggan"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/userWebserverFragment"
         android:name="com.radenmas.smart.water.meter.ui.user.UserWebserverFragment"

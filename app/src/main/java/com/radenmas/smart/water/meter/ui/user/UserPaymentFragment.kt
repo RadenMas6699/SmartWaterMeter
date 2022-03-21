@@ -9,26 +9,72 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.radenmas.smart.water.meter.adapter.AduanAdapterUser
+import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentPaymentUserBinding
+import com.radenmas.smart.water.meter.model.TagihanResponse
+import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.Loading
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserPaymentFragment : Fragment() {
     private lateinit var b: FragmentPaymentUserBinding
+    private lateinit var paymentUser: TagihanAdapterUser
+    private val args: UserPaymentFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        b = FragmentPaymentUserBinding.inflate(layoutInflater,container,false)
+    ): View {
+        b = FragmentPaymentUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
+
+        b.rvPaymentAll.layoutManager = LinearLayoutManager(activity)
+        paymentUser = TagihanAdapterUser(requireActivity())
+        b.rvPaymentAll.adapter = paymentUser
+
+        Loading.showLoading(requireContext())
 
         onClick()
 
         return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getTagihanUser(args.idPelanggan)
+    }
+
+    private fun getTagihanUser(idPelanggan: String) {
+        Retro.instance.getTagihanUser(idPelanggan)
+            .enqueue(object : Callback<List<TagihanResponse>> {
+                override fun onResponse(
+                    call: Call<List<TagihanResponse>>,
+                    response: Response<List<TagihanResponse>>
+                ) {
+                    Loading.dismissLoading()
+                    val dataTagihan = response.body()
+                    for (c in dataTagihan!!) {
+                        b.rvPaymentAll.visibility = View.VISIBLE
+                        b.lottieEmpty.visibility = View.INVISIBLE
+                        paymentUser.setTagihan(dataTagihan)
+                    }
+                    if (dataTagihan.isEmpty()) {
+                        b.rvPaymentAll.visibility = View.INVISIBLE
+                        b.lottieEmpty.visibility = View.VISIBLE
+                    }
+                }
+
+                override fun onFailure(call: Call<List<TagihanResponse>>, t: Throwable) {
+
+                }
+
+            })
     }
 
     private fun onClick() {

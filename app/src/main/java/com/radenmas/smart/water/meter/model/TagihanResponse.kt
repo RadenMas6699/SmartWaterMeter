@@ -8,8 +8,12 @@ package com.radenmas.smart.water.meter.model
 data class TagihanResponse(
     val id_user: String?,
     val nama: String?,
+    val pemakaian: String?,
+    val maintenance: String?,
     val tagihan: String?,
-    val periode: String?,
+    val total: Int?,
+    val bulan: String?,
+    val tahun: String?,
     val status: String?,
     val image: String?
 )

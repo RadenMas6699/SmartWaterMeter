@@ -7,7 +7,6 @@ package com.radenmas.smart.water.meter.adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
-import com.radenmas.smart.water.meter.network.Constant
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import com.radenmas.smart.water.meter.utils.Constant
 
 class AduanAdapterUser(val context: Context) :
     RecyclerView.Adapter<AduanAdapterUser.HistoryViewHolder>() {

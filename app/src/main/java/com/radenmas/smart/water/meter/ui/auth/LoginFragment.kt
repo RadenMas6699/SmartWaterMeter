@@ -21,6 +21,7 @@ import com.radenmas.smart.water.meter.model.LoginResponse
 import com.radenmas.smart.water.meter.network.Retro
 import com.radenmas.smart.water.meter.ui.admin.AdminMainActivity
 import com.radenmas.smart.water.meter.ui.user.UserMainActivity
+import com.radenmas.smart.water.meter.utils.Loading
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -36,7 +37,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentLoginBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
@@ -73,10 +74,7 @@ class LoginFragment : Fragment() {
             if (strUsername.isEmpty() || strPassword.isEmpty()) {
                 Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
             } else {
-                progress = Dialog(requireActivity())
-                progress.setContentView(R.layout.progress_layout)
-                progress.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
-                progress.show()
+                Loading.showLoading(requireContext())
 
                 postLogin(strUsername, strPassword)
             }
@@ -94,7 +92,7 @@ class LoginFragment : Fragment() {
                 call: Call<LoginResponse>,
                 response: retrofit2.Response<LoginResponse>
             ) {
-                progress.dismiss()
+                Loading.dismissLoading()
                 saveData(
                     response.body()?.username.toString(),
                     response.body()?.level_user.toString(),
@@ -129,7 +127,7 @@ class LoginFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                progress.dismiss()
+                Loading.dismissLoading()
                 Toast.makeText(context, "Gagal Masuk", Toast.LENGTH_SHORT).show()
             }
         })

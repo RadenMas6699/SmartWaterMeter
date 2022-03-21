@@ -92,11 +92,17 @@ interface APIServices {
     ): Call<List<TagihanResponse>>
 
     @FormUrlEncoded
+    @POST(Config.GET_TAGIHAN_USER_LIMIT)
+    fun getTagihanUserLimit(
+        @Field("kode_pelanggan") kode_pelanggan: String
+    ): Call<List<TagihanResponse>>
+
+    @FormUrlEncoded
     @POST(Config.GET_TOTAL_TAGIHAN_USER)
     fun getTotalTagihanUser(
         @Field("kode_pelanggan") kode_pelanggan: String,
         @Field("filter") filter: String
-    ): Call<DefaultResponse>
+    ): Call<TagihanResponse>
 
     @FormUrlEncoded
     @POST(Config.UPDATE_STATUS_TAGIHAN)

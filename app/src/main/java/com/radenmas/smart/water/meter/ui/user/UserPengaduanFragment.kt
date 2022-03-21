@@ -22,8 +22,9 @@ import com.radenmas.smart.water.meter.adapter.AduanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentPengaduanUserBinding
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.model.DefaultResponse
-import com.radenmas.smart.water.meter.network.Constant
+import com.radenmas.smart.water.meter.utils.Constant
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.Loading
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +39,7 @@ class UserPengaduanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentPengaduanUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
@@ -53,6 +54,7 @@ class UserPengaduanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Loading.showLoading(requireContext())
         getHistoryAll(args.idPelanggan)
     }
 
@@ -154,16 +156,20 @@ class UserPengaduanFragment : Fragment() {
         btnActive.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_primary))
 
         btnNotActive1.setTextColor(resources.getColor(R.color.hint))
-        btnNotActive1.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive1.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
         btnNotActive2.setTextColor(resources.getColor(R.color.hint))
-        btnNotActive2.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive2.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
         btnNotActive3.setTextColor(resources.getColor(R.color.hint))
-        btnNotActive3.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive3.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
         btnNotActive4.setTextColor(resources.getColor(R.color.hint))
-        btnNotActive4.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive4.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
     }
 
     private fun getHistory(kode_pelanggan: String, filter: String) {
@@ -201,6 +207,7 @@ class UserPengaduanFragment : Fragment() {
                 call: Call<List<AduanResponse>>,
                 response: Response<List<AduanResponse>>
             ) {
+                Loading.dismissLoading()
                 val dataHistory = response.body()
                 for (c in dataHistory!!) {
                     b.rvAduanUser.visibility = View.VISIBLE
@@ -214,9 +221,7 @@ class UserPengaduanFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<AduanResponse>>, t: Throwable) {
-
             }
-
         })
     }
 

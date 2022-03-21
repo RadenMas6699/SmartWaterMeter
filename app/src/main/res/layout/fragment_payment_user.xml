@@ -36,7 +36,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_toEndOf="@id/imgBack"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/pembayaran"
+                android:text="@string/billing_history"
                 android:textColor="@color/primary_text"
                 android:textSize="18sp" />
         </RelativeLayout>

@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -24,10 +25,12 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.button.MaterialButton
 import com.radenmas.smart.water.meter.R
+import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
-import com.radenmas.smart.water.meter.model.DefaultResponse
-import com.radenmas.smart.water.meter.network.Constant
+import com.radenmas.smart.water.meter.model.TagihanResponse
+import com.radenmas.smart.water.meter.utils.Constant
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.Loading
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +39,7 @@ import retrofit2.Response
 class UserHomeFragment : Fragment() {
     private lateinit var b: FragmentHomeUserBinding
     private lateinit var sharedPref: SharedPreferences
+    private lateinit var paymentUser: TagihanAdapterUser
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -120,7 +124,6 @@ class UserHomeFragment : Fragment() {
     }
 
     private fun lineChartWeek() {
-
         val kasus = ArrayList<Entry>()
         kasus.add(Entry(0F, 149F))
         kasus.add(Entry(1F, 113F))
@@ -134,7 +137,6 @@ class UserHomeFragment : Fragment() {
     }
 
     private fun lineChartMonth() {
-
         val kasus = ArrayList<Entry>()
         kasus.add(Entry(0F, 149F))
         kasus.add(Entry(1F, 113F))
@@ -170,36 +172,62 @@ class UserHomeFragment : Fragment() {
         lineChart(kasus)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getTagihan()
+        getTotalTagihan()
+        getTagihanPayment()
     }
 
-    private fun getTagihan() {
+    private fun getTagihanPayment() {
+        Retro.instance.getTagihanUserLimit(
+            sharedPref.getString("idPelanggan", null).toString()
+        ).enqueue(object : Callback<List<TagihanResponse>> {
+            override fun onResponse(
+                call: Call<List<TagihanResponse>>,
+                response: Response<List<TagihanResponse>>
+            ) {
+                val dataTagihan = response.body()
+                for (c in dataTagihan!!) {
+                    b.llPayment.visibility = View.VISIBLE
+                    paymentUser.setTagihan(dataTagihan)
+                }
+                if (dataTagihan.isEmpty()) {
+                    b.llPayment.visibility = View.INVISIBLE
+                }
+            }
+
+            override fun onFailure(call: Call<List<TagihanResponse>>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun getTotalTagihan() {
         Retro.instance.getTotalTagihanUser(
             sharedPref.getString("idPelanggan", null).toString(),
-            "Belum Lunas"
-        ).enqueue(object : Callback<DefaultResponse> {
+            Constant.not_yet_paid_off
+        ).enqueue(object : Callback<TagihanResponse> {
             override fun onResponse(
-                call: Call<DefaultResponse>,
-                response: Response<DefaultResponse>
+                call: Call<TagihanResponse>,
+                response: Response<TagihanResponse>
             ) {
                 val tagihan: String =
-                    String.format("%,d", response.body()?.message.toString().toInt())
+                    String.format("%,d", response.body()?.total)
                 b.tvTagihan.text = tagihan
+                b.tvPemakaian.text = response.body()?.pemakaian.toString()
             }
 
-            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-
+            override fun onFailure(call: Call<TagihanResponse>, t: Throwable) {
             }
-
         })
     }
 
     private fun initView() {
         Glide.with(this).load(sharedPref.getString("image", null)).into(b.imgProfile)
         b.tvFullName.text = sharedPref.getString("nama", null)
+
+        b.rvPaymentLast.layoutManager = LinearLayoutManager(activity)
+        paymentUser = TagihanAdapterUser(requireActivity())
+        b.rvPaymentLast.adapter = paymentUser
     }
 
     private fun onClick() {
@@ -238,7 +266,11 @@ class UserHomeFragment : Fragment() {
         }
 
         b.tvViewAll.setOnClickListener {
-            findNavController().navigate(R.id.action_userHomeFragment_to_userPaymentFragment)
+            val payment =
+                UserHomeFragmentDirections.actionUserHomeFragmentToUserPaymentFragment(
+                    sharedPref.getString("idPelanggan", null).toString()
+                )
+            findNavController().navigate(payment)
         }
     }
 
@@ -258,5 +290,4 @@ class UserHomeFragment : Fragment() {
         btnNotActive2.strokeColor =
             ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
     }
-
 }

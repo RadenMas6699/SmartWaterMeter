@@ -14,7 +14,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
-import com.radenmas.smart.water.meter.network.Constant
+import com.radenmas.smart.water.meter.utils.Constant
 
 class AduanAdapterAdmin(val context: Context) :
     RecyclerView.Adapter<AduanAdapterAdmin.HistoryViewHolder>() {
