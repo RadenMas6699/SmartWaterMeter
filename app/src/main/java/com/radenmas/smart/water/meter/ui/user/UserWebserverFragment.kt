@@ -9,10 +9,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
 import com.radenmas.smart.water.meter.databinding.FragmentWebserverUserBinding
 
 class UserWebserverFragment : Fragment() {
@@ -21,8 +19,8 @@ class UserWebserverFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        b = FragmentWebserverUserBinding.inflate(layoutInflater,container,false)
+    ): View {
+        b = FragmentWebserverUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
         onClick()
@@ -34,6 +32,14 @@ class UserWebserverFragment : Fragment() {
         b.imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
-    }
 
+        b.switchPower.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                Toast.makeText(context, "CHECKED", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "UNCHECKED", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
 }

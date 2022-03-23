@@ -24,7 +24,7 @@ import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.utils.Constant
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.Loading
+import com.radenmas.smart.water.meter.utils.AppUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,7 +54,7 @@ class UserPengaduanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Loading.showLoading(requireContext())
+        AppUtils.showLoading(requireContext())
         getHistoryAll(args.idPelanggan)
     }
 
@@ -207,7 +207,7 @@ class UserPengaduanFragment : Fragment() {
                 call: Call<List<AduanResponse>>,
                 response: Response<List<AduanResponse>>
             ) {
-                Loading.dismissLoading()
+                AppUtils.dismissLoading()
                 val dataHistory = response.body()
                 for (c in dataHistory!!) {
                     b.rvAduanUser.visibility = View.VISIBLE

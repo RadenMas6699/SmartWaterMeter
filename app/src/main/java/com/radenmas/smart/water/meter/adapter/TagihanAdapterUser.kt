@@ -10,12 +10,17 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.utils.Constant
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TagihanAdapterUser(val context: Context) :
     RecyclerView.Adapter<TagihanAdapterUser.TagihanViewHolder>() {
@@ -25,7 +30,6 @@ class TagihanAdapterUser(val context: Context) :
 
         private val rlTagihan: RelativeLayout = item.findViewById(R.id.rlTagihan)
         private val tvTitle: TextView = item.findViewById(R.id.tvTitle)
-        private val tvDesc: TextView = item.findViewById(R.id.tvDesc)
         private val tvStatues: TextView = item.findViewById(R.id.tvStatues)
         private val tvPrice: TextView = item.findViewById(R.id.tvPrice)
 
@@ -79,7 +83,7 @@ class TagihanAdapterUser(val context: Context) :
                     tvTitle.text = period
                 }
                 b.bulan.equals("12") -> {
-                    period = "Desember "
+                    period = "Desember $year"
                     tvTitle.text = period
                 }
             }
@@ -101,25 +105,110 @@ class TagihanAdapterUser(val context: Context) :
                 }
             }
 
-//            rlTagihan.setOnClickListener {
-//                val dialog = BottomSheetDialog(context, R.style.DialogStyle)
-//                dialog.setCancelable(true)
-//                dialog.setContentView(R.layout.bottom_sheet_detail_aduan_user)
-//                dialog.show()
-//
-//                val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
-//                val etDescAduan: TextView? = dialog.findViewById(R.id.etDescAduan)
-//                val tvStatues: TextView? = dialog.findViewById(R.id.tvStatues)
-//                val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
-//
-//                tvTitleAduan?.text = b.title
-//                etDescAduan?.text = b.desc
-//                tvStatues?.text = b.status
-//
-//                imgDismiss?.setOnClickListener {
-//                    dialog.dismiss()
-//                }
-//            }
+            rlTagihan.setOnClickListener {
+                val dialog = BottomSheetDialog(context, R.style.DialogStyle)
+                dialog.setCancelable(true)
+                dialog.setContentView(R.layout.bottom_sheet_detail_payment_user)
+                dialog.show()
+
+                val tvPeriod: TextView? = dialog.findViewById(R.id.tvPeriod)
+                val tvPemakaian: TextView? = dialog.findViewById(R.id.tvPemakaian)
+                val tvTagihan: TextView? = dialog.findViewById(R.id.tvTagihan)
+                val tvUsageCost: TextView? = dialog.findViewById(R.id.tvUsageCost)
+                val tvMaintenanceCost: TextView? = dialog.findViewById(R.id.tvMaintenanceCost)
+                val tvPayDate: TextView? = dialog.findViewById(R.id.tvPayDate)
+                val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
+
+                val detPeriod: String
+                when {
+                    b.bulan.equals("1") -> {
+                        detPeriod = "Januari $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("2") -> {
+                        detPeriod = "Februari $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("3") -> {
+                        detPeriod = "Maret $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("4") -> {
+                        detPeriod = "April $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("5") -> {
+                        detPeriod = "Mei $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("6") -> {
+                        detPeriod = "Juni $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("7") -> {
+                        detPeriod = "Juli $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("8") -> {
+                        detPeriod = "Agustus $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("9") -> {
+                        detPeriod = "September $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("10") -> {
+                        detPeriod = "Oktober $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("11") -> {
+                        detPeriod = "November $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                    b.bulan.equals("12") -> {
+                        detPeriod = "Desember $year"
+                        tvPeriod?.text = detPeriod
+                    }
+                }
+
+                tvPemakaian?.text = b.pemakaian
+                tvTagihan?.text = total
+
+                val usageCost: String =
+                    String.format("%,d", b.tagihan.toString().toInt())
+                val usage = "Rp. $usageCost"
+                tvUsageCost?.text = usage
+
+                val maintenanceCost: String =
+                    String.format("%,d", b.maintenance.toString().toInt())
+                val maintenance = "Rp. $maintenanceCost"
+                tvMaintenanceCost?.text = maintenance
+
+                when {
+                    b.status.equals(Constant.paid_off) -> {
+                        val inputFormat: DateFormat = SimpleDateFormat(
+                            Constant.pattern_input_date,
+                            Locale("ID")
+                        )
+                        val outputFormat: DateFormat =
+                            SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
+                        val inputDateStr = b.tgl_bayar.toString()
+                        val date: Date? = inputFormat.parse(inputDateStr)
+                        val outputDateStr: String = outputFormat.format(date)
+                        tvPayDate?.text = outputDateStr
+
+                    }
+                    b.status.equals(Constant.not_yet_paid_off) -> {
+                        tvPayDate?.text = "-"
+                    }
+                }
+
+
+
+                imgDismiss?.setOnClickListener {
+                    dialog.dismiss()
+                }
+            }
         }
     }
 

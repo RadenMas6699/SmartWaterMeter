@@ -6,15 +6,17 @@
 package com.radenmas.smart.water.meter.ui.admin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
 import com.radenmas.smart.water.meter.databinding.FragmentWebserverAdminBinding
-import com.radenmas.smart.water.meter.databinding.FragmentWebserverUserBinding
+import com.radenmas.smart.water.meter.model.DefaultResponse
+import com.radenmas.smart.water.meter.network.RetroWebserver
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AdminWebserverFragment : Fragment() {
 
@@ -23,8 +25,8 @@ class AdminWebserverFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        b = FragmentWebserverAdminBinding.inflate(layoutInflater,container,false)
+    ): View {
+        b = FragmentWebserverAdminBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
         onClick()
@@ -32,9 +34,58 @@ class AdminWebserverFragment : Fragment() {
         return v
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getTagihan()
+    }
+
+    private fun getTagihan() {
+        RetroWebserver.instance.getTotal().enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Log.d("WIFI", response.toString())
+                b.tvTagihan.text = response.toString()
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+
+            }
+
+        })
+    }
+
     private fun onClick() {
         b.imgBack.setOnClickListener {
             activity?.onBackPressed()
+        }
+
+        b.imgSetting.setOnClickListener {
+
+        }
+
+        b.switchPower.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                RetroWebserver.instance.setRelayOn().enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+
+
+
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                    }
+                })
+            } else {
+                RetroWebserver.instance.setRelayOff().enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+
+
+
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                    }
+                })
+            }
         }
     }
 

@@ -22,7 +22,7 @@ class LihatFotoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentLihatFotoBinding.inflate(layoutInflater, container, false)
         val v = b.root
 

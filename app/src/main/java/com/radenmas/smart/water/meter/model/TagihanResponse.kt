@@ -15,6 +15,7 @@ data class TagihanResponse(
     val bulan: String?,
     val tahun: String?,
     val status: String?,
-    val image: String?
+    val image: String?,
+    val tgl_bayar: String?
 )
 

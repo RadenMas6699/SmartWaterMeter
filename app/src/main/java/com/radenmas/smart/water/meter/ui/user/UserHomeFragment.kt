@@ -30,7 +30,6 @@ import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.utils.Constant
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.Loading
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,8 +64,7 @@ class UserHomeFragment : Fragment() {
         kasusLineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         kasusLineDataSet.setDrawFilled(true)
-        kasusLineDataSet.fillDrawable =
-            ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
+//        kasusLineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
         kasusLineDataSet.lineWidth = 1.5f
 
         kasusLineDataSet.color = resources.getColor(R.color.primary)

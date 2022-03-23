@@ -18,6 +18,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.utils.Constant
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AduanAdapterUser(val context: Context) :
     RecyclerView.Adapter<AduanAdapterUser.HistoryViewHolder>() {
@@ -36,18 +39,16 @@ class AduanAdapterUser(val context: Context) :
             tvTitle.text = b.title
             tvDesc.text = b.desc
 
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                val firstApiFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-//                val date = LocalDate.parse(b.waktu.toString(), firstApiFormat)
-////                tvDate.text = date.toString()
-//            } else {
-////                val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-////                val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
-////                val date: String = formatter.format(parser.parse(b.waktu))
-//
-//            }
-
-            tvDate.text = b.waktu
+            val inputFormat: DateFormat = SimpleDateFormat(
+                Constant.pattern_input_date,
+                Locale("ID")
+            )
+            val outputFormat: DateFormat =
+                SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
+            val inputDateStr = b.waktu.toString()
+            val date: Date? = inputFormat.parse(inputDateStr)
+            val outputDateStr: String = outputFormat.format(date)
+            tvDate.text = outputDateStr
 
             tvStatues.text = b.status
             when {

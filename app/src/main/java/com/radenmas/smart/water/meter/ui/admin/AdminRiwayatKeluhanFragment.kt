@@ -45,7 +45,7 @@ class AdminRiwayatKeluhanFragment : Fragment() {
             }, 3000)
         }
 
-        onClick()
+//        onClick()
 
         return v
     }
@@ -55,45 +55,37 @@ class AdminRiwayatKeluhanFragment : Fragment() {
 //        getDataKeluhan()
     }
 
-    private fun getDataKeluhanAll() {
+//    private fun getDataKeluhanAll() {
+//        Retro.instance.getHistoryKeluhanUser().enqueue(object : Callback<List<AduanResponse>> {
+//            override fun onResponse(call: Call<List<AduanResponse>>, response: Response<List<AduanResponse>>) {
+//                Log.d("RIWAYAT", aduanAdapterAdmin.itemCount.toString())
+//
+//                val dataKeluhan = response.body()
+//                for (c in dataKeluhan!!) {
+//                    aduanAdapterAdmin.setKeluhan(dataKeluhan)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<AduanResponse>>, t: Throwable) {
+//                Log.e("Failed", t.message.toString())
+//            }
+//
+//        })
+//    }
 
-        Retro.instance.getHistoryKeluhanUser().enqueue(object : Callback<List<AduanResponse>> {
-            override fun onResponse(call: Call<List<AduanResponse>>, response: Response<List<AduanResponse>>) {
-                Log.d("RIWAYAT", aduanAdapterAdmin.itemCount.toString())
-
-                val dataKeluhan = response.body()
-                for (c in dataKeluhan!!) {
-
-//                    Log.d("RIWAYAT", c.kode_pelanggan.toString())
-//                    Log.d("RIWAYAT", c.nama_pelanggan.toString())
-//                    Log.d("RIWAYAT", c.subjek.toString())
-//                    Log.d("RIWAYAT", c.keterangan.toString())
-//                    Log.d("RIWAYAT", c.status.toString())
-//                    Log.d("RIWAYAT", c.waktu.toString())
-                    aduanAdapterAdmin.setKeluhan(dataKeluhan)
-                }
-            }
-
-            override fun onFailure(call: Call<List<AduanResponse>>, t: Throwable) {
-                Log.e("Failed", t.message.toString())
-            }
-
-        })
-    }
-
-    private fun onClick() {
-        b.btnHistoryAll.setOnClickListener {
-            getDataKeluhanAll()
-        }
-        b.btnHistoryProses.setOnClickListener {
-            getDataKeluhanAll()
-        }
-        b.btnHistoryDone.setOnClickListener {
-            getDataKeluhanAll()
-        }
-        b.btnHistoryReject.setOnClickListener {
-            getDataKeluhanAll()
-        }
-    }
+//    private fun onClick() {
+//        b.btnHistoryAll.setOnClickListener {
+//            getDataKeluhanAll()
+//        }
+//        b.btnHistoryProses.setOnClickListener {
+//            getDataKeluhanAll()
+//        }
+//        b.btnHistoryDone.setOnClickListener {
+//            getDataKeluhanAll()
+//        }
+//        b.btnHistoryReject.setOnClickListener {
+//            getDataKeluhanAll()
+//        }
+//    }
 
 }

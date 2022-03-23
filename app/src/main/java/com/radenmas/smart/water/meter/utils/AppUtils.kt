@@ -12,8 +12,9 @@ import com.radenmas.smart.water.meter.R
 /**
  * Created by RadenMas on 21/03/2022.
  */
-object Loading {
+object AppUtils {
     private lateinit var progress: Dialog
+
     fun showLoading(context: Context) {
         progress = Dialog(context)
         progress.setContentView(R.layout.progress_layout)

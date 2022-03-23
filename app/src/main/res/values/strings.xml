@@ -18,10 +18,11 @@
     <string name="full_name">Nama Lengkap</string>
     <string name="tagihan">Tagihan</string>
     <string name="rp">Rp.</string>
-    <string name="pemakaian_air">Pemakaian Air</string>
+    <string name="usage">Pemakaian</string>
+    <string name="usage_cost">Biaya Pemakaian</string>
     <string name="statistik">Statistik</string>
     <string name="skip">Lewati</string>
-    <string name="m3">m3</string>
+    <string name="m3">M3</string>
     <string name="billing">Tagihan</string>
     <string name="billing_history">Riwayat Tagihan</string>
     <string name="view_all">Lihat semua</string>
@@ -71,8 +72,18 @@
     <string name="_7_hari">7 Hari</string>
     <string name="_1_bulan">1 Bulan</string>
     <string name="detail_pengaduan">Detail Pengaduan</string>
+    <string name="detail_billing">Detail Tagihan</string>
     <string name="reject">Tolak</string>
     <string name="accept">Terima</string>
+    <string name="period">Periode</string>
+    <string name="paid_off">Lunas</string>
+    <string name="not_yet_paid_off">Belum Lunas</string>
+    <string name="maintenance">Pemeliharaan</string>
+    <string name="maintenance_cost">Biaya Pemeliharaan</string>
+    <string name="pay_date">Tanggal Bayar</string>
+    <string name="status">Status</string>
+    <string name="aduan">Aduan</string>
+    <string name="kontrol_aliran_air">Kontrol Aliran Air</string>
 
 
 </resources>

@@ -12,12 +12,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.radenmas.smart.water.meter.adapter.AduanAdapterUser
 import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentPaymentUserBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.Loading
+import com.radenmas.smart.water.meter.utils.AppUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +37,7 @@ class UserPaymentFragment : Fragment() {
         paymentUser = TagihanAdapterUser(requireActivity())
         b.rvPaymentAll.adapter = paymentUser
 
-        Loading.showLoading(requireContext())
+        AppUtils.showLoading(requireContext())
 
         onClick()
 
@@ -57,7 +56,7 @@ class UserPaymentFragment : Fragment() {
                     call: Call<List<TagihanResponse>>,
                     response: Response<List<TagihanResponse>>
                 ) {
-                    Loading.dismissLoading()
+                    AppUtils.dismissLoading()
                     val dataTagihan = response.body()
                     for (c in dataTagihan!!) {
                         b.rvPaymentAll.visibility = View.VISIBLE

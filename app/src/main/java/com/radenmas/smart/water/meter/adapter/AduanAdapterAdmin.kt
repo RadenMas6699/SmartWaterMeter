@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.utils.Constant
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AduanAdapterAdmin(val context: Context) :
     RecyclerView.Adapter<AduanAdapterAdmin.HistoryViewHolder>() {
@@ -33,19 +36,34 @@ class AduanAdapterAdmin(val context: Context) :
             tvTitle.text = b.title
             tvUserID.text = b.kode_pelanggan
             tvDesc.text = b.desc
-            tvDate.text = b.waktu
+
+            val inputFormat: DateFormat = SimpleDateFormat(
+                Constant.pattern_input_date, Locale("ID")
+            )
+            val outputFormat: DateFormat =
+                SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
+            val inputDateStr = b.waktu.toString()
+            val date: Date? = inputFormat.parse(inputDateStr)
+            val outputDateStr: String = outputFormat.format(date)
+            tvDate.text = outputDateStr
 
             tvStatues.text = b.status
             when {
+                b.status.equals(Constant.sent) -> {
+                    tvStatues.visibility = View.GONE
+                }
                 b.status.equals(Constant.processed) -> {
+                    tvStatues.visibility = View.VISIBLE
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_orange)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_orange))
                 }
                 b.status.equals(Constant.finish) -> {
+                    tvStatues.visibility = View.VISIBLE
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_blue)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_primary))
                 }
                 b.status.equals(Constant.rejected) -> {
+                    tvStatues.visibility = View.VISIBLE
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_red))
                 }

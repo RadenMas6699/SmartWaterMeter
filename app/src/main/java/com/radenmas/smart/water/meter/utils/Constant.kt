@@ -69,6 +69,8 @@ object Constant {
     const val rejected = "Ditolak"
     const val paid_off = "Lunas"
     const val not_yet_paid_off = "Belum Lunas"
+    const val pattern_input_date = "yyyy-MM-dd"
+    const val pattern_output_date = "dd MMM yyyy"
 
     const val color_primary = "#0091FF"
     const val color_primary_dark = "#033FC0"
