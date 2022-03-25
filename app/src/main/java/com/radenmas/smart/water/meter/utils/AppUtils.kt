@@ -7,6 +7,7 @@ package com.radenmas.smart.water.meter.utils
 
 import android.app.Dialog
 import android.content.Context
+import android.widget.Toast
 import com.radenmas.smart.water.meter.R
 
 /**
@@ -24,5 +25,9 @@ object AppUtils {
 
     fun dismissLoading() {
         progress.dismiss()
+    }
+
+    fun toast(context: Context, msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 }

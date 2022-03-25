@@ -121,14 +121,14 @@ class LoginFragment : Fragment() {
                         activity?.finish()
                     }
                     else -> {
-                        Toast.makeText(context, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+                        AppUtils.toast(requireContext(),"Gagal Masuk")
                     }
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 AppUtils.dismissLoading()
-                Toast.makeText(context, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+                AppUtils.toast(requireContext(),"Gagal Masuk")
             }
         })
     }

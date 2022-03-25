@@ -30,7 +30,7 @@ class AdminRiwayatKeluhanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentRiwayatKeluhanAdminBinding.inflate(layoutInflater, container, false)
         val v = b.root
 

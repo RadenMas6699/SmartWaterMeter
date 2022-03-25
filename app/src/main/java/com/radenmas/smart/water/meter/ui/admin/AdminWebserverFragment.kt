@@ -12,8 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.radenmas.smart.water.meter.databinding.FragmentWebserverAdminBinding
-import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.RetroWebserver
+import com.radenmas.smart.water.meter.utils.AppUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,12 +42,18 @@ class AdminWebserverFragment : Fragment() {
     private fun getTagihan() {
         RetroWebserver.instance.getTotal().enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.d("WIFI", response.toString())
-                b.tvTagihan.text = response.toString()
+                val responseBody = response.body()
+
+                Log.d(
+                    "WEB",
+                    "response Total : $responseBody "
+                )
+                b.tvTagihan.text = responseBody.toString()
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-
+                AppUtils.toast(requireActivity(), t.message.toString())
+                Log.d("WEB", "response Total : $t")
             }
 
         })
@@ -66,23 +72,23 @@ class AdminWebserverFragment : Fragment() {
             if (isChecked) {
                 RetroWebserver.instance.setRelayOn().enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
-
-
+                        Log.d("WEB", "response On : $response")
 
                     }
 
                     override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("WEB", "response On : $t)")
                     }
                 })
             } else {
                 RetroWebserver.instance.setRelayOff().enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
-
-
+                        Log.d("WEB", "response Off : $response")
 
                     }
 
                     override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Log.d("WEB", "response Off : $t")
                     }
                 })
             }

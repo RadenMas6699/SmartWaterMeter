@@ -203,8 +203,6 @@ class TagihanAdapterUser(val context: Context) :
                     }
                 }
 
-
-
                 imgDismiss?.setOnClickListener {
                     dialog.dismiss()
                 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.UserResponse
+import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 
 class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
@@ -22,19 +23,21 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
 
     inner class UserViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-        val imgUser: CircleImageView = item.findViewById(R.id.imgUser)
-        val namaPelanggan: TextView = item.findViewById(R.id.tvFullName)
-        val idPelanggan: TextView = item.findViewById(R.id.tvUserID)
+        private val imgUser: CircleImageView = item.findViewById(R.id.imgUser)
+        private val namaPelanggan: TextView = item.findViewById(R.id.tvFullName)
+        private val idPelanggan: TextView = item.findViewById(R.id.tvUserID)
 
         fun bindUser(b: UserResponse) {
-
-            if (b.image != null) {
+            if (b.image.equals(Constant.default)) {
+                Glide.with(context)
+                    .load(R.drawable.img_user_default)
+                    .into(imgUser)
+            } else {
                 Glide.with(context)
                     .load(b.image)
                     .into(imgUser)
-            } else {
-                imgUser.setImageResource(R.drawable.img_user_default)
             }
+
             namaPelanggan.text = b.nama
             idPelanggan.text = b.id_user
         }

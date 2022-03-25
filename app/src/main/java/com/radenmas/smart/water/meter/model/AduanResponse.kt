@@ -9,6 +9,10 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class AduanResponse {
+    @SerializedName("kode_keluhan")
+    @Expose
+    var kode_keluhan: String? = null
+
     @SerializedName("kode_pelanggan")
     @Expose
     var kode_pelanggan: String? = null

@@ -89,6 +89,13 @@ interface APIServices {
         @Field("kode_pelanggan") username: String
     ): Call<List<AduanResponse>>
 
+    @FormUrlEncoded
+    @POST(Config.UPDATE_STATUS_KELUHAN)
+    fun updateStatusKeluhan(
+        @Field("kode_keluhan") kode_keluhan: String,
+        @Field("status") status: String
+    ): Call<DefaultResponse>
+
 
     // TAGIHAN
     @FormUrlEncoded
