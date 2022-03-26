@@ -108,7 +108,7 @@ class TagihanAdapterUser(val context: Context) :
             rlTagihan.setOnClickListener {
                 val dialog = BottomSheetDialog(context, R.style.DialogStyle)
                 dialog.setCancelable(true)
-                dialog.setContentView(R.layout.bottom_sheet_detail_payment_user)
+                dialog.setContentView(R.layout.bottom_sheet_detail_billing_user)
                 dialog.show()
 
                 val tvPeriod: TextView? = dialog.findViewById(R.id.tvPeriod)
@@ -218,7 +218,7 @@ class TagihanAdapterUser(val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagihanViewHolder {
         return TagihanViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.list_payment, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.list_billing, parent, false)
         )
     }
 

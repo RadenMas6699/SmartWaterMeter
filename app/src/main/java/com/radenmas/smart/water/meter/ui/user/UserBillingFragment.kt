@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
-import com.radenmas.smart.water.meter.databinding.FragmentPaymentUserBinding
+import com.radenmas.smart.water.meter.databinding.FragmentHistoryBillingUserBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.network.Retro
 import com.radenmas.smart.water.meter.utils.AppUtils
@@ -21,16 +21,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserPaymentFragment : Fragment() {
-    private lateinit var b: FragmentPaymentUserBinding
+class UserBillingFragment : Fragment() {
+    private lateinit var b: FragmentHistoryBillingUserBinding
     private lateinit var paymentUser: TagihanAdapterUser
-    private val args: UserPaymentFragmentArgs by navArgs()
+    private val args: UserBillingFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        b = FragmentPaymentUserBinding.inflate(layoutInflater, container, false)
+        b = FragmentHistoryBillingUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
         b.rvPaymentAll.layoutManager = LinearLayoutManager(activity)

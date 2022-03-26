@@ -34,8 +34,8 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_userHomeFragment_to_userPaymentFragment"
-            app:destination="@id/userPaymentFragment"
+            android:id="@+id/action_userHomeFragment_to_userBillingFragment"
+            app:destination="@id/userBillingFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -76,10 +76,10 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/userPaymentFragment"
-        android:name="com.radenmas.smart.water.meter.ui.user.UserPaymentFragment"
+        android:id="@+id/userBillingFragment"
+        android:name="com.radenmas.smart.water.meter.ui.user.UserBillingFragment"
         android:label="fragment_payment_user"
-        tools:layout="@layout/fragment_payment_user">
+        tools:layout="@layout/fragment_history_billing_user">
         <argument
             android:name="id_pelanggan"
             android:defaultValue=""

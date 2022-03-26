@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user.UserPaymentFragment">
+    tools:context=".ui.user.UserBillingFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -55,7 +55,7 @@
                 android:id="@+id/rvPaymentAll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/list_payment" />
+                tools:listitem="@layout/list_billing" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieEmpty"

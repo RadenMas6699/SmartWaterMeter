@@ -266,7 +266,7 @@
                     android:id="@+id/rvPaymentLast"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/list_payment" />
+                    tools:listitem="@layout/list_billing" />
             </LinearLayout>
 
         </LinearLayout>

@@ -99,13 +99,6 @@ interface APIServices {
 
     // TAGIHAN
     @FormUrlEncoded
-    @POST(Config.GET_TAGIHAN_USER_FILTER)
-    fun getTagihanUserFilter(
-        @Field("kode_pelanggan") kode_pelanggan: String,
-        @Field("filter") filter: String
-    ): Call<List<TagihanResponse>>
-
-    @FormUrlEncoded
     @POST(Config.GET_TAGIHAN_USER_LIMIT)
     fun getTagihanUserLimit(
         @Field("kode_pelanggan") kode_pelanggan: String
@@ -121,8 +114,7 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.GET_TOTAL_TAGIHAN_USER)
     fun getTotalTagihanUser(
-        @Field("kode_pelanggan") kode_pelanggan: String,
-        @Field("filter") filter: String
+        @Field("kode_pelanggan") kode_pelanggan: String
     ): Call<TagihanResponse>
 
     @FormUrlEncoded

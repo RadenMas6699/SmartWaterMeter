@@ -6,6 +6,8 @@
 package com.radenmas.smart.water.meter.ui.admin
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -38,6 +40,13 @@ class AdminUserFragment : Fragment() {
         b.rvAllDataUser.layoutManager = LinearLayoutManager(activity)
         userAdapter = UserAdapter(requireActivity())
         b.rvAllDataUser.adapter = userAdapter
+
+        b.swipeRefresh.setOnRefreshListener {
+            getDataUser()
+            Handler(Looper.getMainLooper()).postDelayed({
+                b.swipeRefresh.isRefreshing = false
+            }, 2000)
+        }
 
         onClick()
 
@@ -84,26 +93,27 @@ class AdminUserFragment : Fragment() {
 
             override fun afterTextChanged(p0: Editable?) {
                 if (p0?.length != 0) {
-                    Retro.instance.searchUser(p0.toString()).enqueue(object : Callback<List<UserResponse>> {
-                        override fun onResponse(
-                            call: Call<List<UserResponse>>,
-                            response: Response<List<UserResponse>>
-                        ) {
-                            val dataUser = response.body()
-                            for (c in dataUser!!) {
-                                userAdapter.setUser(dataUser)
+                    Retro.instance.searchUser(p0.toString())
+                        .enqueue(object : Callback<List<UserResponse>> {
+                            override fun onResponse(
+                                call: Call<List<UserResponse>>,
+                                response: Response<List<UserResponse>>
+                            ) {
+                                val dataUser = response.body()
+                                for (c in dataUser!!) {
+                                    userAdapter.setUser(dataUser)
+                                }
+                                if (dataUser.isNullOrEmpty()) {
+                                    getDataUser()
+                                }
                             }
-                            if (dataUser.isNullOrEmpty()){
-                                getDataUser()
+
+                            override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
+
                             }
-                        }
 
-                        override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
-
-                        }
-
-                    })
-                } else{
+                        })
+                } else {
                     getDataUser()
                 }
             }

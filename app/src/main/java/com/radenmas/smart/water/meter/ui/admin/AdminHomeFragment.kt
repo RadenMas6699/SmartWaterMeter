@@ -14,6 +14,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentHomeAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
@@ -37,20 +42,94 @@ class AdminHomeFragment : Fragment() {
         sharedPref = activity?.getSharedPreferences(
             getString(R.string.app_pref), Context.MODE_PRIVATE
         )!!
-        getCountPelanggan()
+
         initView()
         onClick()
+
+        getNotifAdmin();
 
         return v
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun getNotifAdmin() {
+        val database = Firebase.database
+        var pdam1: Int? = null
+        var pdam11: Int? = null
+        var pdam12: Int? = null
+        var pdam2: Int? = null
+        var pdam21: Int? = null
+        var pdam22: Int? = null
+
+        val reffPDAM1 = database.getReference("pdam1")
+        reffPDAM1.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pdam1 = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        val reffPDAM11 = database.getReference("pdam11")
+        reffPDAM11.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pdam11 = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        val reffPDAM12 = database.getReference("pdam12")
+        reffPDAM12.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pdam12 = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        val reffPDAM2 = database.getReference("pdam2")
+        reffPDAM2.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pdam2 = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        val reffPDAM21 = database.getReference("pdam21")
+        reffPDAM21.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pdam21 = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        val reffPDAM22 = database.getReference("pdam22")
+        reffPDAM22.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                pdam22 = snapshot.value.toString().toInt()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+
 
     }
 
-    private fun getCountPelanggan() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getCountPelanggan()
+    }
 
+    private fun getCountPelanggan() {
         Retro.instance.getCountUser().enqueue(object : Callback<DefaultResponse> {
             override fun onResponse(
                 call: Call<DefaultResponse>,
@@ -60,11 +139,9 @@ class AdminHomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-
             }
 
         })
-
     }
 
     private fun initView() {
@@ -87,6 +164,10 @@ class AdminHomeFragment : Fragment() {
 
         b.cardUser.setOnClickListener {
             findNavController().navigate(R.id.action_adminHomeFragment_to_adminUserFragment)
+        }
+
+        b.cardBilling.setOnClickListener {
+//            findNavController().navigate(R.id.)
         }
 
         b.cardKeluhan.setOnClickListener {

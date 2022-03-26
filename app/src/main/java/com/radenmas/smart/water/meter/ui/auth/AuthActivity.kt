@@ -6,9 +6,9 @@
 package com.radenmas.smart.water.meter.ui.auth
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.radenmas.smart.water.meter.R
 
 class AuthActivity : AppCompatActivity() {
@@ -19,6 +19,7 @@ class AuthActivity : AppCompatActivity() {
         }
         setContentView(R.layout.activity_auth)
 
-        supportFragmentManager.beginTransaction().replace(R.id.contentAuth,LoginFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.contentAuth, LoginFragment())
+            .commit()
     }
 }

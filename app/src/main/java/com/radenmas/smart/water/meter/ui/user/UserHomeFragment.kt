@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,8 +27,8 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
-import com.radenmas.smart.water.meter.utils.Constant
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -201,8 +200,7 @@ class UserHomeFragment : Fragment() {
 
     private fun getTotalTagihan() {
         Retro.instance.getTotalTagihanUser(
-            sharedPref.getString("idPelanggan", null).toString(),
-            Constant.not_yet_paid_off
+            sharedPref.getString("idPelanggan", null).toString()
         ).enqueue(object : Callback<TagihanResponse> {
             override fun onResponse(
                 call: Call<TagihanResponse>,
@@ -264,11 +262,11 @@ class UserHomeFragment : Fragment() {
         }
 
         b.tvViewAll.setOnClickListener {
-            val payment =
-                UserHomeFragmentDirections.actionUserHomeFragmentToUserPaymentFragment(
+            val billing =
+                UserHomeFragmentDirections.actionUserHomeFragmentToUserBillingFragment(
                     sharedPref.getString("idPelanggan", null).toString()
                 )
-            findNavController().navigate(payment)
+            findNavController().navigate(billing)
         }
     }
 

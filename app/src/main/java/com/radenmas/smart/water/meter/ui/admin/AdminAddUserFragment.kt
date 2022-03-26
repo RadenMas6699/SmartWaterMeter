@@ -5,27 +5,22 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
-import android.app.DatePickerDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentAddUserAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.AppUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class AdminAddUserFragment : Fragment() {
     private lateinit var b: FragmentAddUserAdminBinding
-    private lateinit var progress: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,10 +68,7 @@ class AdminAddUserFragment : Fragment() {
             ) {
                 Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
             } else {
-                progress = Dialog(requireActivity())
-                progress.setContentView(R.layout.progress_layout)
-                progress.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
-                progress.show()
+                AppUtils.showLoading(requireActivity())
 
                 addUser(intUserID, fullname, ktp, phone, address, date, year, type, status)
             }
@@ -109,8 +101,8 @@ class AdminAddUserFragment : Fragment() {
                 call: Call<DefaultResponse>,
                 response: Response<DefaultResponse>
             ) {
-                progress.dismiss()
-                Toast.makeText(context, "Pelanggan berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                AppUtils.dismissLoading()
+                AppUtils.toast(requireActivity(), "Pelanggan berhasil ditambahkan")
 
                 b.etUserID.text.clear()
                 b.etFullName.text.clear()
@@ -123,8 +115,8 @@ class AdminAddUserFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                progress.dismiss()
-                Toast.makeText(context, "Pelanggan gagal ditambahkan", Toast.LENGTH_SHORT).show()
+                AppUtils.dismissLoading()
+                AppUtils.toast(requireActivity(), "Pelanggan gagal ditambahkan")
             }
 
         })

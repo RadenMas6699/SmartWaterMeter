@@ -9,13 +9,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentGuideBinding
-import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
-import com.radenmas.smart.water.meter.databinding.FragmentPaymentUserBinding
 
 class GuideFragment : Fragment() {
     private lateinit var b: FragmentGuideBinding

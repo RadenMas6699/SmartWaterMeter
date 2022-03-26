@@ -66,7 +66,7 @@ class AduanAdapterAdmin(val context: Context) :
             val outputFormat: DateFormat =
                 SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
             val inputDateStr = b.waktu.toString()
-            val date: Date? = inputFormat.parse(inputDateStr)
+            val date: Date = inputFormat.parse(inputDateStr)!!
             val outputDateStr: String = outputFormat.format(date)
             tvDate.text = outputDateStr
 

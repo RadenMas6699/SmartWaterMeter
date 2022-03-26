@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentWebserverAdminBinding
 import com.radenmas.smart.water.meter.network.RetroWebserver
 import com.radenmas.smart.water.meter.utils.AppUtils
@@ -65,7 +67,7 @@ class AdminWebserverFragment : Fragment() {
         }
 
         b.imgSetting.setOnClickListener {
-
+            findNavController().navigate(R.id.action_adminWebserverFragment_to_adminSettingFragment)
         }
 
         b.switchPower.setOnCheckedChangeListener { _, isChecked ->

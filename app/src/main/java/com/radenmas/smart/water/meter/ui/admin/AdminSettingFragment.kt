@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.radenmas.smart.water.meter.databinding.FragmentPaymentUserBinding
 import com.radenmas.smart.water.meter.databinding.FragmentSettingAdminBinding
 
 class AdminSettingFragment : Fragment() {

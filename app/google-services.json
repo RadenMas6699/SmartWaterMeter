@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "358668257442",
+    "firebase_url": "https://smart-water-meter-9259c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smart-water-meter-9259c",
+    "storage_bucket": "smart-water-meter-9259c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358668257442:android:72f2d7d8b0917ad32daffb",
+        "android_client_info": {
+          "package_name": "com.radenmas.smart.water.meter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358668257442-tie88himh9p3b57fr0cjr6sqm3a26pre.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.radenmas.smart.water.meter",
+            "certificate_hash": "337fefc972cfdbbf14f75a80bb8516508c199949"
+          }
+        },
+        {
+          "client_id": "358668257442-o0dpsitv81ilckk64o7o45jiq2i9ousu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5twRFNn5N0uKi9_XzShMg_EI2V9QlkRk"
+        },
+        {
+          "current_key": "AIzaSyBLU4l4z09l61tCSltOoscw-DojhrY6rGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358668257442-o0dpsitv81ilckk64o7o45jiq2i9ousu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358668257442:android:919c4135d9b96e612daffb",
+        "android_client_info": {
+          "package_name": "com.smart.water.meter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358668257442-3ajg6j2nf4igsst00nvbq7lk2do3oeo1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smart.water.meter",
+            "certificate_hash": "337fefc972cfdbbf14f75a80bb8516508c199949"
+          }
+        },
+        {
+          "client_id": "358668257442-3i4ln43gopm9psdkhfc2u4unfkjvhtr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smart.water.meter",
+            "certificate_hash": "1f1e5e937660c5d5b376f1ece5b3c04ed301ae62"
+          }
+        },
+        {
+          "client_id": "358668257442-brrm6no7vg2k1igd811ndebnuki6n59u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smart.water.meter",
+            "certificate_hash": "ddf993603d9b28f51ed928db00ea81628ad20282"
+          }
+        },
+        {
+          "client_id": "358668257442-o0dpsitv81ilckk64o7o45jiq2i9ousu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5twRFNn5N0uKi9_XzShMg_EI2V9QlkRk"
+        },
+        {
+          "current_key": "AIzaSyBLU4l4z09l61tCSltOoscw-DojhrY6rGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358668257442-o0dpsitv81ilckk64o7o45jiq2i9ousu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

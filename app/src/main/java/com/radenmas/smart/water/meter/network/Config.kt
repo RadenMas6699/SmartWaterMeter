@@ -38,7 +38,6 @@ object Config {
 
     // TAGIHAN
     const val GET_TAGIHAN_USER = "tagihan/get_tagihan_user"
-    const val GET_TAGIHAN_USER_FILTER = "tagihan/get_tagihan_user_filter"
     const val GET_TAGIHAN_USER_LIMIT = "tagihan/get_tagihan_user_limit"
     const val GET_TOTAL_TAGIHAN_USER = "tagihan/get_total_tagihan_user"
     const val GET_TAGIHAN_ADMIN = "tagihan/get_tagihan_admin"
