@@ -33,6 +33,9 @@ class AdminHomeFragment : Fragment() {
     private lateinit var b: FragmentHomeAdminBinding
     private lateinit var sharedPref: SharedPreferences
 
+    private lateinit var name: String
+    private lateinit var avatar: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +50,7 @@ class AdminHomeFragment : Fragment() {
         initView()
         onClick()
 
-        getNotifAdmin();
+        getNotifAdmin()
 
         return v
     }
@@ -120,9 +123,6 @@ class AdminHomeFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -141,13 +141,15 @@ class AdminHomeFragment : Fragment() {
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
             }
-
         })
     }
 
     private fun initView() {
-        Glide.with(this).load(sharedPref.getString("image", null)).into(b.imgProfile)
-        b.tvFullName.text = sharedPref.getString("nama", null)
+        name = sharedPref.getString(Constant.data_name, null).toString()
+        avatar = sharedPref.getString(Constant.data_avatar, null).toString()
+
+        Glide.with(this).load(avatar).into(b.imgProfile)
+        b.tvFullName.text = name
     }
 
     private fun onClick() {

@@ -40,6 +40,10 @@ class UserHomeFragment : Fragment() {
     private lateinit var sharedPref: SharedPreferences
     private lateinit var paymentUser: TagihanAdapterUser
 
+    private lateinit var idPelanggan: String
+    private lateinit var name: String
+    private lateinit var avatar: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -178,7 +182,7 @@ class UserHomeFragment : Fragment() {
 
     private fun getTagihanPayment() {
         Retro.instance.getTagihanUserLimit(
-            sharedPref.getString(Constant.data_id_pelanggan, null).toString()
+            idPelanggan
         ).enqueue(object : Callback<List<TagihanResponse>> {
             override fun onResponse(
                 call: Call<List<TagihanResponse>>,
@@ -219,8 +223,12 @@ class UserHomeFragment : Fragment() {
     }
 
     private fun initView() {
-        Glide.with(this).load(sharedPref.getString(Constant.data_avatar, null)).into(b.imgProfile)
-        b.tvFullName.text = sharedPref.getString(Constant.data_name, null)
+        idPelanggan = sharedPref.getString(Constant.data_id_pelanggan, null).toString()
+        name = sharedPref.getString(Constant.data_name, null).toString()
+        avatar = sharedPref.getString(Constant.data_avatar, null).toString()
+
+        Glide.with(this).load(avatar).into(b.imgProfile)
+        b.tvFullName.text = name
 
         b.rvPaymentLast.layoutManager = LinearLayoutManager(activity)
         paymentUser = TagihanAdapterUser(requireActivity())
@@ -265,7 +273,7 @@ class UserHomeFragment : Fragment() {
         b.tvViewAll.setOnClickListener {
             val billing =
                 UserHomeFragmentDirections.actionUserHomeFragmentToUserBillingFragment(
-                    sharedPref.getString(Constant.data_id_pelanggan, null).toString()
+                    idPelanggan
                 )
             findNavController().navigate(billing)
         }
@@ -280,11 +288,9 @@ class UserHomeFragment : Fragment() {
         btnActive.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_primary))
 
         btnNotActive1.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
-        btnNotActive1.strokeColor =
-            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive1.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
         btnNotActive2.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
-        btnNotActive2.strokeColor =
-            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive2.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
     }
 }

@@ -108,6 +108,7 @@ class TagihanAdapterUser(val context: Context) :
     fun setTagihan(data: List<TagihanResponse>) {
         tagihan.clear()
         tagihan.addAll(data)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagihanViewHolder {
@@ -185,16 +186,22 @@ class TagihanAdapterUser(val context: Context) :
                 }
             }
 
-            tvPemakaian?.text = tagihan[position].usage
-            tvTagihan?.text = tagihan[position].total_bill.toString()
+            val usage = tagihan[position].usage
+            val usage_air = "$usage M3"
+            tvPemakaian?.text = usage_air
+
+            val totalBill: String =
+                String.format("%,d", tagihan[position].total_bill)
+            val total_bill = "Rp. $totalBill"
+            tvTagihan?.text = total_bill
 
             val usageCost: String =
-                String.format("%,d", tagihan[position].bill)
-            val usage = "Rp. $usageCost"
-            tvUsageCost?.text = usage
+                String.format("%,d", tagihan[position].bill.toInt())
+            val usage_cost = "Rp. $usageCost"
+            tvUsageCost?.text = usage_cost
 
             val maintenanceCost: String =
-                String.format("%,d", tagihan[position].maintenance)
+                String.format("%,d", tagihan[position].maintenance.toInt())
             val maintenance = "Rp. $maintenanceCost"
             tvMaintenanceCost?.text = maintenance
 

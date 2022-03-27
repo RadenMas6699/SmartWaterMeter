@@ -50,6 +50,7 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
     fun setUser(data: List<UserResponse>) {
         userRespons.clear()
         userRespons.addAll(data)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {

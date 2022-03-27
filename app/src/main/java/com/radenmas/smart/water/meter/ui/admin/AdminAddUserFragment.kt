@@ -55,8 +55,6 @@ class AdminAddUserFragment : Fragment() {
             val type = b.etTypeMeteran.text.toString()
             val status = 1
 
-            val intUserID: Int = b.etUserID.text.toString().toInt()
-
             if (userID.isBlank() ||
                 fullname.isBlank() ||
                 ktp.isBlank() ||
@@ -70,7 +68,7 @@ class AdminAddUserFragment : Fragment() {
             } else {
                 AppUtils.showLoading(requireContext())
 
-                addUser(intUserID, fullname, ktp, phone, address, date, year, type, status)
+                addUser(userID.toInt(), fullname, ktp, phone, address, date, year, type, status)
             }
         }
     }

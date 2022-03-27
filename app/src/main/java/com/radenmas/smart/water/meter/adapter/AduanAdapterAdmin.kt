@@ -95,6 +95,7 @@ class AduanAdapterAdmin(val context: Context) :
     fun setKeluhan(data: List<AduanResponse>) {
         history.clear()
         history.addAll(data)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {

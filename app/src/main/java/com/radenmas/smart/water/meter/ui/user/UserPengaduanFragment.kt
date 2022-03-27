@@ -126,7 +126,7 @@ class UserPengaduanFragment : Fragment() {
             val v = bs.root
 
             dialog = BottomSheetDialog(requireActivity(), R.style.DialogStyle)
-            dialog.setCancelable(false)
+            dialog.setCancelable(true)
             dialog.setContentView(v)
             dialog.show()
 
@@ -137,7 +137,7 @@ class UserPengaduanFragment : Fragment() {
                 val title: String = bs.etTitleAduan.text.toString().trim()
                 val desc: String = bs.etDescAduan.text.toString().trim()
                 if (title.isEmpty() || desc.isEmpty()) {
-                    Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
+                    AppUtils.toast(requireContext(),"Lengkapi yang masih kosong")
                 } else {
                     createAduan(args.idPelanggan, title, desc, resources.getString(R.string.sent))
                 }
