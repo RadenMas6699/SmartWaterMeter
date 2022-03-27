@@ -5,8 +5,8 @@
 
 <resources>
     <string name="app_name">Smart Water Meter</string>
-    <string name="app_pref">app_pref</string>
-    <string name="level_user">levelUser</string>
+<!--    <string name="app_pref">app_pref</string>-->
+<!--    <string name="level">level</string>-->
     <string name="dev_name">M Sukron Kurniawan</string>
     <string name="login">Masuk</string>
     <string name="login_desc">Lorem ipsum dolor sit amet</string>
@@ -84,6 +84,9 @@
     <string name="status">Status</string>
     <string name="aduan">Aduan</string>
     <string name="kontrol_aliran_air">Kontrol Aliran Air</string>
+    <string name="aktif">Aktif</string>
+    <string name="ktp">KTP</string>
+    <string name="registered">Terdaftar</string>
 
 
 </resources>

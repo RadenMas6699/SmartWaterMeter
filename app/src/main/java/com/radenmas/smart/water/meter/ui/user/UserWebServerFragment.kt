@@ -11,16 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.radenmas.smart.water.meter.databinding.FragmentWebserverUserBinding
+import com.radenmas.smart.water.meter.databinding.FragmentWebServerUserBinding
 
-class UserWebserverFragment : Fragment() {
-    private lateinit var b: FragmentWebserverUserBinding
+class UserWebServerFragment : Fragment() {
+    private lateinit var b: FragmentWebServerUserBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        b = FragmentWebserverUserBinding.inflate(layoutInflater, container, false)
+        b = FragmentWebServerUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
         onClick()

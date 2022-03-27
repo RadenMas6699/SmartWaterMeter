@@ -68,7 +68,7 @@ class AdminAddUserFragment : Fragment() {
             ) {
                 Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
             } else {
-                AppUtils.showLoading(requireActivity())
+                AppUtils.showLoading(requireContext())
 
                 addUser(intUserID, fullname, ktp, phone, address, date, year, type, status)
             }
@@ -102,7 +102,7 @@ class AdminAddUserFragment : Fragment() {
                 response: Response<DefaultResponse>
             ) {
                 AppUtils.dismissLoading()
-                AppUtils.toast(requireActivity(), "Pelanggan berhasil ditambahkan")
+                AppUtils.toast(requireContext(), "Pelanggan berhasil ditambahkan")
 
                 b.etUserID.text.clear()
                 b.etFullName.text.clear()
@@ -116,7 +116,7 @@ class AdminAddUserFragment : Fragment() {
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                 AppUtils.dismissLoading()
-                AppUtils.toast(requireActivity(), "Pelanggan gagal ditambahkan")
+                AppUtils.toast(requireContext(), "Pelanggan gagal ditambahkan")
             }
 
         })

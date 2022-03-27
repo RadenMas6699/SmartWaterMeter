@@ -24,14 +24,14 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.ADD_USER)
     fun addUser(
-        @Field("kode_meteran") kode_meteran: Int,
-        @Field("fullname") fullname: String,
-        @Field("no_ktp") no_ktp: String,
-        @Field("no_telp") no_telp: String,
-        @Field("alamat") alamat: String,
-        @Field("terdaftar") terdaftar: String,
-        @Field("tahun") tahun: String,
-        @Field("jenis") jenis: String,
+        @Field("id_meteran") id_meteran: Int,
+        @Field("name") name: String,
+        @Field("ktp") ktp: String,
+        @Field("phone") phone: String,
+        @Field("address") address: String,
+        @Field("registered") registered: String,
+        @Field("year") year: String,
+        @Field("type") type: String,
         @Field("status") status: Int
     ): Call<DefaultResponse>
 
@@ -44,16 +44,16 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.SEARCH_USER)
     fun searchUser(
-        @Field("nama_pelanggan") nama_pelanggan: String
+        @Field("name") name: String
     ): Call<List<UserResponse>>
 
     @FormUrlEncoded
     @POST(Config.UPDATE_DATA_USER)
     fun updateDataUser(
         @Field("id_pelanggan") id_pelanggan: String,
-        @Field("nama_pelanggan") nama_pelanggan: String,
-        @Field("no_telp") no_telp: String,
-        @Field("alamat") alamat: String
+        @Field("name") name: String,
+        @Field("phone") phone: String,
+        @Field("address") address: String
     ): Call<DefaultResponse>
 
 
@@ -61,7 +61,7 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.CREATE_KELUHAN)
     fun createKeluhan(
-        @Field("kode_pelanggan") kode_pelanggan: String,
+        @Field("id_pelanggan") id_pelanggan: String,
         @Field("title") subjek: String,
         @Field("desc") keterangan: String,
         @Field("status") status: String,
@@ -79,20 +79,20 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.GET_KELUHAN_USER_FILTER)
     fun getKeluhanUserFilter(
-        @Field("kode_pelanggan") username: String,
+        @Field("id_pelanggan") id_pelanggan: String,
         @Field("filter") filter: String
     ): Call<List<AduanResponse>>
 
     @FormUrlEncoded
     @POST(Config.GET_KELUHAN_USER)
     fun getKeluhanUser(
-        @Field("kode_pelanggan") username: String
+        @Field("id_pelanggan") id_pelanggan: String
     ): Call<List<AduanResponse>>
 
     @FormUrlEncoded
     @POST(Config.UPDATE_STATUS_KELUHAN)
     fun updateStatusKeluhan(
-        @Field("kode_keluhan") kode_keluhan: String,
+        @Field("id_keluhan") id_keluhan: String,
         @Field("status") status: String
     ): Call<DefaultResponse>
 
@@ -101,20 +101,20 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.GET_TAGIHAN_USER_LIMIT)
     fun getTagihanUserLimit(
-        @Field("kode_pelanggan") kode_pelanggan: String
+        @Field("id_pelanggan") id_pelanggan: String
     ): Call<List<TagihanResponse>>
 
     @FormUrlEncoded
     @POST(Config.GET_TAGIHAN_USER)
     fun getTagihanUser(
-        @Field("kode_pelanggan") username: String
+        @Field("id_pelanggan") id_pelanggan: String
     ): Call<List<TagihanResponse>>
 
 
     @FormUrlEncoded
     @POST(Config.GET_TOTAL_TAGIHAN_USER)
     fun getTotalTagihanUser(
-        @Field("kode_pelanggan") kode_pelanggan: String
+        @Field("id_pelanggan") id_pelanggan: String
     ): Call<TagihanResponse>
 
     @FormUrlEncoded
@@ -127,13 +127,13 @@ interface APIServices {
 
     // WEBSERVER
     @GET(Config.URL_DEBIT)
-    fun getDebit(): Call<DefaultResponse>
+    fun getDebitWebServer(): Call<DefaultResponse>
 
     @GET(Config.URL_TOTAL)
-    fun getTotal(): Call<Void>
+    fun getTotalWebServer(): Call<Void>
 
     @GET(Config.URL_BILLING)
-    fun getBilling(): Call<DefaultResponse>
+    fun getBillingWebServer(): Call<DefaultResponse>
 
     @GET(Config.URL_RELAY_ON)
     fun setRelayOn(): Call<Void>
@@ -142,8 +142,8 @@ interface APIServices {
     fun setRelayOff(): Call<Void>
 
     @GET(Config.URL_SET_PRICE)
-    fun setPrice(@Query("setHarga") setHarga: Int): Call<Void>
+    fun setPriceWebServer(@Query("setHarga") setHarga: Int): Call<Void>
 
     @GET(Config.URL_RESET)
-    fun resetData(): Call<Void>
+    fun resetDataWebServer(): Call<Void>
 }

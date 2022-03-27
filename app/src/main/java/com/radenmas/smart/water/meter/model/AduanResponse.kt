@@ -5,39 +5,13 @@
 
 package com.radenmas.smart.water.meter.model
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
-class AduanResponse {
-    @SerializedName("kode_keluhan")
-    @Expose
-    var kode_keluhan: String? = null
-
-    @SerializedName("kode_pelanggan")
-    @Expose
-    var kode_pelanggan: String? = null
-
-    @SerializedName("nama_pelanggan")
-    @Expose
-    var nama_pelanggan: String? = null
-
-    @SerializedName("image")
-    @Expose
-    var image: String? = null
-
-    @SerializedName("title")
-    @Expose
-    var title: String? = null
-
-    @SerializedName("desc")
-    @Expose
-    var desc: String? = null
-
-    @SerializedName("status")
-    @Expose
-    var status: String? = null
-
-    @SerializedName("waktu")
-    @Expose
-    var waktu: String? = null
-}
+data class AduanResponse(
+    val id_keluhan: String,
+    val id_pelanggan: String,
+    val name: String,
+    val avatar: String,
+    val title: String,
+    val desc: String,
+    val status: String,
+    val date: String
+)

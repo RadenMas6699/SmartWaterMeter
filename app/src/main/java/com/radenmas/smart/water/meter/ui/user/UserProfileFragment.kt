@@ -19,6 +19,7 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentProfileUserBinding
 import com.radenmas.smart.water.meter.databinding.LogoutLayoutBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
+import com.radenmas.smart.water.meter.utils.Constant
 
 
 class UserProfileFragment : Fragment() {
@@ -33,7 +34,7 @@ class UserProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentProfileUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
@@ -42,7 +43,7 @@ class UserProfileFragment : Fragment() {
         window.statusBarColor = Color.WHITE
 
         sharedPref = activity?.getSharedPreferences(
-            getString(R.string.app_pref), Context.MODE_PRIVATE
+            Constant.app_pref, Context.MODE_PRIVATE
         )!!
         editor = sharedPref.edit()
 
@@ -53,11 +54,11 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun initView() {
-        Glide.with(this).load(sharedPref.getString("image", null)).into(b.imgProfile)
-        b.tvFullName.text = sharedPref.getString("nama", null)
-        b.tvUserID.text = sharedPref.getString("idPelanggan", null)
-        b.tvUserPhone.text = sharedPref.getString("noTelp", null)
-        b.tvUserAddress.text = sharedPref.getString("alamat", null)
+        Glide.with(this).load(sharedPref.getString(Constant.data_avatar, null)).into(b.imgProfile)
+        b.tvFullName.text = sharedPref.getString(Constant.data_name, null)
+        b.tvUserID.text = sharedPref.getString(Constant.data_id_pelanggan, null)
+        b.tvUserPhone.text = sharedPref.getString(Constant.data_phone, null)
+        b.tvUserAddress.text = sharedPref.getString(Constant.data_address, null)
     }
 
     private fun onClick() {
@@ -68,8 +69,8 @@ class UserProfileFragment : Fragment() {
         b.imgProfile.setOnClickListener {
             val lihatFoto =
                 UserProfileFragmentDirections.actionUserProfileFragmentToLihatFotoFragment(
-                    sharedPref.getString("image", null).toString(),
-                    sharedPref.getString("nama", null).toString(),
+                    sharedPref.getString(Constant.data_avatar, null).toString(),
+                    sharedPref.getString(Constant.data_name, null).toString(),
                 )
             findNavController().navigate(lihatFoto)
         }
@@ -77,11 +78,11 @@ class UserProfileFragment : Fragment() {
         b.rvChangeProfile.setOnClickListener {
             val changeProfile =
                 UserProfileFragmentDirections.actionUserProfileFragmentToUserChangeProfileFragment(
-                    sharedPref.getString("idPelanggan", null).toString(),
-                    sharedPref.getString("image", null).toString(),
-                    sharedPref.getString("nama", null).toString(),
-                    sharedPref.getString("noTelp", null).toString(),
-                    sharedPref.getString("alamat", null).toString()
+                    sharedPref.getString(Constant.data_id_pelanggan, null).toString(),
+                    sharedPref.getString(Constant.data_avatar, null).toString(),
+                    sharedPref.getString(Constant.data_name, null).toString(),
+                    sharedPref.getString(Constant.data_phone, null).toString(),
+                    sharedPref.getString(Constant.data_address, null).toString()
                 )
             findNavController().navigate(changeProfile)
         }
@@ -93,7 +94,7 @@ class UserProfileFragment : Fragment() {
         b.rvHelp.setOnClickListener {
             val aduan =
                 UserProfileFragmentDirections.actionUserProfileFragmentToUserPengaduanFragment(
-                    sharedPref.getString("idPelanggan", null).toString()
+                    sharedPref.getString(Constant.data_id_pelanggan, null).toString()
                 )
             findNavController().navigate(aduan)
         }

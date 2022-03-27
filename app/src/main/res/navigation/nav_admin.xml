@@ -57,9 +57,9 @@
     </fragment>
     <fragment
         android:id="@+id/adminWebserverFragment"
-        android:name="com.radenmas.smart.water.meter.ui.admin.AdminWebserverFragment"
+        android:name="com.radenmas.smart.water.meter.ui.admin.AdminWebServerFragment"
         android:label="fragment_webserver_admin"
-        tools:layout="@layout/fragment_webserver_admin">
+        tools:layout="@layout/fragment_web_server_admin">
         <action
             android:id="@+id/action_adminWebserverFragment_to_adminSettingFragment"
             app:destination="@id/adminSettingFragment"
@@ -87,7 +87,29 @@
         android:id="@+id/adminDetailUserFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminDetailUserFragment"
         android:label="fragment_detail_user_admin"
-        tools:layout="@layout/fragment_detail_user_admin" />
+        tools:layout="@layout/fragment_detail_user_admin" >
+        <argument
+            android:name="img_profile"
+            app:argType="string" />
+        <argument
+            android:name="fullname"
+            app:argType="string" />
+        <argument
+            android:name="id_pelanggan"
+            app:argType="string" />
+        <argument
+            android:name="ktp"
+            app:argType="string" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument
+            android:name="registered"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/adminUserFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminUserFragment"

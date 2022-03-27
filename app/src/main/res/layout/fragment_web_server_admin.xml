@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user.UserWebserverFragment">
+    tools:context=".ui.admin.AdminWebServerFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -28,8 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/back"
-                android:src="@drawable/ic_arrow_left"
-                tools:viewBindingIgnore="true" />
+                android:src="@drawable/ic_arrow_left" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,6 +40,14 @@
                 android:text="@string/webserver"
                 android:textColor="@color/primary_text"
                 android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imgSetting"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentEnd="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_setting_outline" />
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

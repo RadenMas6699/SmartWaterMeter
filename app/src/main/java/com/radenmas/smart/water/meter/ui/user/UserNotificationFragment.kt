@@ -18,7 +18,7 @@ class UserNotificationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentNotificationUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
 

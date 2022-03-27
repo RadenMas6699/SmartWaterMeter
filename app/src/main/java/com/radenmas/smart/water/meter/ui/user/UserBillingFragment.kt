@@ -70,9 +70,7 @@ class UserBillingFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<List<TagihanResponse>>, t: Throwable) {
-
                 }
-
             })
     }
 

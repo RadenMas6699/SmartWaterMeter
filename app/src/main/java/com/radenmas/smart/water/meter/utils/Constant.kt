@@ -11,7 +11,17 @@ package com.radenmas.smart.water.meter.utils
 object Constant {
     const val app_name = "Smart Water Meter"
     const val app_pref = "app_pref"
-    const val level_user = "levelUser"
+
+    const val data_id_admin = "id_admin"
+    const val data_id_pelanggan = "id_pelanggan"
+    const val data_name = "name"
+    const val data_level = "level"
+    const val data_ktp = "ktp"
+    const val data_phone = "phone"
+    const val data_address = "address"
+    const val data_avatar = "avatar"
+    const val data_registered = "registered"
+
     const val dev_name = "M Sukron Kurniawan"
     const val login = "Masuk"
     const val login_desc = "Lorem ipsum dolor sit amet"

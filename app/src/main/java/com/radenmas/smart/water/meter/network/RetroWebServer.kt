@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * Created by RadenMas on 23/03/2022.
  */
-object RetroWebserver {
+object RetroWebServer {
     val instance: APIServices by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(Config.BASE_URL_WEB_SERVER)

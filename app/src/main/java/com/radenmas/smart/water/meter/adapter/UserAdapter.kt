@@ -9,11 +9,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.UserResponse
+import com.radenmas.smart.water.meter.ui.admin.AdminUserFragmentDirections
+import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -28,25 +32,24 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
         private val idPelanggan: TextView = item.findViewById(R.id.tvUserID)
 
         fun bindUser(b: UserResponse) {
-            if (b.image.equals(Constant.default)) {
+            if (b.avatar == Constant.default) {
                 Glide.with(context)
                     .load(R.drawable.img_user_default)
                     .into(imgUser)
             } else {
                 Glide.with(context)
-                    .load(b.image)
+                    .load(b.avatar)
                     .into(imgUser)
             }
 
-            namaPelanggan.text = b.nama
-            idPelanggan.text = b.id_user
+            namaPelanggan.text = b.name
+            idPelanggan.text = b.id_pelanggan
         }
     }
 
     fun setUser(data: List<UserResponse>) {
         userRespons.clear()
         userRespons.addAll(data)
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -57,6 +60,18 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bindUser(userRespons[position])
+        holder.itemView.setOnClickListener {
+            val dataUser = AdminUserFragmentDirections.actionAdminUserFragmentToAdminDetailUserFragment(
+                userRespons[position].avatar,
+                userRespons[position].name,
+                userRespons[position].id_pelanggan,
+                userRespons[position].ktp,
+                userRespons[position].phone,
+                userRespons[position].address,
+                userRespons[position].registered
+            )
+            Navigation.createNavigateOnClickListener(dataUser)
+        }
     }
 
     override fun getItemCount(): Int {

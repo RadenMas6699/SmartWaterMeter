@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -29,7 +28,6 @@ class AduanAdapterUser(val context: Context) :
 
     inner class HistoryViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-        private val rlAduan: RelativeLayout = item.findViewById(R.id.rlAduan)
         private val tvTitle: TextView = item.findViewById(R.id.tvTitle)
         private val tvDesc: TextView = item.findViewById(R.id.tvDesc)
         private val tvDate: TextView = item.findViewById(R.id.tvDate)
@@ -45,67 +43,28 @@ class AduanAdapterUser(val context: Context) :
             )
             val outputFormat: DateFormat =
                 SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
-            val inputDateStr = b.waktu.toString()
+            val inputDateStr = b.date
             val date: Date? = inputFormat.parse(inputDateStr)
             val outputDateStr: String = outputFormat.format(date)
             tvDate.text = outputDateStr
 
             tvStatues.text = b.status
-            when {
-                b.status.equals(Constant.sent) -> {
+            when (b.status) {
+                Constant.sent -> {
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_green)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_green))
                 }
-                b.status.equals(Constant.processed) -> {
+                Constant.processed -> {
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_orange)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_orange))
                 }
-                b.status.equals(Constant.finish) -> {
+                Constant.finish -> {
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_blue)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_primary))
                 }
-                b.status.equals(Constant.rejected) -> {
+                Constant.rejected -> {
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_red))
-                }
-            }
-
-            rlAduan.setOnClickListener {
-                val dialog = BottomSheetDialog(context, R.style.DialogStyle)
-                dialog.setCancelable(true)
-                dialog.setContentView(R.layout.bottom_sheet_detail_aduan_user)
-                dialog.show()
-
-                val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
-                val etDescAduan: TextView? = dialog.findViewById(R.id.etDescAduan)
-                val tvStatues: TextView? = dialog.findViewById(R.id.tvStatues)
-                val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
-
-                tvTitleAduan?.text = b.title
-                etDescAduan?.text = b.desc
-                tvStatues?.text = b.status
-
-                when {
-                    b.status.equals(Constant.sent) -> {
-                        tvStatues?.setBackgroundResource(R.drawable.bg_statues_green)
-                        tvStatues?.setTextColor(Color.parseColor(Constant.color_green))
-                    }
-                    b.status.equals(Constant.processed) -> {
-                        tvStatues?.setBackgroundResource(R.drawable.bg_statues_orange)
-                        tvStatues?.setTextColor(Color.parseColor(Constant.color_orange))
-                    }
-                    b.status.equals(Constant.finish) -> {
-                        tvStatues?.setBackgroundResource(R.drawable.bg_statues_blue)
-                        tvStatues?.setTextColor(Color.parseColor(Constant.color_primary))
-                    }
-                    b.status.equals(Constant.rejected) -> {
-                        tvStatues?.setBackgroundResource(R.drawable.bg_statues_red)
-                        tvStatues?.setTextColor(Color.parseColor(Constant.color_red))
-                    }
-                }
-
-                imgDismiss?.setOnClickListener {
-                    dialog.dismiss()
                 }
             }
         }
@@ -114,7 +73,6 @@ class AduanAdapterUser(val context: Context) :
     fun setKeluhan(data: List<AduanResponse>) {
         history.clear()
         history.addAll(data)
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -125,6 +83,44 @@ class AduanAdapterUser(val context: Context) :
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.bindKeluhan(history[position])
+        holder.itemView.setOnClickListener {
+            val dialog = BottomSheetDialog(context, R.style.DialogStyle)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.bottom_sheet_detail_aduan_user)
+            dialog.show()
+
+            val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
+            val etDescAduan: TextView? = dialog.findViewById(R.id.etDescAduan)
+            val tvStatues: TextView? = dialog.findViewById(R.id.tvStatues)
+            val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
+
+            tvTitleAduan?.text = history[position].title
+            etDescAduan?.text = history[position].desc
+            tvStatues?.text = history[position].status
+
+            when (history[position].status) {
+                Constant.sent -> {
+                    tvStatues?.setBackgroundResource(R.drawable.bg_statues_green)
+                    tvStatues?.setTextColor(Color.parseColor(Constant.color_green))
+                }
+                Constant.processed -> {
+                    tvStatues?.setBackgroundResource(R.drawable.bg_statues_orange)
+                    tvStatues?.setTextColor(Color.parseColor(Constant.color_orange))
+                }
+                Constant.finish -> {
+                    tvStatues?.setBackgroundResource(R.drawable.bg_statues_blue)
+                    tvStatues?.setTextColor(Color.parseColor(Constant.color_primary))
+                }
+                Constant.rejected -> {
+                    tvStatues?.setBackgroundResource(R.drawable.bg_statues_red)
+                    tvStatues?.setTextColor(Color.parseColor(Constant.color_red))
+                }
+            }
+
+            imgDismiss?.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
     }
 
     override fun getItemCount(): Int {

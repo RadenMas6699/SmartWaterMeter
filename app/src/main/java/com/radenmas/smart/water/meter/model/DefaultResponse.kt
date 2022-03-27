@@ -8,6 +8,6 @@ package com.radenmas.smart.water.meter.model
 /**
  * Created by RadenMas on 10/03/2022.
  */
-class DefaultResponse(
+data class DefaultResponse(
     val message: String,
 )

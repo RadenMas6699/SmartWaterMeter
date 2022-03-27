@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Created by RadenMas on 10/3/2022.
   ~ Copyright (c) 2022.
   -->
@@ -50,19 +49,22 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:src="@drawable/img_user_default" />
+                android:layout_marginTop="24dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvFullName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/dev_name"
+                android:gravity="center"
                 android:textColor="@color/primary_text"
                 android:textSize="18sp" />
 
@@ -93,13 +95,12 @@
 
                 <TextView
                     android:id="@+id/tvUserID"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/titleUserID"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_light"
-                    android:text="886760112"
                     android:textColor="@color/secondary_text"
                     android:textSize="12sp" />
 
@@ -107,6 +108,49 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:layout_below="@id/tvUserID"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/hint" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_card_outline"
+                    app:tint="@color/primary_text" />
+
+                <TextView
+                    android:id="@+id/titleUserKTP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/ktp"
+                    android:textColor="@color/primary_text"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvUserKTP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/titleUserKTP"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_below="@id/tvUserKTP"
                     android:layout_marginTop="8dp"
                     android:background="@color/hint" />
             </RelativeLayout>
@@ -137,13 +181,12 @@
 
                 <TextView
                     android:id="@+id/tvUserPhone"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/titleUserPhone"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_light"
-                    android:text="085298106699"
                     android:textColor="@color/secondary_text"
                     android:textSize="12sp" />
 
@@ -181,13 +224,12 @@
 
                 <TextView
                     android:id="@+id/tvUserAddress"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/titleUserAddress"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/roboto_light"
-                    android:text="Jl. Tamalate RT 01 RW 01 Dusun Tamalate"
                     android:textColor="@color/secondary_text"
                     android:textSize="12sp" />
 
@@ -199,6 +241,92 @@
                     android:background="@color/hint" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_location_outline"
+                    app:tint="@color/primary_text" />
+
+                <TextView
+                    android:id="@+id/titleUserStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/status"
+                    android:textColor="@color/primary_text"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvUserStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/titleUserStatus"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="@string/aktif"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_below="@id/tvUserStatus"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/hint" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_calender_outline"
+                    app:tint="@color/primary_text" />
+
+                <TextView
+                    android:id="@+id/titleUserRegistered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/registered"
+                    android:textColor="@color/primary_text"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvUserRegistered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/titleUserRegistered"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_below="@id/tvUserRegistered"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/hint" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

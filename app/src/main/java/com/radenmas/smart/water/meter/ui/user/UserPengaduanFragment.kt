@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -152,22 +153,22 @@ class UserPengaduanFragment : Fragment() {
         btnNotActive3: MaterialButton,
         btnNotActive4: MaterialButton
     ) {
-        btnActive.setTextColor(resources.getColor(R.color.primary_text))
+        btnActive.setTextColor(ResourcesCompat.getColor(resources, R.color.primary_text, null))
         btnActive.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_primary))
 
-        btnNotActive1.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive1.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
         btnNotActive1.strokeColor =
             ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
-        btnNotActive2.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive2.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
         btnNotActive2.strokeColor =
             ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
-        btnNotActive3.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive3.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
         btnNotActive3.strokeColor =
             ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
-        btnNotActive4.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive4.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
         btnNotActive4.strokeColor =
             ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
     }

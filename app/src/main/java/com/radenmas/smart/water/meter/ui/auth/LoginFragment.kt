@@ -22,13 +22,13 @@ import com.radenmas.smart.water.meter.network.Retro
 import com.radenmas.smart.water.meter.ui.admin.AdminMainActivity
 import com.radenmas.smart.water.meter.ui.user.UserMainActivity
 import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 
 class LoginFragment : Fragment() {
 
     private lateinit var b: FragmentLoginBinding
-    private lateinit var progress: Dialog
 
     lateinit var sharedPref: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
@@ -42,24 +42,23 @@ class LoginFragment : Fragment() {
         val v = b.root
 
         sharedPref = activity?.getSharedPreferences(
-            getString(R.string.app_pref), Context.MODE_PRIVATE
+            Constant.app_pref, Context.MODE_PRIVATE
         )!!
         editor = sharedPref.edit()
 
-
         val loginStatus: String? =
-            sharedPref.getString(resources.getString(R.string.level_user), "")
+            sharedPref.getString(Constant.data_level, "")
 
         when {
             loginStatus.equals(
-                resources.getString(R.string.user),
+                Constant.user,
                 ignoreCase = true
             ) -> {
                 startActivity(Intent(context, UserMainActivity::class.java))
                 activity?.finish()
             }
             loginStatus.equals(
-                resources.getString(R.string.admin),
+                Constant.admin,
                 ignoreCase = true
             ) -> {
                 startActivity(Intent(context, AdminMainActivity::class.java))
@@ -94,65 +93,65 @@ class LoginFragment : Fragment() {
             ) {
                 AppUtils.dismissLoading()
                 saveData(
-                    response.body()?.username.toString(),
-                    response.body()?.level_user.toString(),
-                    response.body()?.nama.toString(),
-                    response.body()?.id_user.toString(),
-                    response.body()?.no_ktp.toString(),
-                    response.body()?.no_telp.toString(),
-                    response.body()?.alamat.toString(),
-                    response.body()?.image.toString(),
-                    response.body()?.terdaftar.toString()
+                    response.body()?.id_admin.toString(),
+                    response.body()?.id_pelanggan.toString(),
+                    response.body()?.name.toString(),
+                    response.body()?.level.toString(),
+                    response.body()?.ktp.toString(),
+                    response.body()?.phone.toString(),
+                    response.body()?.address.toString(),
+                    response.body()?.avatar.toString(),
+                    response.body()?.registered.toString()
                 )
 
                 when {
-                    response.body()?.level_user.equals(
-                        resources.getString(R.string.user),
+                    response.body()?.level.equals(
+                        Constant.user,
                         ignoreCase = true
                     ) -> {
                         startActivity(Intent(context, UserMainActivity::class.java))
                         activity?.finish()
                     }
-                    response.body()?.level_user.equals(
-                        resources.getString(R.string.admin),
+                    response.body()?.level.equals(
+                        Constant.admin,
                         ignoreCase = true
                     ) -> {
                         startActivity(Intent(context, AdminMainActivity::class.java))
                         activity?.finish()
                     }
                     else -> {
-                        AppUtils.toast(requireContext(),"Gagal Masuk")
+                        AppUtils.toast(requireContext(), "Gagal Masuk")
                     }
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 AppUtils.dismissLoading()
-                AppUtils.toast(requireContext(),"Gagal Masuk")
+                AppUtils.toast(requireContext(), "Gagal Masuk")
             }
         })
     }
 
     private fun saveData(
-        username: String,
-        levelUser: String,
-        nama: String,
-        idUser: String,
-        noKtp: String,
-        noTelp: String,
-        alamat: String,
-        image: String,
-        terdaftar: String
+        id_admin: String,
+        id_pelanggan: String,
+        name: String,
+        level: String,
+        ktp: String,
+        phone: String,
+        address: String,
+        avatar: String,
+        registered: String
     ) {
-        editor.putString("username", username)
-        editor.putString(resources.getString(R.string.level_user), levelUser)
-        editor.putString("nama", nama)
-        editor.putString("idPelanggan", idUser)
-        editor.putString("noKtp", noKtp)
-        editor.putString("noTelp", noTelp)
-        editor.putString("alamat", alamat)
-        editor.putString("image", image)
-        editor.putString("terdaftar", terdaftar)
+        editor.putString(Constant.data_id_admin, id_admin)
+        editor.putString(Constant.data_id_pelanggan, id_pelanggan)
+        editor.putString(Constant.data_name, name)
+        editor.putString(Constant.data_level, level)
+        editor.putString(Constant.data_ktp, ktp)
+        editor.putString(Constant.data_phone, phone)
+        editor.putString(Constant.data_address, address)
+        editor.putString(Constant.data_avatar, avatar)
+        editor.putString(Constant.data_registered, registered)
 
         editor.apply()
     }

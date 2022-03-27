@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -43,21 +42,20 @@ class AduanAdapterAdmin(val context: Context) :
         private val tvDesc: TextView = item.findViewById(R.id.tvDesc)
         private val tvDate: TextView = item.findViewById(R.id.tvDate)
         private val tvStatues: TextView = item.findViewById(R.id.tvStatues)
-        private val rlAduanAdmin: RelativeLayout = item.findViewById(R.id.rlAduanAdmin)
 
         fun bindKeluhan(b: AduanResponse) {
-            if (b.image.equals(Constant.default)) {
+            if (b.avatar == Constant.default) {
                 Glide.with(context)
                     .load(R.drawable.img_user_default)
                     .into(imgUser)
             } else {
                 Glide.with(context)
-                    .load(b.image)
+                    .load(b.avatar)
                     .into(imgUser)
             }
 
             tvTitle.text = b.title
-            tvUserID.text = b.kode_pelanggan
+            tvUserID.text = b.id_pelanggan
             tvDesc.text = b.desc
 
             val inputFormat: DateFormat = SimpleDateFormat(
@@ -65,104 +63,31 @@ class AduanAdapterAdmin(val context: Context) :
             )
             val outputFormat: DateFormat =
                 SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
-            val inputDateStr = b.waktu.toString()
+            val inputDateStr = b.date
             val date: Date = inputFormat.parse(inputDateStr)!!
             val outputDateStr: String = outputFormat.format(date)
             tvDate.text = outputDateStr
 
             tvStatues.text = b.status
-            when {
-                b.status.equals(Constant.sent) -> {
+            when (b.status) {
+                Constant.sent -> {
                     tvStatues.visibility = View.GONE
                 }
-                b.status.equals(Constant.processed) -> {
+                Constant.processed -> {
                     tvStatues.visibility = View.VISIBLE
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_orange)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_orange))
                 }
-                b.status.equals(Constant.finish) -> {
+                Constant.finish -> {
                     tvStatues.visibility = View.VISIBLE
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_blue)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_primary))
                 }
-                b.status.equals(Constant.rejected) -> {
+                Constant.rejected -> {
                     tvStatues.visibility = View.VISIBLE
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_red))
                 }
-            }
-
-            rlAduanAdmin.setOnClickListener {
-                val dialog = BottomSheetDialog(context, R.style.DialogStyle)
-                dialog.setCancelable(true)
-                dialog.setContentView(R.layout.bottom_sheet_detail_aduan_admin)
-                dialog.show()
-
-                val imgProfile: CircleImageView = dialog.findViewById(R.id.imgProfile)!!
-                val tvFullName: TextView? = dialog.findViewById(R.id.tvFullName)
-                val tvUserID: TextView? = dialog.findViewById(R.id.tvUserID)
-                val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
-                val etDescAduan: TextView? = dialog.findViewById(R.id.etDescAduan)
-                val llConfirm: LinearLayout? = dialog.findViewById(R.id.llConfirm)
-                val btnReject: MaterialButton? = dialog.findViewById(R.id.btnReject)
-                val btnAccept: MaterialButton? = dialog.findViewById(R.id.btnAccept)
-
-                if (b.image.equals(Constant.default)) {
-                    Glide.with(context)
-                        .load(R.drawable.img_user_default)
-                        .into(imgProfile)
-                } else {
-                    Glide.with(context)
-                        .load(b.image)
-                        .into(imgProfile)
-                }
-
-                tvFullName?.text = b.nama_pelanggan
-                tvUserID?.text = b.kode_pelanggan
-                tvTitleAduan?.text = b.title
-                etDescAduan?.text = b.desc
-
-                if (b.status.equals(Constant.sent)) {
-                    llConfirm?.visibility = View.VISIBLE
-                } else {
-                    llConfirm?.visibility = View.GONE
-                }
-
-                btnAccept?.setOnClickListener {
-                    Retro.instance.updateStatusKeluhan(
-                        b.kode_keluhan.toString(), Constant.processed
-                    ).enqueue(object : Callback<DefaultResponse> {
-                        override fun onResponse(
-                            call: Call<DefaultResponse>,
-                            response: Response<DefaultResponse>
-                        ) {
-
-                        }
-
-                        override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        }
-
-                    })
-                }
-
-                btnReject?.setOnClickListener {
-                    Retro.instance.updateStatusKeluhan(
-                        b.kode_keluhan.toString(), Constant.rejected
-                    ).enqueue(object : Callback<DefaultResponse> {
-                        override fun onResponse(
-                            call: Call<DefaultResponse>,
-                            response: Response<DefaultResponse>
-                        ) {
-
-                        }
-
-                        override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        }
-
-                    })
-                }
-
-
             }
         }
     }
@@ -170,7 +95,6 @@ class AduanAdapterAdmin(val context: Context) :
     fun setKeluhan(data: List<AduanResponse>) {
         history.clear()
         history.addAll(data)
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -181,6 +105,76 @@ class AduanAdapterAdmin(val context: Context) :
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.bindKeluhan(history[position])
+        holder.itemView.setOnClickListener {
+            val dialog = BottomSheetDialog(context, R.style.DialogStyle)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.bottom_sheet_detail_aduan_admin)
+            dialog.show()
+
+            val imgProfile: CircleImageView = dialog.findViewById(R.id.imgProfile)!!
+            val tvFullName: TextView? = dialog.findViewById(R.id.tvFullName)
+            val tvUserID: TextView? = dialog.findViewById(R.id.tvUserID)
+            val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
+            val etDescAduan: TextView? = dialog.findViewById(R.id.etDescAduan)
+            val llConfirm: LinearLayout? = dialog.findViewById(R.id.llConfirm)
+            val btnReject: MaterialButton? = dialog.findViewById(R.id.btnReject)
+            val btnAccept: MaterialButton? = dialog.findViewById(R.id.btnAccept)
+
+            if (history[position].avatar == Constant.default) {
+                Glide.with(context)
+                    .load(R.drawable.img_user_default)
+                    .into(imgProfile)
+            } else {
+                Glide.with(context)
+                    .load(history[position].avatar)
+                    .into(imgProfile)
+            }
+
+            tvFullName?.text = history[position].name
+            tvUserID?.text = history[position].id_pelanggan
+            tvTitleAduan?.text = history[position].title
+            etDescAduan?.text = history[position].desc
+
+            if (history[position].status == Constant.sent) {
+                llConfirm?.visibility = View.VISIBLE
+            } else {
+                llConfirm?.visibility = View.GONE
+            }
+
+            btnAccept?.setOnClickListener {
+                Retro.instance.updateStatusKeluhan(
+                    history[position].id_keluhan, Constant.processed
+                ).enqueue(object : Callback<DefaultResponse> {
+                    override fun onResponse(
+                        call: Call<DefaultResponse>,
+                        response: Response<DefaultResponse>
+                    ) {
+
+                    }
+
+                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                    }
+
+                })
+            }
+
+            btnReject?.setOnClickListener {
+                Retro.instance.updateStatusKeluhan(
+                    history[position].id_keluhan, Constant.rejected
+                ).enqueue(object : Callback<DefaultResponse> {
+                    override fun onResponse(
+                        call: Call<DefaultResponse>,
+                        response: Response<DefaultResponse>
+                    ) {
+
+                    }
+
+                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                    }
+
+                })
+            }
+        }
     }
 
     override fun getItemCount(): Int {

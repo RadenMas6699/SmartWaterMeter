@@ -23,6 +23,7 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentHomeAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,7 +41,7 @@ class AdminHomeFragment : Fragment() {
         val v = b.root
 
         sharedPref = activity?.getSharedPreferences(
-            getString(R.string.app_pref), Context.MODE_PRIVATE
+            Constant.app_pref, Context.MODE_PRIVATE
         )!!
 
         initView()

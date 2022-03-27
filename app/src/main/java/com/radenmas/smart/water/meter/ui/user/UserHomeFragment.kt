@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,7 +48,7 @@ class UserHomeFragment : Fragment() {
         val v = b.root
 
         sharedPref = activity?.getSharedPreferences(
-            getString(R.string.app_pref), Context.MODE_PRIVATE
+            Constant.app_pref, Context.MODE_PRIVATE
         )!!
 
         initView()
@@ -66,7 +67,7 @@ class UserHomeFragment : Fragment() {
 //        kasusLineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
         kasusLineDataSet.lineWidth = 1.5f
 
-        kasusLineDataSet.color = resources.getColor(R.color.primary)
+        kasusLineDataSet.color = ResourcesCompat.getColor(resources, R.color.primary, null)
 
         kasusLineDataSet.setDrawCircles(false)
         kasusLineDataSet.setDrawValues(false)
@@ -177,7 +178,7 @@ class UserHomeFragment : Fragment() {
 
     private fun getTagihanPayment() {
         Retro.instance.getTagihanUserLimit(
-            sharedPref.getString("idPelanggan", null).toString()
+            sharedPref.getString(Constant.data_id_pelanggan, null).toString()
         ).enqueue(object : Callback<List<TagihanResponse>> {
             override fun onResponse(
                 call: Call<List<TagihanResponse>>,
@@ -200,16 +201,16 @@ class UserHomeFragment : Fragment() {
 
     private fun getTotalTagihan() {
         Retro.instance.getTotalTagihanUser(
-            sharedPref.getString("idPelanggan", null).toString()
+            sharedPref.getString(Constant.data_id_pelanggan, null).toString()
         ).enqueue(object : Callback<TagihanResponse> {
             override fun onResponse(
                 call: Call<TagihanResponse>,
                 response: Response<TagihanResponse>
             ) {
                 val tagihan: String =
-                    String.format("%,d", response.body()?.total)
+                    String.format("%,d", response.body()?.total_bill)
                 b.tvTagihan.text = tagihan
-                b.tvPemakaian.text = response.body()?.pemakaian.toString()
+                b.tvPemakaian.text = response.body()?.usage.toString()
             }
 
             override fun onFailure(call: Call<TagihanResponse>, t: Throwable) {
@@ -218,8 +219,8 @@ class UserHomeFragment : Fragment() {
     }
 
     private fun initView() {
-        Glide.with(this).load(sharedPref.getString("image", null)).into(b.imgProfile)
-        b.tvFullName.text = sharedPref.getString("nama", null)
+        Glide.with(this).load(sharedPref.getString(Constant.data_avatar, null)).into(b.imgProfile)
+        b.tvFullName.text = sharedPref.getString(Constant.data_name, null)
 
         b.rvPaymentLast.layoutManager = LinearLayoutManager(activity)
         paymentUser = TagihanAdapterUser(requireActivity())
@@ -264,7 +265,7 @@ class UserHomeFragment : Fragment() {
         b.tvViewAll.setOnClickListener {
             val billing =
                 UserHomeFragmentDirections.actionUserHomeFragmentToUserBillingFragment(
-                    sharedPref.getString("idPelanggan", null).toString()
+                    sharedPref.getString(Constant.data_id_pelanggan, null).toString()
                 )
             findNavController().navigate(billing)
         }
@@ -275,14 +276,14 @@ class UserHomeFragment : Fragment() {
         btnNotActive1: MaterialButton,
         btnNotActive2: MaterialButton
     ) {
-        btnActive.setTextColor(resources.getColor(R.color.primary_text))
+        btnActive.setTextColor(ResourcesCompat.getColor(resources, R.color.primary_text, null))
         btnActive.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_primary))
 
-        btnNotActive1.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive1.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
         btnNotActive1.strokeColor =
             ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
-        btnNotActive2.setTextColor(resources.getColor(R.color.hint))
+        btnNotActive2.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
         btnNotActive2.strokeColor =
             ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
     }

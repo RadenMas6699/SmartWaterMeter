@@ -6,14 +6,14 @@
 package com.radenmas.smart.water.meter.model
 
 data class LoginResponse(
-    val username: String,
-    val level_user: String,
-    val id_user: String,
-    val nama: String,
-    val no_ktp: String,
-    val no_telp: String,
-    val alamat: String,
-    val image: String,
-    val terdaftar: String
+    val id_admin: String,
+    val id_pelanggan: String,
+    val name: String,
+    val level: String,
+    val ktp: String,
+    val phone: String,
+    val address: String,
+    val avatar: String,
+    val registered: String
 )
 

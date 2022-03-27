@@ -20,6 +20,7 @@ import com.radenmas.smart.water.meter.databinding.FragmentProfileAdminBinding
 import com.radenmas.smart.water.meter.databinding.LogoutLayoutBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
 import com.radenmas.smart.water.meter.ui.user.UserProfileFragmentDirections
+import com.radenmas.smart.water.meter.utils.Constant
 
 class AdminProfileFragment : Fragment() {
 
@@ -42,7 +43,7 @@ class AdminProfileFragment : Fragment() {
         window.statusBarColor = Color.WHITE
 
         sharedPref = activity?.getSharedPreferences(
-            getString(R.string.app_pref), Context.MODE_PRIVATE
+            Constant.app_pref, Context.MODE_PRIVATE
         )!!
         editor = sharedPref.edit()
 

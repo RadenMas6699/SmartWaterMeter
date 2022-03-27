@@ -8,8 +8,6 @@ package com.radenmas.smart.water.meter.model
 /**
  * Created by RadenMas on 26/03/2022.
  */
-class Usage {
-
-var usage : Int? = null
-
-}
+data class Usage(
+    val usage: Int
+)

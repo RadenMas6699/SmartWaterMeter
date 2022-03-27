@@ -20,6 +20,8 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentChangeProfileUserBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,17 +33,17 @@ class UserChangeProfileFragment : Fragment() {
     lateinit var sharedPref: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
 
-    val args: UserChangeProfileFragmentArgs by navArgs()
+    private val args: UserChangeProfileFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         b = FragmentChangeProfileUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
         sharedPref = activity?.getSharedPreferences(
-            getString(R.string.app_pref), Context.MODE_PRIVATE
+            Constant.app_pref, Context.MODE_PRIVATE
         )!!
         editor = sharedPref.edit()
 
@@ -53,9 +55,9 @@ class UserChangeProfileFragment : Fragment() {
         val address = args.address
 
         Glide.with(this).load(image).into(b.imgProfile)
-        b.etFullName.setText(fullName)
-        b.etPhone.setText(phone)
-        b.etAddress.setText(address)
+        b.etFullName.hint = fullName
+        b.etPhone.hint = phone
+        b.etAddress.hint = address
 
         return v
     }
@@ -71,7 +73,7 @@ class UserChangeProfileFragment : Fragment() {
             val address: String = b.etAddress.text.toString()
 
             if (fullname.isEmpty() || phone.isEmpty() || address.isEmpty()) {
-                Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
+                AppUtils.toast(requireContext(),"Lengkapi yang masih kosong")
             } else {
                 progress = Dialog(requireActivity())
                 progress.setContentView(R.layout.progress_layout)
@@ -102,22 +104,22 @@ class UserChangeProfileFragment : Fragment() {
                     address
                 )
                 progress.dismiss()
-                Toast.makeText(context, "Data Pelanggan Berhasil Diupdate", Toast.LENGTH_SHORT).show()
+                AppUtils.toast(requireContext(),"Data Pelanggan Berhasil Diupdate")
                 activity?.onBackPressed()
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                 progress.dismiss()
-                Toast.makeText(context, "Data Pelanggan Gagal Diupdate", Toast.LENGTH_SHORT).show()
+                AppUtils.toast(requireContext(),"Data Pelanggan Gagal Diupdate")
             }
 
         })
     }
 
     private fun saveData(fullname: String, phone: String, address: String) {
-        editor.putString("nama", fullname)
-        editor.putString("noTelp", phone)
-        editor.putString("alamat", address)
+        editor.putString(Constant.data_name, fullname)
+        editor.putString(Constant.data_phone, phone)
+        editor.putString(Constant.data_address, address)
 
         editor.apply()
     }

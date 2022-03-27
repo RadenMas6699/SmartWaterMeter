@@ -87,9 +87,9 @@
     </fragment>
     <fragment
         android:id="@+id/userWebserverFragment"
-        android:name="com.radenmas.smart.water.meter.ui.user.UserWebserverFragment"
+        android:name="com.radenmas.smart.water.meter.ui.user.UserWebServerFragment"
         android:label="fragment_webserver_user"
-        tools:layout="@layout/fragment_webserver_user" />
+        tools:layout="@layout/fragment_web_server_user" />
     <fragment
         android:id="@+id/userNotificationFragment"
         android:name="com.radenmas.smart.water.meter.ui.user.UserNotificationFragment"

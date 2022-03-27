@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -28,183 +27,79 @@ class TagihanAdapterUser(val context: Context) :
 
     inner class TagihanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-        private val rlTagihan: RelativeLayout = item.findViewById(R.id.rlTagihan)
         private val tvTitle: TextView = item.findViewById(R.id.tvTitle)
         private val tvStatues: TextView = item.findViewById(R.id.tvStatues)
         private val tvPrice: TextView = item.findViewById(R.id.tvPrice)
 
         fun bindTagihan(b: TagihanResponse) {
 
-            val year = b.tahun
+            val year = b.year
             val period: String
-            when {
-                b.bulan.equals("1") -> {
+            when (b.month) {
+                "1" -> {
                     period = "Januari $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("2") -> {
+                "2" -> {
                     period = "Februari $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("3") -> {
+                "3" -> {
                     period = "Maret $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("4") -> {
+                "4" -> {
                     period = "April $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("5") -> {
+                "5" -> {
                     period = "Mei $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("6") -> {
+                "6" -> {
                     period = "Juni $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("7") -> {
+                "7" -> {
                     period = "Juli $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("8") -> {
+                "8" -> {
                     period = "Agustus $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("9") -> {
+                "9" -> {
                     period = "September $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("10") -> {
+                "10" -> {
                     period = "Oktober $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("11") -> {
+                "11" -> {
                     period = "November $year"
                     tvTitle.text = period
                 }
-                b.bulan.equals("12") -> {
+                "12" -> {
                     period = "Desember $year"
                     tvTitle.text = period
                 }
             }
 
             val tagihan: String =
-                String.format("%,d", b.total)
+                String.format("%,d", b.total_bill)
             val total = "Rp. $tagihan"
             tvPrice.text = total
 
             tvStatues.text = b.status
-            when {
-                b.status.equals(Constant.paid_off) -> {
+            when (b.status) {
+                Constant.paid_off -> {
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_green)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_green))
                 }
-                b.status.equals(Constant.not_yet_paid_off) -> {
+                Constant.not_yet_paid_off -> {
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_red))
-                }
-            }
-
-            rlTagihan.setOnClickListener {
-                val dialog = BottomSheetDialog(context, R.style.DialogStyle)
-                dialog.setCancelable(true)
-                dialog.setContentView(R.layout.bottom_sheet_detail_billing_user)
-                dialog.show()
-
-                val tvPeriod: TextView? = dialog.findViewById(R.id.tvPeriod)
-                val tvPemakaian: TextView? = dialog.findViewById(R.id.tvPemakaian)
-                val tvTagihan: TextView? = dialog.findViewById(R.id.tvTagihan)
-                val tvUsageCost: TextView? = dialog.findViewById(R.id.tvUsageCost)
-                val tvMaintenanceCost: TextView? = dialog.findViewById(R.id.tvMaintenanceCost)
-                val tvPayDate: TextView? = dialog.findViewById(R.id.tvPayDate)
-                val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
-
-                val detPeriod: String
-                when {
-                    b.bulan.equals("1") -> {
-                        detPeriod = "Januari $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("2") -> {
-                        detPeriod = "Februari $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("3") -> {
-                        detPeriod = "Maret $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("4") -> {
-                        detPeriod = "April $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("5") -> {
-                        detPeriod = "Mei $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("6") -> {
-                        detPeriod = "Juni $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("7") -> {
-                        detPeriod = "Juli $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("8") -> {
-                        detPeriod = "Agustus $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("9") -> {
-                        detPeriod = "September $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("10") -> {
-                        detPeriod = "Oktober $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("11") -> {
-                        detPeriod = "November $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                    b.bulan.equals("12") -> {
-                        detPeriod = "Desember $year"
-                        tvPeriod?.text = detPeriod
-                    }
-                }
-
-                tvPemakaian?.text = b.pemakaian
-                tvTagihan?.text = total
-
-                val usageCost: String =
-                    String.format("%,d", b.tagihan.toString().toInt())
-                val usage = "Rp. $usageCost"
-                tvUsageCost?.text = usage
-
-                val maintenanceCost: String =
-                    String.format("%,d", b.maintenance.toString().toInt())
-                val maintenance = "Rp. $maintenanceCost"
-                tvMaintenanceCost?.text = maintenance
-
-                when {
-                    b.status.equals(Constant.paid_off) -> {
-                        val inputFormat: DateFormat = SimpleDateFormat(
-                            Constant.pattern_input_date,
-                            Locale("ID")
-                        )
-                        val outputFormat: DateFormat =
-                            SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
-                        val inputDateStr = b.tgl_bayar.toString()
-                        val date: Date? = inputFormat.parse(inputDateStr)
-                        val outputDateStr: String = outputFormat.format(date)
-                        tvPayDate?.text = outputDateStr
-
-                    }
-                    b.status.equals(Constant.not_yet_paid_off) -> {
-                        tvPayDate?.text = "-"
-                    }
-                }
-
-                imgDismiss?.setOnClickListener {
-                    dialog.dismiss()
                 }
             }
         }
@@ -213,7 +108,6 @@ class TagihanAdapterUser(val context: Context) :
     fun setTagihan(data: List<TagihanResponse>) {
         tagihan.clear()
         tagihan.addAll(data)
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagihanViewHolder {
@@ -224,6 +118,109 @@ class TagihanAdapterUser(val context: Context) :
 
     override fun onBindViewHolder(holder: TagihanViewHolder, position: Int) {
         holder.bindTagihan(tagihan[position])
+        holder.itemView.setOnClickListener {
+            val dialog = BottomSheetDialog(context, R.style.DialogStyle)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.bottom_sheet_detail_billing_user)
+            dialog.show()
+
+            val tvPeriod: TextView? = dialog.findViewById(R.id.tvPeriod)
+            val tvPemakaian: TextView? = dialog.findViewById(R.id.tvPemakaian)
+            val tvTagihan: TextView? = dialog.findViewById(R.id.tvTagihan)
+            val tvUsageCost: TextView? = dialog.findViewById(R.id.tvUsageCost)
+            val tvMaintenanceCost: TextView? = dialog.findViewById(R.id.tvMaintenanceCost)
+            val tvPayDate: TextView? = dialog.findViewById(R.id.tvPayDate)
+            val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
+
+            val year = tagihan[position].year
+            val detPeriod: String
+            when (tagihan[position].month) {
+                "1" -> {
+                    detPeriod = "Januari $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "2" -> {
+                    detPeriod = "Februari $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "3" -> {
+                    detPeriod = "Maret $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "4" -> {
+                    detPeriod = "April $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "5" -> {
+                    detPeriod = "Mei $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "6" -> {
+                    detPeriod = "Juni $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "7" -> {
+                    detPeriod = "Juli $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "8" -> {
+                    detPeriod = "Agustus $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "9" -> {
+                    detPeriod = "September $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "10" -> {
+                    detPeriod = "Oktober $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "11" -> {
+                    detPeriod = "November $year"
+                    tvPeriod?.text = detPeriod
+                }
+                "12" -> {
+                    detPeriod = "Desember $year"
+                    tvPeriod?.text = detPeriod
+                }
+            }
+
+            tvPemakaian?.text = tagihan[position].usage
+            tvTagihan?.text = tagihan[position].total_bill.toString()
+
+            val usageCost: String =
+                String.format("%,d", tagihan[position].bill)
+            val usage = "Rp. $usageCost"
+            tvUsageCost?.text = usage
+
+            val maintenanceCost: String =
+                String.format("%,d", tagihan[position].maintenance)
+            val maintenance = "Rp. $maintenanceCost"
+            tvMaintenanceCost?.text = maintenance
+
+            when (tagihan[position].status) {
+                Constant.paid_off -> {
+                    val inputFormat: DateFormat = SimpleDateFormat(
+                        Constant.pattern_input_date,
+                        Locale("ID")
+                    )
+                    val outputFormat: DateFormat =
+                        SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
+                    val inputDateStr = tagihan[position].pay_date
+                    val date: Date? = inputFormat.parse(inputDateStr)
+                    val outputDateStr: String = outputFormat.format(date)
+                    tvPayDate?.text = outputDateStr
+
+                }
+                Constant.not_yet_paid_off -> {
+                    tvPayDate?.text = Constant.dash
+                }
+            }
+
+            imgDismiss?.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
     }
 
     override fun getItemCount(): Int {
