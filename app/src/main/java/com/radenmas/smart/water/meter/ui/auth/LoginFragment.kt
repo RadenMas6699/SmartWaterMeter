@@ -23,9 +23,6 @@ import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class LoginFragment : Fragment() {
 
@@ -93,23 +90,22 @@ class LoginFragment : Fragment() {
                 response: retrofit2.Response<LoginResponse>
             ) {
                 AppUtils.dismissLoading()
-                saveData(
-                    response.body()?.id_admin.toString(),
-                    response.body()?.id_pelanggan.toString(),
-                    response.body()?.name.toString(),
-                    response.body()?.level.toString(),
-                    response.body()?.ktp.toString(),
-                    response.body()?.phone.toString(),
-                    response.body()?.address.toString(),
-                    response.body()?.avatar.toString(),
-                    AppUtils.formatDate(response.body()?.registered.toString())
-                )
-
                 when {
                     response.body()?.level.equals(
                         Constant.user,
                         ignoreCase = true
                     ) -> {
+                        val registered = AppUtils.formatDate(response.body()?.registered.toString())
+                        saveDataUser(
+                            response.body()?.id_pelanggan.toString(),
+                            response.body()?.name.toString(),
+                            response.body()?.level.toString(),
+                            response.body()?.ktp.toString(),
+                            response.body()?.phone.toString(),
+                            response.body()?.address.toString(),
+                            response.body()?.avatar.toString(),
+                            registered
+                        )
                         startActivity(Intent(context, UserMainActivity::class.java))
                         activity?.finish()
                     }
@@ -117,6 +113,12 @@ class LoginFragment : Fragment() {
                         Constant.admin,
                         ignoreCase = true
                     ) -> {
+                        saveDataAdmin(
+                            response.body()?.id_admin.toString(),
+                            response.body()?.name.toString(),
+                            response.body()?.level.toString(),
+                            response.body()?.avatar.toString()
+                        )
                         startActivity(Intent(context, AdminMainActivity::class.java))
                         activity?.finish()
                     }
@@ -133,8 +135,7 @@ class LoginFragment : Fragment() {
         })
     }
 
-    private fun saveData(
-        id_admin: String,
+    private fun saveDataUser(
         id_pelanggan: String,
         name: String,
         level: String,
@@ -144,7 +145,6 @@ class LoginFragment : Fragment() {
         avatar: String,
         registered: String
     ) {
-        editor.putString(Constant.data_id_admin, id_admin)
         editor.putString(Constant.data_id_pelanggan, id_pelanggan)
         editor.putString(Constant.data_name, name)
         editor.putString(Constant.data_level, level)
@@ -153,6 +153,20 @@ class LoginFragment : Fragment() {
         editor.putString(Constant.data_address, address)
         editor.putString(Constant.data_avatar, avatar)
         editor.putString(Constant.data_registered, registered)
+
+        editor.apply()
+    }
+
+    private fun saveDataAdmin(
+        id_admin: String,
+        name: String,
+        level: String,
+        avatar: String
+    ) {
+        editor.putString(Constant.data_id_admin, id_admin)
+        editor.putString(Constant.data_name, name)
+        editor.putString(Constant.data_level, level)
+        editor.putString(Constant.data_avatar, avatar)
 
         editor.apply()
     }

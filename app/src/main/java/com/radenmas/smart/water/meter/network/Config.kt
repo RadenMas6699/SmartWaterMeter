@@ -7,7 +7,7 @@ package com.radenmas.smart.water.meter.network
 
 object Config {
     // URL WEB SERVER
-    const val BASE_URL_WEB_SERVER = "http://192.168.4.1:80/"
+    const val BASE_URL_WEB_SERVER = "http://192.168.4.1/"
     const val URL_DEBIT = "debit"
 //    const val URL_TOTAL = "total"
     const val URL_TOTAL = "total"

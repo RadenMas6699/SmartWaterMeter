@@ -12,12 +12,12 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by RadenMas on 23/03/2022.
  */
 object RetroWebServer {
-    val instance: APIServices by lazy {
+    val instance: APIWebServer by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(Config.BASE_URL_WEB_SERVER)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        retrofit.create(APIServices::class.java)
+        retrofit.create(APIWebServer::class.java)
     }
 }

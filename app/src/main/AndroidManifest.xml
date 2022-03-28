@@ -38,10 +38,6 @@
             android:theme="@style/Splash"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".LineChartActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">

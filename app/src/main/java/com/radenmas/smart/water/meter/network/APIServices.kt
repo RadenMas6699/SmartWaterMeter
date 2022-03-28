@@ -124,26 +124,4 @@ interface APIServices {
         @Field("status") status: String
     ): Call<DefaultResponse>
 
-
-    // WEBSERVER
-    @GET(Config.URL_DEBIT)
-    fun getDebitWebServer(): Call<DefaultResponse>
-
-    @GET(Config.URL_TOTAL)
-    fun getTotalWebServer(): Call<Void>
-
-    @GET(Config.URL_BILLING)
-    fun getBillingWebServer(): Call<DefaultResponse>
-
-    @GET(Config.URL_RELAY_ON)
-    fun setRelayOn(): Call<Void>
-
-    @GET(Config.URL_RELAY_OFF)
-    fun setRelayOff(): Call<Void>
-
-    @GET(Config.URL_SET_PRICE)
-    fun setPriceWebServer(@Query("setHarga") setHarga: Int): Call<Void>
-
-    @GET(Config.URL_RESET)
-    fun resetDataWebServer(): Call<Void>
 }

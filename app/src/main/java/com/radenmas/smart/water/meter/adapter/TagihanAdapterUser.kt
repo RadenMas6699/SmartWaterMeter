@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.TagihanResponse
@@ -25,6 +26,7 @@ class TagihanAdapterUser(val context: Context) :
 
     inner class TagihanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
+        private val imgBill: ImageView = item.findViewById(R.id.imgBill)
         private val tvTitle: TextView = item.findViewById(R.id.tvTitle)
         private val tvStatues: TextView = item.findViewById(R.id.tvStatues)
         private val tvPrice: TextView = item.findViewById(R.id.tvPrice)
@@ -88,10 +90,16 @@ class TagihanAdapterUser(val context: Context) :
             tvStatues.text = b.status
             when (b.status) {
                 Constant.paid_off -> {
+                    Glide.with(context)
+                        .load(R.drawable.ic_bill_paid_off)
+                        .into(imgBill)
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_green)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_green))
                 }
                 Constant.not_yet_paid_off -> {
+                    Glide.with(context)
+                        .load(R.drawable.ic_bill_not_yet_paid_off)
+                        .into(imgBill)
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_red))
                 }
@@ -191,7 +199,6 @@ class TagihanAdapterUser(val context: Context) :
             when (tagihan[position].status) {
                 Constant.paid_off -> {
                     tvPayDate?.text = AppUtils.formatDate(tagihan[position].pay_date)
-
                 }
                 Constant.not_yet_paid_off -> {
                     tvPayDate?.text = Constant.dash

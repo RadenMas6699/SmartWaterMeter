@@ -45,7 +45,6 @@ class AdminWebServerFragment : Fragment() {
         RetroWebServer.instance.getTotalWebServer().enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 val responseBody = response.body()
-
                 Log.d(
                     "WEB",
                     "response Total R : $responseBody "
@@ -55,6 +54,24 @@ class AdminWebServerFragment : Fragment() {
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Log.d("WEB", "response Total F : $t")
+            }
+
+        })
+    }
+
+    private fun getDebit() {
+        RetroWebServer.instance.getDebitWebServer().enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                val responseBody = response.body()
+                Log.d(
+                    "WEB",
+                    "response Debit R : $responseBody "
+                )
+                b.tvTagihan.text = responseBody.toString()
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("WEB", "response Debit F : $t")
             }
 
         })
@@ -71,27 +88,29 @@ class AdminWebServerFragment : Fragment() {
 
         b.switchPower.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                RetroWebServer.instance.setRelayOn().enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        Log.d("WEB", "response On R : $response")
-
-                    }
-
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.d("WEB", "response On F : $t)")
-                    }
-                })
+                getTagihan()
+//                RetroWebServer.instance.setRelayOn().enqueue(object : Callback<Void> {
+//                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+//                        Log.d("WEB", "response On R : $response")
+//
+//                    }
+//
+//                    override fun onFailure(call: Call<Void>, t: Throwable) {
+//                        Log.d("WEB", "response On F : $t)")
+//                    }
+//                })
             } else {
-                RetroWebServer.instance.setRelayOff().enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        Log.d("WEB", "response Off R : $response")
-
-                    }
-
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.d("WEB", "response Off F : $t")
-                    }
-                })
+                getDebit()
+//                RetroWebServer.instance.setRelayOff().enqueue(object : Callback<Void> {
+//                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+//                        Log.d("WEB", "response Off R : $response")
+//
+//                    }
+//
+//                    override fun onFailure(call: Call<Void>, t: Throwable) {
+//                        Log.d("WEB", "response Off F : $t")
+//                    }
+//                })
             }
         }
     }

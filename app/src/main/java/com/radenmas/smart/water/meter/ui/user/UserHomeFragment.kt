@@ -212,7 +212,7 @@ class UserHomeFragment : Fragment() {
                 call: Call<TagihanResponse>,
                 response: Response<TagihanResponse>
             ) {
-                b.tvTagihan.text = AppUtils.formatRupiah(response.body()?.total_bill!!)
+                b.tvTagihan.text = AppUtils.formatNumber(response.body()?.total_bill!!)
                 b.tvPemakaian.text = response.body()?.usage.toString()
             }
 
