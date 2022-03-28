@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
+import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -36,17 +37,7 @@ class AduanAdapterUser(val context: Context) :
         fun bindKeluhan(b: AduanResponse) {
             tvTitle.text = b.title
             tvDesc.text = b.desc
-
-            val inputFormat: DateFormat = SimpleDateFormat(
-                Constant.pattern_input_date,
-                Locale("ID")
-            )
-            val outputFormat: DateFormat =
-                SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
-            val inputDateStr = b.date
-            val date: Date? = inputFormat.parse(inputDateStr)
-            val outputDateStr: String = outputFormat.format(date)
-            tvDate.text = outputDateStr
+            tvDate.text = AppUtils.formatDate(b.date)
 
             tvStatues.text = b.status
             when (b.status) {

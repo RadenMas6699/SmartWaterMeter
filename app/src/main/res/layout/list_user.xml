@@ -16,8 +16,7 @@
         android:id="@+id/imgUser"
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/img_user_default" />
+        android:layout_centerVertical="true" />
 
     <LinearLayout
         android:layout_width="match_parent"

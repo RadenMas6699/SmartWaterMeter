@@ -89,10 +89,10 @@
         android:label="fragment_detail_user_admin"
         tools:layout="@layout/fragment_detail_user_admin" >
         <argument
-            android:name="img_profile"
+            android:name="avatar"
             app:argType="string" />
         <argument
-            android:name="fullname"
+            android:name="name"
             app:argType="string" />
         <argument
             android:name="id_pelanggan"

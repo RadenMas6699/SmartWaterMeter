@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -20,14 +21,12 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AduanAdapterAdmin(val context: Context) :
     RecyclerView.Adapter<AduanAdapterAdmin.HistoryViewHolder>() {
@@ -46,7 +45,7 @@ class AduanAdapterAdmin(val context: Context) :
         fun bindKeluhan(b: AduanResponse) {
             if (b.avatar == Constant.default) {
                 Glide.with(context)
-                    .load(R.drawable.img_user_default)
+                    .load(R.drawable.ic_profile_default)
                     .into(imgUser)
             } else {
                 Glide.with(context)
@@ -57,16 +56,7 @@ class AduanAdapterAdmin(val context: Context) :
             tvTitle.text = b.title
             tvUserID.text = b.id_pelanggan
             tvDesc.text = b.desc
-
-            val inputFormat: DateFormat = SimpleDateFormat(
-                Constant.pattern_input_date, Locale("ID")
-            )
-            val outputFormat: DateFormat =
-                SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
-            val inputDateStr = b.date
-            val date: Date = inputFormat.parse(inputDateStr)!!
-            val outputDateStr: String = outputFormat.format(date)
-            tvDate.text = outputDateStr
+            tvDate.text = AppUtils.formatDate(b.date)
 
             tvStatues.text = b.status
             when (b.status) {
@@ -116,14 +106,16 @@ class AduanAdapterAdmin(val context: Context) :
             val tvFullName: TextView? = dialog.findViewById(R.id.tvFullName)
             val tvUserID: TextView? = dialog.findViewById(R.id.tvUserID)
             val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
-            val etDescAduan: TextView? = dialog.findViewById(R.id.etDescAduan)
+            val tvDescAduan: TextView? = dialog.findViewById(R.id.tvDescAduan)
+            val etNoteRejected: TextView? = dialog.findViewById(R.id.etNoteRejected)
             val llConfirm: LinearLayout? = dialog.findViewById(R.id.llConfirm)
             val btnReject: MaterialButton? = dialog.findViewById(R.id.btnReject)
             val btnAccept: MaterialButton? = dialog.findViewById(R.id.btnAccept)
+            val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
 
             if (history[position].avatar == Constant.default) {
                 Glide.with(context)
-                    .load(R.drawable.img_user_default)
+                    .load(R.drawable.ic_profile_default)
                     .into(imgProfile)
             } else {
                 Glide.with(context)
@@ -134,7 +126,7 @@ class AduanAdapterAdmin(val context: Context) :
             tvFullName?.text = history[position].name
             tvUserID?.text = history[position].id_pelanggan
             tvTitleAduan?.text = history[position].title
-            etDescAduan?.text = history[position].desc
+            tvDescAduan?.text = history[position].desc
 
             if (history[position].status == Constant.sent) {
                 llConfirm?.visibility = View.VISIBLE
@@ -143,20 +135,26 @@ class AduanAdapterAdmin(val context: Context) :
             }
 
             btnAccept?.setOnClickListener {
-                Retro.instance.updateStatusKeluhan(
-                    history[position].id_keluhan, Constant.processed
-                ).enqueue(object : Callback<DefaultResponse> {
-                    override fun onResponse(
-                        call: Call<DefaultResponse>,
-                        response: Response<DefaultResponse>
-                    ) {
+                if (etNoteRejected!!.text.isBlank()) {
+                    AppUtils.toast(context, "Berikan Alasan Atas Penolakan")
+                } else {
+                    Retro.instance.updateStatusKeluhan(
+                        history[position].id_keluhan, Constant.processed
+                    ).enqueue(object : Callback<DefaultResponse> {
+                        override fun onResponse(
+                            call: Call<DefaultResponse>,
+                            response: Response<DefaultResponse>
+                        ) {
+                            AppUtils.toast(context, "Aduan Diterima")
+                            dialog.dismiss()
+                        }
 
-                    }
+                        override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                            dialog.dismiss()
+                        }
 
-                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                    }
-
-                })
+                    })
+                }
             }
 
             btnReject?.setOnClickListener {
@@ -167,13 +165,19 @@ class AduanAdapterAdmin(val context: Context) :
                         call: Call<DefaultResponse>,
                         response: Response<DefaultResponse>
                     ) {
-
+                        AppUtils.toast(context, "Aduan Ditolak")
+                        dialog.dismiss()
                     }
 
                     override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                        dialog.dismiss()
                     }
 
                 })
+            }
+
+            imgDismiss?.setOnClickListener {
+                dialog.dismiss()
             }
         }
     }

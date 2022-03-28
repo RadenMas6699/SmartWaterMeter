@@ -5,7 +5,6 @@
 
 package com.radenmas.smart.water.meter.ui.auth
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentLoginBinding
 import com.radenmas.smart.water.meter.model.LoginResponse
 import com.radenmas.smart.water.meter.network.Retro
@@ -25,6 +23,9 @@ import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LoginFragment : Fragment() {
 
@@ -101,7 +102,7 @@ class LoginFragment : Fragment() {
                     response.body()?.phone.toString(),
                     response.body()?.address.toString(),
                     response.body()?.avatar.toString(),
-                    response.body()?.registered.toString()
+                    AppUtils.formatDate(response.body()?.registered.toString())
                 )
 
                 when {

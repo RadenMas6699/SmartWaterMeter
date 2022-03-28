@@ -252,6 +252,49 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
+                    android:src="@drawable/ic_calender_outline"
+                    app:tint="@color/primary_text" />
+
+                <TextView
+                    android:id="@+id/titleUserRegistered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/registered"
+                    android:textColor="@color/primary_text"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvUserRegistered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/titleUserRegistered"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_below="@id/tvUserRegistered"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/hint" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/ic_location_outline"
                     app:tint="@color/primary_text" />
 
@@ -281,49 +324,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
                     android:layout_below="@id/tvUserStatus"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/hint" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_calender_outline"
-                    app:tint="@color/primary_text" />
-
-                <TextView
-                    android:id="@+id/titleUserRegistered"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/registered"
-                    android:textColor="@color/primary_text"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tvUserRegistered"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/titleUserRegistered"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/roboto_light"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:layout_below="@id/tvUserRegistered"
                     android:layout_marginTop="8dp"
                     android:background="@color/hint" />
             </RelativeLayout>

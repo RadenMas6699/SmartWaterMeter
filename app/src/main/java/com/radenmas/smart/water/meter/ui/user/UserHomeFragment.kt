@@ -29,6 +29,7 @@ import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.network.Retro
+import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
@@ -211,9 +212,7 @@ class UserHomeFragment : Fragment() {
                 call: Call<TagihanResponse>,
                 response: Response<TagihanResponse>
             ) {
-                val tagihan: String =
-                    String.format("%,d", response.body()?.total_bill)
-                b.tvTagihan.text = tagihan
+                b.tvTagihan.text = AppUtils.formatRupiah(response.body()?.total_bill!!)
                 b.tvPemakaian.text = response.body()?.usage.toString()
             }
 
@@ -288,9 +287,11 @@ class UserHomeFragment : Fragment() {
         btnActive.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_primary))
 
         btnNotActive1.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
-        btnNotActive1.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive1.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
 
         btnNotActive2.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
-        btnNotActive2.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+        btnNotActive2.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
     }
 }

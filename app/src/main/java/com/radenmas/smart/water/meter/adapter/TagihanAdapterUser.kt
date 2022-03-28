@@ -16,10 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.TagihanResponse
+import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class TagihanAdapterUser(val context: Context) :
     RecyclerView.Adapter<TagihanAdapterUser.TagihanViewHolder>() {
@@ -85,11 +83,7 @@ class TagihanAdapterUser(val context: Context) :
                     tvTitle.text = period
                 }
             }
-
-            val tagihan: String =
-                String.format("%,d", b.total_bill)
-            val total = "Rp. $tagihan"
-            tvPrice.text = total
+            tvPrice.text = AppUtils.formatRupiah(b.total_bill)
 
             tvStatues.text = b.status
             when (b.status) {
@@ -190,33 +184,13 @@ class TagihanAdapterUser(val context: Context) :
             val usage_air = "$usage M3"
             tvPemakaian?.text = usage_air
 
-            val totalBill: String =
-                String.format("%,d", tagihan[position].total_bill)
-            val total_bill = "Rp. $totalBill"
-            tvTagihan?.text = total_bill
-
-            val usageCost: String =
-                String.format("%,d", tagihan[position].bill.toInt())
-            val usage_cost = "Rp. $usageCost"
-            tvUsageCost?.text = usage_cost
-
-            val maintenanceCost: String =
-                String.format("%,d", tagihan[position].maintenance.toInt())
-            val maintenance = "Rp. $maintenanceCost"
-            tvMaintenanceCost?.text = maintenance
+            tvTagihan?.text = AppUtils.formatRupiah(tagihan[position].total_bill)
+            tvUsageCost?.text = AppUtils.formatRupiah(tagihan[position].bill.toInt())
+            tvMaintenanceCost?.text = AppUtils.formatRupiah(tagihan[position].maintenance.toInt())
 
             when (tagihan[position].status) {
                 Constant.paid_off -> {
-                    val inputFormat: DateFormat = SimpleDateFormat(
-                        Constant.pattern_input_date,
-                        Locale("ID")
-                    )
-                    val outputFormat: DateFormat =
-                        SimpleDateFormat(Constant.pattern_output_date, Locale("ID"))
-                    val inputDateStr = tagihan[position].pay_date
-                    val date: Date? = inputFormat.parse(inputDateStr)
-                    val outputDateStr: String = outputFormat.format(date)
-                    tvPayDate?.text = outputDateStr
+                    tvPayDate?.text = AppUtils.formatDate(tagihan[position].pay_date)
 
                 }
                 Constant.not_yet_paid_off -> {

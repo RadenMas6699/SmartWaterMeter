@@ -19,6 +19,7 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentProfileUserBinding
 import com.radenmas.smart.water.meter.databinding.LogoutLayoutBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
+import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 
 
@@ -30,6 +31,13 @@ class UserProfileFragment : Fragment() {
 
     private lateinit var sharedPref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+
+    private lateinit var name: String
+    private lateinit var avatar: String
+    private lateinit var idPelanggan: String
+    private lateinit var ktp: String
+    private lateinit var phone: String
+    private lateinit var address: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,11 +62,26 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun initView() {
-        Glide.with(this).load(sharedPref.getString(Constant.data_avatar, null)).into(b.imgProfile)
-        b.tvFullName.text = sharedPref.getString(Constant.data_name, null)
-        b.tvUserID.text = sharedPref.getString(Constant.data_id_pelanggan, null)
-        b.tvUserPhone.text = sharedPref.getString(Constant.data_phone, null)
-        b.tvUserAddress.text = sharedPref.getString(Constant.data_address, null)
+        name = sharedPref.getString(Constant.data_name, null).toString()
+        avatar = sharedPref.getString(Constant.data_avatar, null).toString()
+        idPelanggan = sharedPref.getString(Constant.data_id_pelanggan, null).toString()
+        ktp = sharedPref.getString(Constant.data_ktp, null).toString()
+        phone = sharedPref.getString(Constant.data_phone, null).toString()
+        address = sharedPref.getString(Constant.data_address, null).toString()
+
+        if (avatar == Constant.default) {
+            Glide.with(this)
+                .load(R.drawable.ic_profile_default)
+                .into(b.imgProfile)
+        } else {
+            Glide.with(this)
+                .load(avatar)
+                .into(b.imgProfile)
+        }
+        b.tvFullName.text = name
+        b.tvUserID.text = idPelanggan
+        b.tvUserPhone.text = phone
+        b.tvUserAddress.text = address
     }
 
     private fun onClick() {
@@ -67,22 +90,21 @@ class UserProfileFragment : Fragment() {
         }
 
         b.imgProfile.setOnClickListener {
-            val lihatFoto =
-                UserProfileFragmentDirections.actionUserProfileFragmentToLihatFotoFragment(
-                    sharedPref.getString(Constant.data_avatar, null).toString(),
-                    sharedPref.getString(Constant.data_name, null).toString(),
-                )
-            findNavController().navigate(lihatFoto)
+            if (avatar == Constant.default) {
+                AppUtils.toast(requireContext(), "Tidak ada foto profil")
+            } else {
+                val seeImage =
+                    UserProfileFragmentDirections.actionUserProfileFragmentToLihatFotoFragment(
+                        avatar, name
+                    )
+                findNavController().navigate(seeImage)
+            }
         }
 
         b.rvChangeProfile.setOnClickListener {
             val changeProfile =
                 UserProfileFragmentDirections.actionUserProfileFragmentToUserChangeProfileFragment(
-                    sharedPref.getString(Constant.data_id_pelanggan, null).toString(),
-                    sharedPref.getString(Constant.data_avatar, null).toString(),
-                    sharedPref.getString(Constant.data_name, null).toString(),
-                    sharedPref.getString(Constant.data_phone, null).toString(),
-                    sharedPref.getString(Constant.data_address, null).toString()
+                    idPelanggan, avatar, name, phone, address
                 )
             findNavController().navigate(changeProfile)
         }
@@ -94,7 +116,7 @@ class UserProfileFragment : Fragment() {
         b.rvHelp.setOnClickListener {
             val aduan =
                 UserProfileFragmentDirections.actionUserProfileFragmentToUserPengaduanFragment(
-                    sharedPref.getString(Constant.data_id_pelanggan, null).toString()
+                    idPelanggan
                 )
             findNavController().navigate(aduan)
         }

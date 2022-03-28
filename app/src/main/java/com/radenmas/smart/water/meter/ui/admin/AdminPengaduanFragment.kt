@@ -5,18 +5,23 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.adapter.AduanAdapterAdmin
 import com.radenmas.smart.water.meter.databinding.FragmentPengaduanAdminBinding
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.network.Retro
 import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -91,27 +96,81 @@ class AdminPengaduanFragment : Fragment() {
 
         b.tvTitleAduan.setOnClickListener {
             b.sortir.visibility = View.GONE
+            b.tvTitleAduan.setTextColor(ResourcesCompat.getColor(resources, R.color.primary_text, null))
+            b.tvTitleHistory.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
             getHistoryKeluhanFilter(resources.getString(R.string.sent))
         }
 
         b.tvTitleHistory.setOnClickListener {
             b.sortir.visibility = View.VISIBLE
+            b.tvTitleHistory.setTextColor(ResourcesCompat.getColor(resources, R.color.primary_text, null))
+            b.tvTitleAduan.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
+            setButtonActive(
+                b.btnHistoryAll,
+                b.btnHistoryProses,
+                b.btnHistoryDone,
+                b.btnHistoryReject
+            )
             getHistoryKeluhanAll()
         }
 
         b.btnHistoryAll.setOnClickListener {
+            setButtonActive(
+                b.btnHistoryAll,
+                b.btnHistoryProses,
+                b.btnHistoryDone,
+                b.btnHistoryReject
+            )
             getHistoryKeluhanAll()
         }
         b.btnHistoryProses.setOnClickListener {
+            setButtonActive(
+                b.btnHistoryProses,
+                b.btnHistoryAll,
+                b.btnHistoryDone,
+                b.btnHistoryReject
+            )
             getHistoryKeluhanFilter(resources.getString(R.string.processed))
         }
         b.btnHistoryDone.setOnClickListener {
+            setButtonActive(
+                b.btnHistoryDone,
+                b.btnHistoryAll,
+                b.btnHistoryProses,
+                b.btnHistoryReject
+            )
             getHistoryKeluhanFilter(resources.getString(R.string.finish))
         }
         b.btnHistoryReject.setOnClickListener {
+            setButtonActive(
+                b.btnHistoryReject,
+                b.btnHistoryAll,
+                b.btnHistoryProses,
+                b.btnHistoryDone
+            )
             getHistoryKeluhanFilter(resources.getString(R.string.rejected))
         }
     }
 
+    private fun setButtonActive(
+        btnActive: MaterialButton,
+        btnNotActive1: MaterialButton,
+        btnNotActive2: MaterialButton,
+        btnNotActive3: MaterialButton
+    ) {
+        btnActive.setTextColor(ResourcesCompat.getColor(resources, R.color.primary_text, null))
+        btnActive.strokeColor = ColorStateList.valueOf(Color.parseColor(Constant.color_primary))
 
+        btnNotActive1.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
+        btnNotActive1.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+
+        btnNotActive2.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
+        btnNotActive2.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+
+        btnNotActive3.setTextColor(ResourcesCompat.getColor(resources, R.color.hint, null))
+        btnNotActive3.strokeColor =
+            ColorStateList.valueOf(Color.parseColor(Constant.color_white_text))
+    }
 }

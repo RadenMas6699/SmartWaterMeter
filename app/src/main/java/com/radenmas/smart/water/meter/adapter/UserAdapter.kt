@@ -34,14 +34,13 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
         fun bindUser(b: UserResponse) {
             if (b.avatar == Constant.default) {
                 Glide.with(context)
-                    .load(R.drawable.img_user_default)
+                    .load(R.drawable.ic_profile_default)
                     .into(imgUser)
             } else {
                 Glide.with(context)
                     .load(b.avatar)
                     .into(imgUser)
             }
-
             namaPelanggan.text = b.name
             idPelanggan.text = b.id_pelanggan
         }
@@ -71,7 +70,7 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
                 userRespons[position].address,
                 userRespons[position].registered
             )
-            Navigation.createNavigateOnClickListener(dataUser)
+            Navigation.createNavigateOnClickListener(dataUser).onClick(holder.itemView)
         }
     }
 

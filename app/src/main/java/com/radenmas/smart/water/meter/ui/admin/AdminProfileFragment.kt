@@ -19,7 +19,7 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentProfileAdminBinding
 import com.radenmas.smart.water.meter.databinding.LogoutLayoutBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
-import com.radenmas.smart.water.meter.ui.user.UserProfileFragmentDirections
+import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 
 class AdminProfileFragment : Fragment() {
@@ -28,8 +28,12 @@ class AdminProfileFragment : Fragment() {
     private lateinit var logout: Dialog
     private lateinit var dl: LogoutLayoutBinding
 
-    lateinit var sharedPref: SharedPreferences
-    lateinit var editor: SharedPreferences.Editor
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+
+    private lateinit var name: String
+    private lateinit var avatar: String
+    private lateinit var idAdmin: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,9 +58,21 @@ class AdminProfileFragment : Fragment() {
     }
 
     private fun initView() {
-        Glide.with(this).load(sharedPref.getString("image", null)).into(b.imgProfile)
-        b.tvFullName.text = sharedPref.getString("nama", null)
-        b.tvUserID.text = sharedPref.getString("idPelanggan", null)
+        name = sharedPref.getString(Constant.data_name, null).toString()
+        avatar = sharedPref.getString(Constant.data_avatar, null).toString()
+        idAdmin = sharedPref.getString(Constant.data_id_admin, null).toString()
+
+        if (avatar == Constant.default) {
+            Glide.with(this)
+                .load(R.drawable.ic_profile_default)
+                .into(b.imgProfile)
+        } else {
+            Glide.with(this)
+                .load(avatar)
+                .into(b.imgProfile)
+        }
+        b.tvFullName.text = name
+        b.tvUserID.text = idAdmin
     }
 
     private fun onClick() {
@@ -65,12 +81,15 @@ class AdminProfileFragment : Fragment() {
         }
 
         b.imgProfile.setOnClickListener {
-            val lihatFoto =
-                AdminProfileFragmentDirections.actionAdminProfileFragmentToLihatFotoFragment(
-                    sharedPref.getString("image", null).toString(),
-                    sharedPref.getString("nama", null).toString(),
-                )
-            findNavController().navigate(lihatFoto)
+            if (avatar == Constant.default) {
+                AppUtils.toast(requireContext(), "Tidak ada foto profil")
+            } else {
+                val seeImage =
+                    AdminProfileFragmentDirections.actionAdminProfileFragmentToLihatFotoFragment(
+                        avatar, name
+                    )
+                findNavController().navigate(seeImage)
+            }
         }
 
         b.rvChangeProfile.setOnClickListener {

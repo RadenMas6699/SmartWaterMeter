@@ -87,6 +87,8 @@
     <string name="aktif">Aktif</string>
     <string name="ktp">KTP</string>
     <string name="registered">Terdaftar</string>
+    <string name="note">Catatan</string>
+    <string name="reply_aduan">Catatan pengaduan</string>
 
 
 </resources>

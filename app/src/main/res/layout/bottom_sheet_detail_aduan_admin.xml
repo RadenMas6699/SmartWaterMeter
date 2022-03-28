@@ -41,8 +41,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgProfile"
                     android:layout_width="52dp"
-                    android:layout_height="52dp"
-                    android:src="@drawable/img_user_default" />
+                    android:layout_height="52dp" />
 
                 <TextView
                     android:id="@+id/tvFullName"
@@ -60,11 +59,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tvFullName"
                     android:layout_marginStart="16dp"
-                    android:textColor="@color/primary_text"
                     android:layout_marginTop="3dp"
                     android:layout_toEndOf="@id/imgProfile"
                     android:fontFamily="@font/roboto"
                     android:gravity="top"
+                    android:textColor="@color/primary_text"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -86,9 +85,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/primary_text"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="top"
+                android:textColor="@color/primary_text"
                 android:textSize="15sp" />
 
             <TextView
@@ -103,55 +102,87 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/etDescAduan"
+                android:id="@+id/tvDescAduan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/primary_text"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="top"
+                android:textColor="@color/primary_text"
                 android:textSize="15sp" />
 
             <LinearLayout
                 android:id="@+id/llConfirm"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnReject"
-                    android:layout_width="100dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="@string/reject"
-                    android:textAllCaps="false"
-                    android:textColor="@color/primary"
-                    app:backgroundTint="@color/white"
-                    app:cornerRadius="8dp"
-                    app:strokeColor="@color/primary"
-                    app:strokeWidth="1dp" />
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/note"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="16sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAccept"
-                    android:layout_width="100dp"
+                <EditText
+                    android:id="@+id/etNoteRejected"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="@string/accept"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/primary"
-                    app:cornerRadius="8dp"
-                    app:strokeColor="@color/primary"
-                    app:strokeWidth="1dp" />
+                    android:hint="@string/reply_aduan"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="top"
+                    android:textColor="@color/primary_text"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnReject"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/reject"
+                        android:textAllCaps="false"
+                        android:textColor="@color/primary"
+                        app:backgroundTint="@color/white"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/primary"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAccept"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/accept"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/primary"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/primary"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <View
