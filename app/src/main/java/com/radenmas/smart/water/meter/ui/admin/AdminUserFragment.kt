@@ -84,11 +84,9 @@ class AdminUserFragment : Fragment() {
 
         b.etSearchUser.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -109,13 +107,13 @@ class AdminUserFragment : Fragment() {
                             }
 
                             override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
-
                             }
 
                         })
-                } else {
-                    getDataUser()
                 }
+//                else {
+//                    getDataUser()
+//                }
             }
 
         })

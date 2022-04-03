@@ -60,19 +60,19 @@
                 android:id="@+id/imgWebServer"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:layout_toStartOf="@id/imgNotif"
+                android:layout_toStartOf="@id/imgComplaint"
                 android:contentDescription="@string/webserver"
                 android:padding="10dp"
                 android:src="@drawable/ic_web_server_outline" />
 
             <ImageView
-                android:id="@+id/imgNotif"
+                android:id="@+id/imgComplaint"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_alignParentEnd="true"
-                android:contentDescription="@string/notification"
+                android:contentDescription="@string/aduan"
                 android:padding="10dp"
-                android:src="@drawable/ic_notification_outline" />
+                android:src="@drawable/ic_chat_outline" />
         </RelativeLayout>
     </com.google.android.material.appbar.MaterialToolbar>
 

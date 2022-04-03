@@ -8,17 +8,14 @@ package com.radenmas.smart.water.meter.ui.admin
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentHomeAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
@@ -50,79 +47,17 @@ class AdminHomeFragment : Fragment() {
         initView()
         onClick()
 
-        getNotifAdmin()
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            val token = task.result
+            b.token.text = token
+            Log.d("TOKEN", token)
+            //cdK0YfrcS-K1OEoxsJyTg5:APA91bHhNVwmFELePDY3gE4UBw94BNhvcbChTgr5UqotOhIHN4E6EA06aLwZ-1kC8sHamJVuFLHtk6lxyeDMhRoUlo3jCRHia2bm73CS9UZ3Y5bzp52LRwKBXuqg3i-6R5rPTjqIhyms
+        }
+
+
+//        getNotifAdmin()
 
         return v
-    }
-
-    private fun getNotifAdmin() {
-        val database = Firebase.database
-        var pdam1: Int? = null
-        var pdam11: Int? = null
-        var pdam12: Int? = null
-        var pdam2: Int? = null
-        var pdam21: Int? = null
-        var pdam22: Int? = null
-
-        val reffPDAM1 = database.getReference("pdam1")
-        reffPDAM1.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                pdam1 = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        val reffPDAM11 = database.getReference("pdam11")
-        reffPDAM11.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                pdam11 = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        val reffPDAM12 = database.getReference("pdam12")
-        reffPDAM12.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                pdam12 = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        val reffPDAM2 = database.getReference("pdam2")
-        reffPDAM2.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                pdam2 = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        val reffPDAM21 = database.getReference("pdam21")
-        reffPDAM21.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                pdam21 = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        val reffPDAM22 = database.getReference("pdam22")
-        reffPDAM22.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                pdam22 = snapshot.value.toString().toInt()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

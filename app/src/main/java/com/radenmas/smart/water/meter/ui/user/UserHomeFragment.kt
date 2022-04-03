@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -69,7 +70,7 @@ class UserHomeFragment : Fragment() {
         kasusLineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         kasusLineDataSet.setDrawFilled(true)
-//        kasusLineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
+        kasusLineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
         kasusLineDataSet.lineWidth = 1.5f
 
         kasusLineDataSet.color = ResourcesCompat.getColor(resources, R.color.primary, null)
@@ -241,8 +242,12 @@ class UserHomeFragment : Fragment() {
         b.imgWebServer.setOnClickListener {
             findNavController().navigate(R.id.action_userHomeFragment_to_userWebserverFragment)
         }
-        b.imgNotif.setOnClickListener {
-            findNavController().navigate(R.id.action_userHomeFragment_to_userNotificationFragment)
+        b.imgComplaint.setOnClickListener {
+            val complaint =
+                UserHomeFragmentDirections.actionUserHomeFragmentToUserPengaduanFragment(
+                    idPelanggan
+                )
+            findNavController().navigate(complaint)
         }
         b.btnDay.setOnClickListener {
             setButtonActive(

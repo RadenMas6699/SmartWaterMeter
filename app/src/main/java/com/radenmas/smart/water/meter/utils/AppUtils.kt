@@ -54,4 +54,21 @@ object AppUtils {
             String.format("%,d", value)
         return "Rp. $number"
     }
+
+    fun formatToken(value: String): String {
+        var number = value
+        number = number.substring(0, number.length - 4) + "-" + number.substring(
+            number.length - 4,
+            number.length
+        )
+        number = number.substring(0, number.length - 8) + ")" + number.substring(
+            number.length - 8,
+            number.length
+        )
+        number = number.substring(0, number.length - 12) + "(" + number.substring(
+            number.length - 12,
+            number.length
+        )
+        return number
+    }
 }
