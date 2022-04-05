@@ -105,7 +105,7 @@ class AdminHomeFragment : Fragment() {
         }
 
         b.cardBilling.setOnClickListener {
-//            findNavController().navigate(R.id.)
+            findNavController().navigate(R.id.action_adminHomeFragment_to_adminBillingFragment)
         }
 
         b.cardKeluhan.setOnClickListener {

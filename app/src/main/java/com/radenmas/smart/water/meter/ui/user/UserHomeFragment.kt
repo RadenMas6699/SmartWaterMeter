@@ -227,7 +227,16 @@ class UserHomeFragment : Fragment() {
         name = sharedPref.getString(Constant.data_name, null).toString()
         avatar = sharedPref.getString(Constant.data_avatar, null).toString()
 
-        Glide.with(this).load(avatar).into(b.imgProfile)
+        if (avatar == Constant.default) {
+            Glide.with(this)
+                .load(R.drawable.ic_profile_default)
+                .into(b.imgProfile)
+        } else {
+            Glide.with(this)
+                .load(avatar)
+                .into(b.imgProfile)
+        }
+
         b.tvFullName.text = name
 
         b.rvPaymentLast.layoutManager = LinearLayoutManager(activity)

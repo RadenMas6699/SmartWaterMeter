@@ -41,6 +41,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminBillingFragment"
+            app:destination="@id/adminBillingFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminProfileFragment"
@@ -144,4 +147,9 @@
             android:defaultValue=""
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/adminBillingFragment"
+        android:name="com.radenmas.smart.water.meter.ui.admin.AdminBillingFragment"
+        android:label="fragment_billing_admin"
+        tools:layout="@layout/fragment_billing_admin" />
 </navigation>

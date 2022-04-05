@@ -94,6 +94,7 @@ class AduanAdapterAdmin(val context: Context) :
         )
     }
 
+
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.bindKeluhan(history[position])
         holder.itemView.setOnClickListener {
@@ -156,7 +157,6 @@ class AduanAdapterAdmin(val context: Context) :
                     })
                 }
             }
-
             btnReject?.setOnClickListener {
                 Retro.instance.updateStatusKeluhan(
                     history[position].id_keluhan, Constant.rejected

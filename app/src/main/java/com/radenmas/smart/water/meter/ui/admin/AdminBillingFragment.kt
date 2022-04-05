@@ -10,17 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.radenmas.smart.water.meter.databinding.FragmentBillingAdminBinding
 import com.radenmas.smart.water.meter.databinding.FragmentSettingAdminBinding
 
-class AdminBillFragment : Fragment() {
+class AdminBillingFragment : Fragment() {
 
-    private lateinit var b: FragmentSettingAdminBinding
+    private lateinit var b: FragmentBillingAdminBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        b = FragmentSettingAdminBinding.inflate(layoutInflater, container, false)
+        b = FragmentBillingAdminBinding.inflate(layoutInflater, container, false)
         val v = b.root
 
         onClick()

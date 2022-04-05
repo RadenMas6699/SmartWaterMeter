@@ -61,6 +61,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_toStartOf="@id/imgNotif"
+                android:contentDescription="@string/webserver"
                 android:padding="10dp"
                 android:src="@drawable/ic_web_server_outline" />
 
@@ -69,6 +70,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_alignParentEnd="true"
+                android:contentDescription="@string/notification"
                 android:padding="9dp"
                 android:src="@drawable/ic_notification_outline" />
         </RelativeLayout>
@@ -153,6 +155,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/primary_light2"
                 app:cardCornerRadius="12dp">
 
@@ -168,13 +171,14 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="@string/user"
                         android:textColor="@color/primary_text"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_gravity="end|bottom"
                         android:layout_marginTop="24dp"
+                        android:contentDescription="@string/user"
                         android:src="@drawable/ic_profile_outline"
                         app:tint="@color/primary_text" />
                 </LinearLayout>
@@ -185,8 +189,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/primary_light2"
                 app:cardCornerRadius="12dp">
 
@@ -202,13 +206,14 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="@string/billing"
                         android:textColor="@color/primary_text"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_gravity="end|bottom"
                         android:layout_marginTop="24dp"
+                        android:contentDescription="@string/billing"
                         android:src="@drawable/ic_bill_outline"
                         app:tint="@color/primary_text" />
                 </LinearLayout>
@@ -219,8 +224,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/primary_light2"
                 app:cardCornerRadius="12dp">
 
@@ -236,13 +241,14 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="@string/keluhan"
                         android:textColor="@color/primary_text"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_gravity="end|bottom"
                         android:layout_marginTop="24dp"
+                        android:contentDescription="@string/keluhan"
                         android:src="@drawable/ic_chat_outline"
                         app:tint="@color/primary_text" />
                 </LinearLayout>

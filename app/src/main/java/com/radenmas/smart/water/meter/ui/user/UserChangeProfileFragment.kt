@@ -49,12 +49,20 @@ class UserChangeProfileFragment : Fragment() {
 
         onClick()
 
-        val image = args.image
+        val avatar = args.image
         val fullName = args.fullName
         val phone = args.phone
         val address = args.address
 
-        Glide.with(this).load(image).into(b.imgProfile)
+        if (avatar == Constant.default) {
+            Glide.with(this)
+                .load(R.drawable.ic_profile_default)
+                .into(b.imgProfile)
+        } else {
+            Glide.with(this)
+                .load(avatar)
+                .into(b.imgProfile)
+        }
         b.etFullName.hint = fullName
         b.etPhone.hint = phone
         b.etAddress.hint = address
