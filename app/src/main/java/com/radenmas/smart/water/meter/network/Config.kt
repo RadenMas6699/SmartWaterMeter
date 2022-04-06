@@ -8,14 +8,15 @@ package com.radenmas.smart.water.meter.network
 object Config {
     // URL WEB SERVER
     const val BASE_URL_WEB_SERVER = "http://192.168.4.1/"
-    const val URL_DEBIT = "debit"
-//    const val URL_TOTAL = "total"
-    const val URL_TOTAL = "total"
-    const val URL_BILLING = "harga"
-    const val URL_RELAY_ON = "led1/on"
-    const val URL_RELAY_OFF = "led1/off"
-    const val URL_SET_PRICE = "getHarga"
-    const val URL_RESET = "hapus/on"
+    const val URL_DEBIT = BASE_URL_WEB_SERVER + "debit"
+
+    //    const val URL_TOTAL = BASE_URL_WEB_SERVER + "total"
+    const val URL_TOTAL = BASE_URL_WEB_SERVER + "total"
+    const val URL_BILLING = BASE_URL_WEB_SERVER + "harga"
+    const val URL_RELAY_ON = BASE_URL_WEB_SERVER + "led1/on"
+    const val URL_RELAY_OFF = BASE_URL_WEB_SERVER + "led1/off"
+    const val URL_SET_PRICE = BASE_URL_WEB_SERVER + "getHarga"
+    const val URL_RESET = BASE_URL_WEB_SERVER + "hapus/on"
 
     // DATABASE SERVER
     const val BASE_URL = "http://smartpdam.com/api/"

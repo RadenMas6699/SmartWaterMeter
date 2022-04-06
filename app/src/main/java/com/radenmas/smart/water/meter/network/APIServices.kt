@@ -7,7 +7,10 @@ package com.radenmas.smart.water.meter.network
 
 import com.radenmas.smart.water.meter.model.*
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface APIServices {
 
@@ -116,6 +119,9 @@ interface APIServices {
     fun getTotalTagihanUser(
         @Field("id_pelanggan") id_pelanggan: String
     ): Call<TagihanResponse>
+
+    @GET(Config.GET_TAGIHAN_ADMIN)
+    fun getTagihanAdmin(): Call<List<TagihanResponse>>
 
     @FormUrlEncoded
     @POST(Config.UPDATE_STATUS_TAGIHAN)

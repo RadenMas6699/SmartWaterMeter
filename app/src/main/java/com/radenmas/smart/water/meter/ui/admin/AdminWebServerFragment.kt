@@ -6,19 +6,22 @@
 package com.radenmas.smart.water.meter.ui.admin
 
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentWebServerAdminBinding
-import com.radenmas.smart.water.meter.network.RetroWebServer
+import com.radenmas.smart.water.meter.network.Config
 import com.radenmas.smart.water.meter.utils.AppUtils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 class AdminWebServerFragment : Fragment() {
 
@@ -33,48 +36,18 @@ class AdminWebServerFragment : Fragment() {
 
         onClick()
 
+        val handler = Handler()
+        val task: Runnable = object : Runnable {
+            override fun run() {
+                handler.postDelayed(this, 1000)
+                getData(Config.URL_TOTAL, b.tvBill)
+                getData(Config.URL_BILLING, b.tvUsage)
+                getDataCircle(Config.URL_DEBIT, b.progressDebit, b.tvDebit)
+            }
+        }
+        handler.post(task)
+
         return v
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getTagihan()
-    }
-
-    private fun getTagihan() {
-        RetroWebServer.instance.getTotalWebServer().enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                val responseBody = response.body()
-                Log.d(
-                    "WEB",
-                    "response Total R : $responseBody "
-                )
-                b.tvTagihan.text = responseBody.toString()
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.d("WEB", "response Total F : $t")
-            }
-
-        })
-    }
-
-    private fun getDebit() {
-        RetroWebServer.instance.getDebitWebServer().enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                val responseBody = response.body()
-                Log.d(
-                    "WEB",
-                    "response Debit R : $responseBody "
-                )
-                b.tvTagihan.text = responseBody.toString()
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.d("WEB", "response Debit F : $t")
-            }
-
-        })
     }
 
     private fun onClick() {
@@ -88,31 +61,47 @@ class AdminWebServerFragment : Fragment() {
 
         b.switchPower.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                getTagihan()
-//                RetroWebServer.instance.setRelayOn().enqueue(object : Callback<Void> {
-//                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-//                        Log.d("WEB", "response On R : $response")
-//
-//                    }
-//
-//                    override fun onFailure(call: Call<Void>, t: Throwable) {
-//                        Log.d("WEB", "response On F : $t)")
-//                    }
-//                })
-            } else {
-                getDebit()
-//                RetroWebServer.instance.setRelayOff().enqueue(object : Callback<Void> {
-//                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-//                        Log.d("WEB", "response Off R : $response")
-//
-//                    }
-//
-//                    override fun onFailure(call: Call<Void>, t: Throwable) {
-//                        Log.d("WEB", "response Off F : $t")
-//                    }
-//                })
+                setRelay(Config.URL_RELAY_ON)
+            } else if (!isChecked) {
+                setRelay(Config.URL_RELAY_OFF)
             }
         }
+    }
+
+    private fun getDataCircle(url: String, progress: CircularProgressBar, text: TextView) {
+        val requestQueue = Volley.newRequestQueue(context)
+        val stringRequest = StringRequest(
+            Request.Method.GET,
+            url,
+            { response ->
+                text.text = response
+                val value = response.toFloat()
+                progress.progress = value
+            },
+            {})
+        requestQueue.add(stringRequest)
+    }
+
+    private fun getData(url: String, text: TextView) {
+        val requestQueue = Volley.newRequestQueue(context)
+        val stringRequest = StringRequest(
+            Request.Method.GET,
+            url,
+            { response ->
+                text.text = response.toString()
+            },
+            {})
+        requestQueue.add(stringRequest)
+    }
+
+    private fun setRelay(url: String) {
+        val requestQueue = Volley.newRequestQueue(context)
+        val stringRequest = StringRequest(
+            Request.Method.GET,
+            url,
+            { response -> AppUtils.toast(requireContext(), response.toString()) },
+            {})
+        requestQueue.add(stringRequest)
     }
 
 }

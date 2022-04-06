@@ -21,8 +21,8 @@ import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 
-class TagihanAdapterUser(val context: Context) :
-    RecyclerView.Adapter<TagihanAdapterUser.TagihanViewHolder>() {
+class TagihanAdapterAdmin(val context: Context) :
+    RecyclerView.Adapter<TagihanAdapterAdmin.TagihanViewHolder>() {
     private val tagihan: MutableList<TagihanResponse> = mutableListOf()
 
     inner class TagihanViewHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -33,6 +33,16 @@ class TagihanAdapterUser(val context: Context) :
         private val tvPrice: TextView = item.findViewById(R.id.tvPrice)
 
         fun bindTagihan(b: TagihanResponse) {
+
+            if (b.avatar == Constant.default) {
+                Glide.with(context)
+                    .load(R.drawable.ic_profile_default)
+                    .into(imgBill)
+            } else {
+                Glide.with(context)
+                    .load(b.avatar)
+                    .into(imgBill)
+            }
 
             val year = b.year
             val period: String
@@ -91,16 +101,10 @@ class TagihanAdapterUser(val context: Context) :
             tvStatues.text = b.status
             when (b.status) {
                 Constant.paid_off -> {
-                    Glide.with(context)
-                        .load(R.drawable.ic_bill_paid_off)
-                        .into(imgBill)
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_green)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_green))
                 }
                 Constant.not_yet_paid_off -> {
-                    Glide.with(context)
-                        .load(R.drawable.ic_bill_not_yet_paid_off)
-                        .into(imgBill)
                     tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
                     tvStatues.setTextColor(Color.parseColor(Constant.color_red))
                 }
@@ -122,94 +126,6 @@ class TagihanAdapterUser(val context: Context) :
 
     override fun onBindViewHolder(holder: TagihanViewHolder, position: Int) {
         holder.bindTagihan(tagihan[position])
-        holder.itemView.setOnClickListener {
-            val dialog = BottomSheetDialog(context, R.style.DialogStyle)
-            dialog.setCancelable(true)
-            dialog.setContentView(R.layout.bottom_sheet_detail_billing_user)
-            dialog.show()
-
-            val tvPeriod: TextView? = dialog.findViewById(R.id.tvPeriod)
-            val tvPemakaian: TextView? = dialog.findViewById(R.id.tvPemakaian)
-            val tvTagihan: TextView? = dialog.findViewById(R.id.tvTagihan)
-            val tvUsageCost: TextView? = dialog.findViewById(R.id.tvUsageCost)
-            val tvMaintenanceCost: TextView? = dialog.findViewById(R.id.tvMaintenanceCost)
-            val tvPayDate: TextView? = dialog.findViewById(R.id.tvPayDate)
-            val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
-
-            val year = tagihan[position].year
-            val detPeriod: String
-            when (tagihan[position].month) {
-                "1" -> {
-                    detPeriod = "Januari $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "2" -> {
-                    detPeriod = "Februari $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "3" -> {
-                    detPeriod = "Maret $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "4" -> {
-                    detPeriod = "April $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "5" -> {
-                    detPeriod = "Mei $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "6" -> {
-                    detPeriod = "Juni $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "7" -> {
-                    detPeriod = "Juli $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "8" -> {
-                    detPeriod = "Agustus $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "9" -> {
-                    detPeriod = "September $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "10" -> {
-                    detPeriod = "Oktober $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "11" -> {
-                    detPeriod = "November $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "12" -> {
-                    detPeriod = "Desember $year"
-                    tvPeriod?.text = detPeriod
-                }
-            }
-
-            val usage = tagihan[position].usage
-            val usage_air = "$usage M3"
-            tvPemakaian?.text = usage_air
-
-            tvTagihan?.text = AppUtils.formatRupiah(tagihan[position].total_bill)
-            tvUsageCost?.text = AppUtils.formatRupiah(tagihan[position].bill.toInt())
-            tvMaintenanceCost?.text = AppUtils.formatRupiah(tagihan[position].maintenance.toInt())
-
-            when (tagihan[position].status) {
-                Constant.paid_off -> {
-                    tvPayDate?.text = AppUtils.formatDate(tagihan[position].pay_date)
-                }
-                Constant.not_yet_paid_off -> {
-                    tvPayDate?.text = Constant.dash
-                }
-            }
-
-            imgDismiss?.setOnClickListener {
-                dialog.dismiss()
-            }
-        }
     }
 
     override fun getItemCount(): Int {
