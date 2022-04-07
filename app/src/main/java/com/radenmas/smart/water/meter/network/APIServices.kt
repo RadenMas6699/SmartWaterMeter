@@ -59,6 +59,13 @@ interface APIServices {
         @Field("address") address: String
     ): Call<DefaultResponse>
 
+    @FormUrlEncoded
+    @POST(Config.UPDATE_AVATAR_USER)
+    fun updateAvatarUser(
+        @Field("id_pelanggan") id_pelanggan: String,
+        @Field("avatar") avatar: String
+    ): Call<DefaultResponse>
+
 
     // KELUHAN
     @FormUrlEncoded
@@ -110,6 +117,12 @@ interface APIServices {
     @FormUrlEncoded
     @POST(Config.GET_TAGIHAN_USER)
     fun getTagihanUser(
+        @Field("id_pelanggan") id_pelanggan: String
+    ): Call<List<TagihanResponse>>
+
+    @FormUrlEncoded
+    @POST(Config.GET_CHART_MONTH)
+    fun getChartMonth(
         @Field("id_pelanggan") id_pelanggan: String
     ): Call<List<TagihanResponse>>
 

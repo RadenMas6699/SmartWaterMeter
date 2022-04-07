@@ -70,7 +70,8 @@ class UserHomeFragment : Fragment() {
         kasusLineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         kasusLineDataSet.setDrawFilled(true)
-        kasusLineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
+        kasusLineDataSet.fillDrawable =
+            ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
         kasusLineDataSet.lineWidth = 1.5f
 
         kasusLineDataSet.color = ResourcesCompat.getColor(resources, R.color.primary, null)
@@ -141,39 +142,24 @@ class UserHomeFragment : Fragment() {
     }
 
     private fun lineChartMonth() {
-        val kasus = ArrayList<Entry>()
-        kasus.add(Entry(0F, 149F))
-        kasus.add(Entry(1F, 113F))
-        kasus.add(Entry(2F, 196F))
-        kasus.add(Entry(3F, 106F))
-        kasus.add(Entry(4F, 181F))
-        kasus.add(Entry(5F, 218F))
-        kasus.add(Entry(6F, 247F))
-        kasus.add(Entry(7F, 218F))
-        kasus.add(Entry(8F, 337F))
-        kasus.add(Entry(9F, 219F))
-        kasus.add(Entry(10F, 247F))
-        kasus.add(Entry(11F, 218F))
-        kasus.add(Entry(12F, 181F))
-        kasus.add(Entry(13F, 218F))
-        kasus.add(Entry(14F, 247F))
-        kasus.add(Entry(15F, 218F))
-        kasus.add(Entry(16F, 337F))
-        kasus.add(Entry(17F, 219F))
-        kasus.add(Entry(18F, 247F))
-        kasus.add(Entry(19F, 218F))
-        kasus.add(Entry(20F, 149F))
-        kasus.add(Entry(21F, 113F))
-        kasus.add(Entry(22F, 196F))
-        kasus.add(Entry(23F, 106F))
-        kasus.add(Entry(24F, 181F))
-        kasus.add(Entry(25F, 218F))
-        kasus.add(Entry(26F, 247F))
-        kasus.add(Entry(27F, 218F))
-        kasus.add(Entry(28F, 337F))
-        kasus.add(Entry(29F, 219F))
+        val chart = ArrayList<Entry>()
 
-        lineChart(kasus)
+        Retro.instance.getChartMonth(idPelanggan)
+            .enqueue(object : Callback<List<TagihanResponse>> {
+                override fun onResponse(
+                    call: Call<List<TagihanResponse>>,
+                    response: Response<List<TagihanResponse>>
+                ) {
+                    val dataTagihan = response.body()
+                    for (c in dataTagihan!!) {
+                        chart.add(Entry(c.index, c.usage.toFloat()))
+                        lineChart(chart)
+                    }
+                }
+
+                override fun onFailure(call: Call<List<TagihanResponse>>, t: Throwable) {
+                }
+            })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

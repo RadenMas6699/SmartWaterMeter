@@ -10,7 +10,6 @@ object Config {
     const val BASE_URL_WEB_SERVER = "http://192.168.4.1/"
     const val URL_DEBIT = BASE_URL_WEB_SERVER + "debit"
 
-    //    const val URL_TOTAL = BASE_URL_WEB_SERVER + "total"
     const val URL_TOTAL = BASE_URL_WEB_SERVER + "total"
     const val URL_BILLING = BASE_URL_WEB_SERVER + "harga"
     const val URL_RELAY_ON = BASE_URL_WEB_SERVER + "led1/on"
@@ -33,6 +32,7 @@ object Config {
     // USER
     const val GET_ALL_USER = "data_pelanggan/get_all_data_user"
     const val UPDATE_DATA_USER = "data_pelanggan/update_data_user"
+    const val UPDATE_AVATAR_USER = "data_pelanggan/update_avatar_user"
     const val GET_COUNT_USER = "data_pelanggan/get_count_user"
     const val ADD_USER = "data_pelanggan/add_user"
     const val SEARCH_USER = "data_pelanggan/search_data_user"
@@ -43,4 +43,5 @@ object Config {
     const val GET_TOTAL_TAGIHAN_USER = "tagihan/get_total_tagihan_user"
     const val GET_TAGIHAN_ADMIN = "tagihan/get_tagihan_admin"
     const val UPDATE_STATUS_TAGIHAN = "tagihan/update_status_tagihan"
+    const val GET_CHART_MONTH = "tagihan/get_chart_month"
 }

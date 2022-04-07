@@ -7,15 +7,17 @@ package com.radenmas.smart.water.meter.ui.user
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentChangeProfileUserBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
@@ -35,6 +37,15 @@ class UserChangeProfileFragment : Fragment() {
 
     private val args: UserChangeProfileFragmentArgs by navArgs()
 
+    private val RESULT_OK = -1
+    private var filePath: Uri? = null
+
+    var idPelanggan: String? = null
+    var avatar: String? = null
+    var fullName: String? = null
+    var phone: String? = null
+    var address: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,10 +60,11 @@ class UserChangeProfileFragment : Fragment() {
 
         onClick()
 
-        val avatar = args.image
-        val fullName = args.fullName
-        val phone = args.phone
-        val address = args.address
+        idPelanggan = args.idPelanggan
+        avatar = args.image
+        fullName = args.fullName
+        phone = args.phone
+        address = args.address
 
         if (avatar == Constant.default) {
             Glide.with(this)
@@ -81,7 +93,7 @@ class UserChangeProfileFragment : Fragment() {
             val address: String = b.etAddress.text.toString()
 
             if (fullname.isEmpty() || phone.isEmpty() || address.isEmpty()) {
-                AppUtils.toast(requireContext(),"Lengkapi yang masih kosong")
+                AppUtils.toast(requireContext(), "Lengkapi yang masih kosong")
             } else {
                 progress = Dialog(requireActivity())
                 progress.setContentView(R.layout.progress_layout)
@@ -91,7 +103,74 @@ class UserChangeProfileFragment : Fragment() {
                 updateProfile(args.idPelanggan, fullname, phone, address)
             }
         }
+
+        b.imgChangeProfile.setOnClickListener {
+            chooseFoto()
+        }
     }
+
+    private fun chooseFoto() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), 71)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 71 && resultCode == RESULT_OK && data != null && data.data != null) {
+            filePath = data.data
+            UploadFoto()
+        }
+    }
+
+    private fun UploadFoto() {
+        AppUtils.showLoading(requireContext())
+        val storageReference =
+            FirebaseStorage.getInstance().getReference("User").child(idPelanggan.toString())
+        if (filePath != null) {
+
+            val ref = storageReference.child(idPelanggan.toString())
+            ref.putFile(filePath!!)
+                .addOnSuccessListener {
+                    ref.downloadUrl
+                        .addOnSuccessListener { uri: Uri ->
+                            Retro.instance.updateAvatarUser(idPelanggan.toString(), uri.toString())
+                                .enqueue(object : Callback<DefaultResponse> {
+                                    override fun onResponse(
+                                        call: Call<DefaultResponse>,
+                                        response: Response<DefaultResponse>
+                                    ) {
+                                        AppUtils.dismissLoading()
+                                        AppUtils.toast(
+                                            requireContext(), "Foto profil berhasil diubah")
+
+                                        Glide.with(requireContext())
+                                            .load(uri.toString())
+                                            .into(b.imgProfile)
+
+                                        editor.putString(Constant.data_avatar, uri.toString())
+                                        editor.apply()
+                                    }
+
+                                    override fun onFailure(
+                                        call: Call<DefaultResponse>,
+                                        t: Throwable
+                                    ) {
+                                        AppUtils.toast(requireContext(), "Foto profil gagal diubah")
+                                    }
+
+                                })
+                        }
+                }
+                .addOnFailureListener { e: Exception ->
+                    AppUtils.toast(requireContext(), "Foto profil gagal diubah")
+                }
+        } else {
+            AppUtils.toast(requireContext(), "Gambar belum dipilih")
+        }
+    }
+
 
     private fun updateProfile(
         idPelanggan: String,
@@ -112,13 +191,13 @@ class UserChangeProfileFragment : Fragment() {
                     address
                 )
                 progress.dismiss()
-                AppUtils.toast(requireContext(),"Data Pelanggan Berhasil Diupdate")
+                AppUtils.toast(requireContext(), "Data Pelanggan Berhasil Diupdate")
                 activity?.onBackPressed()
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                 progress.dismiss()
-                AppUtils.toast(requireContext(),"Data Pelanggan Gagal Diupdate")
+                AppUtils.toast(requireContext(), "Data Pelanggan Gagal Diupdate")
             }
 
         })
