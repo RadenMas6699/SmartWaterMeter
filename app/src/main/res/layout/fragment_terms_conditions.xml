@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Created by RadenMas on 10/3/2022.
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by RadenMas on 7/4/2022.
   ~ Copyright (c) 2022.
   -->
 
@@ -8,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.about.GuideFragment">
+    tools:context=".ui.about.TermsConditionsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -36,30 +35,15 @@
                 android:layout_marginStart="16dp"
                 android:layout_toEndOf="@id/imgBack"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/guide"
+                android:text="@string/terms"
                 android:textColor="@color/primary_text"
                 android:textSize="18sp" />
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <WebView
+        android:id="@+id/webViewTermsConditions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appBar">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:justificationMode="inter_word"
-                android:text="@string/guide" />
-        </LinearLayout>
-    </ScrollView>
+        android:layout_below="@id/appBar" />
 </RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_page3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="24dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Save"
+        android:textAllCaps="true"
+        android:textSize="28sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="42dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="Pantau penggunaan air setiap hari dalam bentuk grafik dan hemat penggunaan air."
+        android:textSize="22sp" />
+</LinearLayout>

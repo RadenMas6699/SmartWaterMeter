@@ -113,6 +113,14 @@ class UserProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_userProfileFragment_to_guideFragment)
         }
 
+        b.rvTermsConditions.setOnClickListener {
+            findNavController().navigate(R.id.action_userProfileFragment_to_termsConditionsFragment)
+        }
+
+        b.rvPrivacyPolicy.setOnClickListener {
+            findNavController().navigate(R.id.action_userProfileFragment_to_privacyPolicyFragment)
+        }
+
         b.rvHelp.setOnClickListener {
             val aduan =
                 UserProfileFragmentDirections.actionUserProfileFragmentToUserPengaduanFragment(

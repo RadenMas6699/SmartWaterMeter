@@ -32,8 +32,8 @@ class UserChangeProfileFragment : Fragment() {
     private lateinit var b: FragmentChangeProfileUserBinding
     private lateinit var progress: Dialog
 
-    lateinit var sharedPref: SharedPreferences
-    lateinit var editor: SharedPreferences.Editor
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     private val args: UserChangeProfileFragmentArgs by navArgs()
 
