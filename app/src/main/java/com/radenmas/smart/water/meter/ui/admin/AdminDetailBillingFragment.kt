@@ -5,12 +5,15 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.radenmas.smart.water.meter.R
+import com.radenmas.smart.water.meter.databinding.DialogPaidOffBinding
 import com.radenmas.smart.water.meter.databinding.FragmentDetailBillingAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
@@ -24,7 +27,8 @@ class AdminDetailBillingFragment : Fragment() {
 
     private lateinit var b: FragmentDetailBillingAdminBinding
 
-    var idTagihan: String? = null
+    private lateinit var paidOff: Dialog
+    private lateinit var dp: DialogPaidOffBinding
 
     private val args: AdminDetailBillingFragmentArgs by navArgs()
 
@@ -42,7 +46,6 @@ class AdminDetailBillingFragment : Fragment() {
     }
 
     private fun initView() {
-        idTagihan = args.idTagihan
         val idPelanggan: String = args.idPelanggan
         val name: String = args.name
         val month: String = args.month
@@ -68,23 +71,48 @@ class AdminDetailBillingFragment : Fragment() {
 
         b.btnPaidOff.setOnClickListener {
 
+            val idTagihan: String = args.idTagihan
+            val name: String = args.name
+            val month: String = args.month
+            val year: String = args.year
+            val period = AppUtils.formatPeriod(month, year)
 
-            AppUtils.showLoading(requireContext())
-            Retro.instance.updateStatusTagihan(idTagihan!!, Constant.paid_off).enqueue(object :
-                Callback<DefaultResponse> {
-                override fun onResponse(
-                    call: Call<DefaultResponse>,
-                    response: Response<DefaultResponse>
-                ) {
-                    AppUtils.dismissLoading()
-                    AppUtils.toast(requireContext(), "Tagihan berhasil dilunasi")
-                    activity?.onBackPressed()
-                }
+            dp = DialogPaidOffBinding.inflate(
+                layoutInflater
+            )
+            val v = dp.root
 
-                override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                }
+            paidOff = Dialog(requireActivity())
+            paidOff.setContentView(v)
+            paidOff.setCancelable(true)
+            paidOff.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
+            paidOff.show()
 
-            })
+            dp.tvDescConfirm.text = "Apakah $name telah membayar tagihan pada periode $period?"
+
+            dp.btnNo.setOnClickListener {
+                paidOff.dismiss()
+            }
+
+            dp.btnYes.setOnClickListener {
+                paidOff.dismiss()
+                AppUtils.showLoading(requireContext())
+                Retro.instance.updateStatusTagihan(idTagihan!!, Constant.paid_off).enqueue(object :
+                    Callback<DefaultResponse> {
+                    override fun onResponse(
+                        call: Call<DefaultResponse>,
+                        response: Response<DefaultResponse>
+                    ) {
+                        AppUtils.dismissLoading()
+                        AppUtils.toast(requireContext(), "Tagihan berhasil dilunasi")
+                        activity?.onBackPressed()
+                    }
+
+                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                    }
+
+                })
+            }
         }
     }
 
