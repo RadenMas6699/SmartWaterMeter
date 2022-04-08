@@ -223,7 +223,7 @@ class UserHomeFragment : Fragment() {
                 .into(b.imgProfile)
         }
 
-        b.tvFullName.text = name
+        b.tvName.text = name
 
         b.rvPaymentLast.layoutManager = LinearLayoutManager(activity)
         paymentUser = TagihanAdapterUser(requireActivity())

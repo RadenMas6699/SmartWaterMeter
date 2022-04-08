@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.radenmas.smart.water.meter.databinding.FragmentAddUserAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
@@ -64,7 +63,7 @@ class AdminAddUserFragment : Fragment() {
                 year.isBlank() ||
                 type.isBlank()
             ) {
-                Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
+                AppUtils.toast(requireContext(), "Lengkapi yang masih kosong")
             } else {
                 AppUtils.showLoading(requireContext())
 

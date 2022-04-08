@@ -44,7 +44,7 @@
                     android:layout_height="52dp" />
 
                 <TextView
-                    android:id="@+id/tvFullName"
+                    android:id="@+id/tvName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
                     android:id="@+id/tvUserID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvFullName"
+                    android:layout_below="@id/tvName"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="3dp"
                     android:layout_toEndOf="@id/imgProfile"

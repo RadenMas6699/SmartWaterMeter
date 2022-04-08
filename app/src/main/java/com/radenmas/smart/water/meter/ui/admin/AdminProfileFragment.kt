@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
+import com.radenmas.smart.water.meter.databinding.DialogLogoutBinding
 import com.radenmas.smart.water.meter.databinding.FragmentProfileAdminBinding
-import com.radenmas.smart.water.meter.databinding.LogoutLayoutBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
 import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
@@ -26,7 +26,7 @@ class AdminProfileFragment : Fragment() {
 
     private lateinit var b: FragmentProfileAdminBinding
     private lateinit var logout: Dialog
-    private lateinit var dl: LogoutLayoutBinding
+    private lateinit var dl: DialogLogoutBinding
 
     private lateinit var sharedPref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
@@ -71,7 +71,7 @@ class AdminProfileFragment : Fragment() {
                 .load(avatar)
                 .into(b.imgProfile)
         }
-        b.tvFullName.text = name
+        b.tvName.text = name
         b.tvUserID.text = idAdmin
     }
 
@@ -109,7 +109,7 @@ class AdminProfileFragment : Fragment() {
         }
 
         b.btnLogout.setOnClickListener {
-            dl = LogoutLayoutBinding.inflate(
+            dl = DialogLogoutBinding.inflate(
                 layoutInflater
             )
             val v = dl.root

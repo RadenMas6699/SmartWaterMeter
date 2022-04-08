@@ -96,7 +96,7 @@ class UserChangeProfileFragment : Fragment() {
                 AppUtils.toast(requireContext(), "Lengkapi yang masih kosong")
             } else {
                 progress = Dialog(requireActivity())
-                progress.setContentView(R.layout.progress_layout)
+                progress.setContentView(R.layout.dialog_progress)
                 progress.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
                 progress.show()
 

@@ -74,6 +74,8 @@
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_billing_user.xml" value="0.3151041666666667" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_payment_user.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/chart.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/dialog_logout.xml" value="0.3151041666666667" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/dialog_paid_off.xml" value="0.3151041666666667" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/empty_state.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/frag_keluhan_user.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_add_user_admin.xml" value="0.25" />

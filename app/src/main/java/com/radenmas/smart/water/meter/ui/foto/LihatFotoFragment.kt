@@ -31,7 +31,7 @@ class LihatFotoFragment : Fragment() {
         window.statusBarColor = Color.BLACK
 
         Glide.with(this).load(args.image).into(b.imgProfile)
-        b.tvFullName.text = args.fullName
+        b.tvName.text = args.fullName
 
         onClick()
 

@@ -90,7 +90,7 @@
         android:id="@+id/adminDetailUserFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminDetailUserFragment"
         android:label="fragment_detail_user_admin"
-        tools:layout="@layout/fragment_detail_user_admin" >
+        tools:layout="@layout/fragment_detail_user_admin">
         <argument
             android:name="avatar"
             app:argType="string" />
@@ -151,7 +151,7 @@
         android:id="@+id/adminBillingFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminBillingFragment"
         android:label="fragment_billing_admin"
-        tools:layout="@layout/fragment_billing_admin" >
+        tools:layout="@layout/fragment_billing_admin">
         <action
             android:id="@+id/action_adminBillingFragment_to_adminDetailBillingFragment"
             app:destination="@id/adminDetailBillingFragment" />
@@ -160,24 +160,33 @@
         android:id="@+id/adminDetailBillingFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminDetailBillingFragment"
         android:label="fragment_detail_billing_admin"
-        tools:layout="@layout/fragment_detail_billing_admin" >
+        tools:layout="@layout/fragment_detail_billing_admin">
         <argument
-            android:name="name"
+            android:name="idTagihan"
             app:argType="string" />
         <argument
             android:name="id_pelanggan"
             app:argType="string" />
         <argument
-            android:name="ktp"
+            android:name="name"
             app:argType="string" />
         <argument
-            android:name="phone"
+            android:name="month"
             app:argType="string" />
         <argument
-            android:name="address"
+            android:name="year"
             app:argType="string" />
         <argument
-            android:name="registered"
+            android:name="usage"
             app:argType="string" />
+        <argument
+            android:name="bill"
+            app:argType="string" />
+        <argument
+            android:name="maintenance"
+            app:argType="string" />
+        <argument
+            android:name="totalBill"
+            app:argType="integer" />
     </fragment>
 </navigation>

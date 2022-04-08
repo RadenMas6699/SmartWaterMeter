@@ -104,7 +104,7 @@ class AduanAdapterAdmin(val context: Context) :
             dialog.show()
 
             val imgProfile: CircleImageView = dialog.findViewById(R.id.imgProfile)!!
-            val tvFullName: TextView? = dialog.findViewById(R.id.tvFullName)
+            val tvFullName: TextView? = dialog.findViewById(R.id.tvName)
             val tvUserID: TextView? = dialog.findViewById(R.id.tvUserID)
             val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
             val tvDescAduan: TextView? = dialog.findViewById(R.id.tvDescAduan)

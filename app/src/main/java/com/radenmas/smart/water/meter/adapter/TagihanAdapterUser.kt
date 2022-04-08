@@ -34,60 +34,8 @@ class TagihanAdapterUser(val context: Context) :
 
         fun bindTagihan(b: TagihanResponse) {
 
-            val year = b.year
-            val period: String
-            when (b.month) {
-                "1" -> {
-                    period = "Januari $year"
-                    tvTitle.text = period
-                }
-                "2" -> {
-                    period = "Februari $year"
-                    tvTitle.text = period
-                }
-                "3" -> {
-                    period = "Maret $year"
-                    tvTitle.text = period
-                }
-                "4" -> {
-                    period = "April $year"
-                    tvTitle.text = period
-                }
-                "5" -> {
-                    period = "Mei $year"
-                    tvTitle.text = period
-                }
-                "6" -> {
-                    period = "Juni $year"
-                    tvTitle.text = period
-                }
-                "7" -> {
-                    period = "Juli $year"
-                    tvTitle.text = period
-                }
-                "8" -> {
-                    period = "Agustus $year"
-                    tvTitle.text = period
-                }
-                "9" -> {
-                    period = "September $year"
-                    tvTitle.text = period
-                }
-                "10" -> {
-                    period = "Oktober $year"
-                    tvTitle.text = period
-                }
-                "11" -> {
-                    period = "November $year"
-                    tvTitle.text = period
-                }
-                "12" -> {
-                    period = "Desember $year"
-                    tvTitle.text = period
-                }
-            }
+            tvTitle.text = AppUtils.formatPeriod(b.month, b.year)
             tvPrice.text = AppUtils.formatRupiah(b.total_bill)
-
             tvStatues.text = b.status
             when (b.status) {
                 Constant.paid_off -> {
@@ -136,63 +84,8 @@ class TagihanAdapterUser(val context: Context) :
             val tvPayDate: TextView? = dialog.findViewById(R.id.tvPayDate)
             val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
 
-            val year = tagihan[position].year
-            val detPeriod: String
-            when (tagihan[position].month) {
-                "1" -> {
-                    detPeriod = "Januari $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "2" -> {
-                    detPeriod = "Februari $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "3" -> {
-                    detPeriod = "Maret $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "4" -> {
-                    detPeriod = "April $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "5" -> {
-                    detPeriod = "Mei $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "6" -> {
-                    detPeriod = "Juni $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "7" -> {
-                    detPeriod = "Juli $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "8" -> {
-                    detPeriod = "Agustus $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "9" -> {
-                    detPeriod = "September $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "10" -> {
-                    detPeriod = "Oktober $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "11" -> {
-                    detPeriod = "November $year"
-                    tvPeriod?.text = detPeriod
-                }
-                "12" -> {
-                    detPeriod = "Desember $year"
-                    tvPeriod?.text = detPeriod
-                }
-            }
-
-            val usage = tagihan[position].usage
-            val usage_air = "$usage M3"
-            tvPemakaian?.text = usage_air
-
+            tvPeriod?.text = AppUtils.formatPeriod(tagihan[position].month, tagihan[position].year)
+            tvPemakaian?.text = AppUtils.formatUsage(tagihan[position].usage)
             tvTagihan?.text = AppUtils.formatRupiah(tagihan[position].total_bill)
             tvUsageCost?.text = AppUtils.formatRupiah(tagihan[position].bill.toInt())
             tvMaintenanceCost?.text = AppUtils.formatRupiah(tagihan[position].maintenance.toInt())

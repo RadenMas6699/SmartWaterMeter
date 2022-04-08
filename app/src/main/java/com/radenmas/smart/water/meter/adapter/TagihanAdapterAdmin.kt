@@ -10,13 +10,13 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.TagihanResponse
+import com.radenmas.smart.water.meter.ui.admin.AdminBillingFragmentDirections
 import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
@@ -45,63 +45,9 @@ class TagihanAdapterAdmin(val context: Context) :
                     .into(imgBill)
             }
 
-            val year = b.year
-            val period: String
-            when (b.month) {
-                "1" -> {
-                    period = "Januari $year"
-                    tvTitle.text = period
-                }
-                "2" -> {
-                    period = "Februari $year"
-                    tvTitle.text = period
-                }
-                "3" -> {
-                    period = "Maret $year"
-                    tvTitle.text = period
-                }
-                "4" -> {
-                    period = "April $year"
-                    tvTitle.text = period
-                }
-                "5" -> {
-                    period = "Mei $year"
-                    tvTitle.text = period
-                }
-                "6" -> {
-                    period = "Juni $year"
-                    tvTitle.text = period
-                }
-                "7" -> {
-                    period = "Juli $year"
-                    tvTitle.text = period
-                }
-                "8" -> {
-                    period = "Agustus $year"
-                    tvTitle.text = period
-                }
-                "9" -> {
-                    period = "September $year"
-                    tvTitle.text = period
-                }
-                "10" -> {
-                    period = "Oktober $year"
-                    tvTitle.text = period
-                }
-                "11" -> {
-                    period = "November $year"
-                    tvTitle.text = period
-                }
-                "12" -> {
-                    period = "Desember $year"
-                    tvTitle.text = period
-                }
-            }
-
-            tvDesc.text = b.id_pelanggan
-
+            tvTitle.text = b.id_pelanggan
+            tvDesc.text = AppUtils.formatPeriod(b.month,b.year)
             tvPrice.text = AppUtils.formatRupiah(b.total_bill)
-
             tvStatues.text = b.status
             tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
             tvStatues.setTextColor(Color.parseColor(Constant.color_red))
@@ -123,7 +69,19 @@ class TagihanAdapterAdmin(val context: Context) :
     override fun onBindViewHolder(holder: TagihanViewHolder, position: Int) {
         holder.bindTagihan(tagihan[position])
         holder.itemView.setOnClickListener {
-
+            val detailBilling =
+                AdminBillingFragmentDirections.actionAdminBillingFragmentToAdminDetailBillingFragment(
+                    tagihan[position].id_tagihan,
+                    tagihan[position].id_pelanggan,
+                    tagihan[position].name,
+                    tagihan[position].month,
+                    tagihan[position].year,
+                    tagihan[position].usage,
+                    tagihan[position].bill,
+                    tagihan[position].maintenance,
+                    tagihan[position].total_bill
+                )
+            Navigation.createNavigateOnClickListener(detailBilling).onClick(holder.itemView)
         }
     }
 

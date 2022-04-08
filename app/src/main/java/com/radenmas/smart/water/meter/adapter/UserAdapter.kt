@@ -9,7 +9,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +16,6 @@ import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.UserResponse
 import com.radenmas.smart.water.meter.ui.admin.AdminUserFragmentDirections
-import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -28,7 +26,7 @@ class UserAdapter(val context: Context) : RecyclerView.Adapter<UserAdapter.UserV
     inner class UserViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
         private val imgUser: CircleImageView = item.findViewById(R.id.imgUser)
-        private val namaPelanggan: TextView = item.findViewById(R.id.tvFullName)
+        private val namaPelanggan: TextView = item.findViewById(R.id.tvName)
         private val idPelanggan: TextView = item.findViewById(R.id.tvUserID)
 
         fun bindUser(b: UserResponse) {

@@ -21,7 +21,7 @@ object AppUtils {
 
     fun showLoading(context: Context) {
         progress = Dialog(context)
-        progress.setContentView(R.layout.progress_layout)
+        progress.setContentView(R.layout.dialog_progress)
         progress.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
         progress.show()
     }
@@ -45,14 +45,18 @@ object AppUtils {
         return outputFormat.format(date)
     }
 
-    fun formatNumber(value:Int):String{
+    fun formatNumber(value: Int): String {
         return String.format("%,d", value)
     }
 
-    fun formatRupiah(value:Int):String{
+    fun formatRupiah(value: Int): String {
         val number: String =
             String.format("%,d", value)
-        return "Rp. $number"
+        return "Rp $number"
+    }
+
+    fun formatUsage(value: String): String {
+        return "$value M3"
     }
 
     fun formatToken(value: String): String {
@@ -70,5 +74,48 @@ object AppUtils {
             number.length
         )
         return number
+    }
+
+    fun formatPeriod(month: String, year: String): String {
+        var bulan: String? = null
+        when (month) {
+            "1" -> {
+                bulan = "Januari"
+            }
+            "2" -> {
+                bulan = "Februari"
+            }
+            "3" -> {
+                bulan = "Maret"
+            }
+            "4" -> {
+                bulan = "April"
+            }
+            "5" -> {
+                bulan = "Mei"
+            }
+            "6" -> {
+                bulan = "Juni"
+            }
+            "7" -> {
+                bulan = "Juli"
+            }
+            "8" -> {
+                bulan = "Agustus"
+            }
+            "9" -> {
+                bulan = "September"
+            }
+            "10" -> {
+                bulan = "Oktober"
+            }
+            "11" -> {
+                bulan = "November"
+            }
+            "12" -> {
+                bulan = "Desember"
+            }
+        }
+        return "$bulan $year"
     }
 }

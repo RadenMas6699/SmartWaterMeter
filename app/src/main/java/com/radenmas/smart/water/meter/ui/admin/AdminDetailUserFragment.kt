@@ -57,7 +57,7 @@ class AdminDetailUserFragment : Fragment() {
                 .load(avatar)
                 .into(b.imgProfile)
         }
-        b.tvFullName.text = name
+        b.tvName.text = name
         b.tvUserID.text = idPelanggan
         b.tvUserKTP.text = ktp
         b.tvUserPhone.text = phone

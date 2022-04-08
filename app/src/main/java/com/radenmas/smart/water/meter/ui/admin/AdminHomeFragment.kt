@@ -84,7 +84,7 @@ class AdminHomeFragment : Fragment() {
         avatar = sharedPref.getString(Constant.data_avatar, null).toString()
 
         Glide.with(this).load(avatar).into(b.imgProfile)
-        b.tvFullName.text = name
+        b.tvName.text = name
     }
 
     private fun onClick() {

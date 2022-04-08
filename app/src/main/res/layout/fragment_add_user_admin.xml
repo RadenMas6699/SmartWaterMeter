@@ -76,7 +76,7 @@
                 style="@style/EditTextAuth"
                 android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/ic_profile_outline"
-                android:hint="@string/full_name"
+                android:hint="@string/name"
                 android:inputType="textPersonName" />
 
             <EditText
