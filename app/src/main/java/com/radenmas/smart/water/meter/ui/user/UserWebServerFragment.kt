@@ -11,9 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
+import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
@@ -24,12 +24,19 @@ import com.radenmas.smart.water.meter.utils.AppUtils
 class UserWebServerFragment : Fragment() {
     private lateinit var b: FragmentWebServerUserBinding
 
+    private var requestQueue: RequestQueue? = null
+    private var stringCircle: StringRequest? = null
+    private var stringData: StringRequest? = null
+    private var stringRelay: StringRequest? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         b = FragmentWebServerUserBinding.inflate(layoutInflater, container, false)
         val v = b.root
+
+        requestQueue = Volley.newRequestQueue(context)
 
         onClick()
 
@@ -63,8 +70,7 @@ class UserWebServerFragment : Fragment() {
     }
 
     private fun getDataCircle(url: String, progress: CircularProgressBar, text: TextView) {
-        val requestQueue = Volley.newRequestQueue(context)
-        val stringRequest = StringRequest(
+        stringCircle = StringRequest(
             Request.Method.GET,
             url,
             { response ->
@@ -73,28 +79,32 @@ class UserWebServerFragment : Fragment() {
                 progress.progress = value
             },
             {})
-        requestQueue.add(stringRequest)
+        requestQueue?.add(stringCircle)
     }
 
     private fun getData(url: String, text: TextView) {
-        val requestQueue = Volley.newRequestQueue(context)
-        val stringRequest = StringRequest(
+        stringData = StringRequest(
             Request.Method.GET,
             url,
             { response ->
                 text.text = response.toString()
             },
             {})
-        requestQueue.add(stringRequest)
+        requestQueue?.add(stringData)
     }
 
     private fun setRelay(url: String) {
-        val requestQueue = Volley.newRequestQueue(context)
-        val stringRequest = StringRequest(
+        stringRelay = StringRequest(
             Request.Method.GET,
             url,
             { response -> AppUtils.toast(requireContext(), response.toString()) },
             {})
-        requestQueue.add(stringRequest)
+        requestQueue?.add(stringRelay)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        requestQueue?.cancelAll(stringCircle)
+        requestQueue?.cancelAll(stringData)
     }
 }

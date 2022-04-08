@@ -12,6 +12,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
+import com.radenmas.smart.water.meter.ui.onboarding.OnBoardingActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

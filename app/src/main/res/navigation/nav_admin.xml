@@ -151,5 +151,33 @@
         android:id="@+id/adminBillingFragment"
         android:name="com.radenmas.smart.water.meter.ui.admin.AdminBillingFragment"
         android:label="fragment_billing_admin"
-        tools:layout="@layout/fragment_billing_admin" />
+        tools:layout="@layout/fragment_billing_admin" >
+        <action
+            android:id="@+id/action_adminBillingFragment_to_adminDetailBillingFragment"
+            app:destination="@id/adminDetailBillingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminDetailBillingFragment"
+        android:name="com.radenmas.smart.water.meter.ui.admin.AdminDetailBillingFragment"
+        android:label="fragment_detail_billing_admin"
+        tools:layout="@layout/fragment_detail_billing_admin" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="id_pelanggan"
+            app:argType="string" />
+        <argument
+            android:name="ktp"
+            app:argType="string" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument
+            android:name="registered"
+            app:argType="string" />
+    </fragment>
 </navigation>

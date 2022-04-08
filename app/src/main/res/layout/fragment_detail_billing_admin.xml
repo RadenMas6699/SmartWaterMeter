@@ -1,34 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by RadenMas on 21/3/2022.
+  ~ Created by RadenMas on 10/3/2022.
   ~ Copyright (c) 2022.
   -->
 
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    tools:context=".ui.admin.AdminDetailBillingFragment">
 
-    <RelativeLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="28dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_left" />
+
+            <TextView
+                style="@style/TitleToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/imgBack"
+                android:text="@string/detail_billing" />
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btnPaidOff"
+        android:layout_below="@id/appBar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imgProfile"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvUserID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginTop="6dp"
+                    android:layout_toEndOf="@id/imgProfile"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/secondary_text" />
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/tvPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_title_bottom_sheet"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto_medium"
-                android:paddingStart="16dp"
-                android:paddingTop="20dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="18dp"
-                android:textColor="@color/white_text"
+                android:textColor="@color/primary_text"
                 android:textSize="16sp" />
 
             <RelativeLayout
@@ -149,24 +211,16 @@
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/primary_text" />
             </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="64dp" />
         </LinearLayout>
+    </ScrollView>
 
-        <ImageView
-            android:id="@+id/imgDismiss"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="14dp"
-            android:padding="7dp"
-            android:src="@drawable/ic_close"
-            android:textColor="@color/hint"
-            android:textSize="24sp"
-            app:tint="@color/white" />
-    </RelativeLayout>
-
-</androidx.core.widget.NestedScrollView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPaidOff"
+        style="@style/ButtonStyle2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:text="@string/paid_off"
+        app:backgroundTint="@color/green" />
+</RelativeLayout>

@@ -31,7 +31,6 @@ class OnBoardingActivity : AppCompatActivity() {
             launchHomeScreen()
         }
 
-
         onClick()
 
         val adapter = ViewPagerAdapter()

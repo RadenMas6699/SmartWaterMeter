@@ -29,6 +29,7 @@ class TagihanAdapterAdmin(val context: Context) :
 
         private val imgBill: CircleImageView = item.findViewById(R.id.imgBill)
         private val tvTitle: TextView = item.findViewById(R.id.tvTitle)
+        private val tvDesc: TextView = item.findViewById(R.id.tvDesc)
         private val tvStatues: TextView = item.findViewById(R.id.tvStatues)
         private val tvPrice: TextView = item.findViewById(R.id.tvPrice)
 
@@ -96,19 +97,14 @@ class TagihanAdapterAdmin(val context: Context) :
                     tvTitle.text = period
                 }
             }
+
+            tvDesc.text = b.id_pelanggan
+
             tvPrice.text = AppUtils.formatRupiah(b.total_bill)
 
             tvStatues.text = b.status
-            when (b.status) {
-                Constant.paid_off -> {
-                    tvStatues.setBackgroundResource(R.drawable.bg_statues_green)
-                    tvStatues.setTextColor(Color.parseColor(Constant.color_green))
-                }
-                Constant.not_yet_paid_off -> {
-                    tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
-                    tvStatues.setTextColor(Color.parseColor(Constant.color_red))
-                }
-            }
+            tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
+            tvStatues.setTextColor(Color.parseColor(Constant.color_red))
         }
     }
 
@@ -126,6 +122,9 @@ class TagihanAdapterAdmin(val context: Context) :
 
     override fun onBindViewHolder(holder: TagihanViewHolder, position: Int) {
         holder.bindTagihan(tagihan[position])
+        holder.itemView.setOnClickListener {
+
+        }
     }
 
     override fun getItemCount(): Int {

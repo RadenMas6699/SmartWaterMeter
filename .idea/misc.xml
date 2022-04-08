@@ -29,6 +29,7 @@
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_arrow_right.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_arrow_right_2.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_bill_not_yet_paid_off.xml" value="0.1785" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_bill_outline.xml" value="0.215" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_bill_paid_off.xml" value="0.1785" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_calendar.xml" value="0.1445" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_camera.xml" value="0.151" />
@@ -41,6 +42,7 @@
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_edit.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_guide.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_help.xml" value="0.151" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_help_outline.xml" value="0.215" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1445" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_location.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_notification.xml" value="0.151" />
@@ -48,6 +50,8 @@
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_privacy.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_profile.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_profile_default.xml" value="0.1785" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_profile_outline.xml" value="0.215" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_search_outline.xml" value="0.215" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_term.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_unlock.xml" value="0.151" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/drawable/ic_water_drop.xml" value="0.1445" />
@@ -66,6 +70,8 @@
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_aduan.xml" value="0.12760416666666666" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_aduan_admin.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_aduan_user.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_billing_admin.xml" value="0.3151041666666667" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_billing_user.xml" value="0.3151041666666667" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/bottom_sheet_detail_payment_user.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/chart.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/empty_state.xml" value="0.27447916666666666" />
@@ -73,6 +79,7 @@
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_add_user_admin.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_billing_admin.xml" value="0.3151041666666667" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_change_profile_user.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_detail_billing_admin.xml" value="0.3151041666666667" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_detail_user.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_detail_user_admin.xml" value="0.21818181061547676" />
         <entry key="..\:/AndroidStudioProjects/SmartWaterMeter/app/src/main/res/layout/fragment_forgot_pass.xml" value="0.3625" />
