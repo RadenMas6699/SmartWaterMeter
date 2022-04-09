@@ -101,11 +101,11 @@ class AdminProfileFragment : Fragment() {
         }
 
         b.rvTerm.setOnClickListener {
-
+            findNavController().navigate(R.id.action_adminProfileFragment_to_termsConditionsFragment)
         }
 
         b.rvPrivacy.setOnClickListener {
-
+            findNavController().navigate(R.id.action_adminProfileFragment_to_privacyPolicyFragment)
         }
 
         b.btnLogout.setOnClickListener {

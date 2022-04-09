@@ -49,7 +49,7 @@ class AdminHomeFragment : Fragment() {
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             val token = task.result
-            b.token.text = token
+//            b.token.text = token
             Log.d("TOKEN", token)
             //cdK0YfrcS-K1OEoxsJyTg5:APA91bHhNVwmFELePDY3gE4UBw94BNhvcbChTgr5UqotOhIHN4E6EA06aLwZ-1kC8sHamJVuFLHtk6lxyeDMhRoUlo3jCRHia2bm73CS9UZ3Y5bzp52LRwKBXuqg3i-6R5rPTjqIhyms
         }
