@@ -143,47 +143,6 @@
                 android:textSize="16sp" />
 
             <RelativeLayout
-                android:id="@+id/rvGuide"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:src="@drawable/ic_guide_outline"
-                    app:tint="@color/primary_text" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="36dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/guide"
-                    android:textColor="@color/primary_text"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_chevron_right" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/hint" />
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/rvTerm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

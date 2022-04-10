@@ -9,7 +9,7 @@
 <!--    <string name="level">level</string>-->
     <string name="dev_name">M Sukron Kurniawan</string>
     <string name="login">Masuk</string>
-    <string name="login_desc">Lorem ipsum dolor sit amet</string>
+    <string name="login_desc">Selamat Datang di Aplikasi Smart Water Meter</string>
     <string name="username">Username</string>
     <string name="password">Kata Sandi</string>
     <string name="forgot_password">Lupa kata sandi?</string>
@@ -31,7 +31,7 @@
     <string name="akun">Akun</string>
     <string name="ubah_profil">Ubah Profil</string>
     <string name="tentang">Tentang</string>
-    <string name="guide">Panduan</string>
+<!--    <string name="guide">Panduan</string>-->
     <string name="terms">Syarat dan Ketentuan</string>
     <string name="privacy">Kebijakan Privasi</string>
     <string name="help">Pusat Bantuan</string>
@@ -88,4 +88,11 @@
     <string name="registered">Terdaftar</string>
     <string name="note">Catatan</string>
     <string name="reply_aduan">Catatan pengaduan</string>
+    <string name="website">Website</string>
+    <string name="email">Email</string>
+    <string name="phone">Telepon</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="url_smartpdam">https://smartpdam.com</string>
+    <string name="email_smartpdam">radenmas.dev@gmail.com</string>
+    <string name="phone_smartpdam">+6285298106699</string>
 </resources>

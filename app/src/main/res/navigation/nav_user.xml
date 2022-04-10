@@ -19,13 +19,6 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_userHomeFragment_to_userNotificationFragment"
-            app:destination="@id/userNotificationFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
             android:id="@+id/action_userHomeFragment_to_userBillingFragment"
@@ -62,20 +55,6 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_userProfileFragment_to_userPengaduanFragment"
-            app:destination="@id/userPengaduanFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_userProfileFragment_to_guideFragment"
-            app:destination="@id/guideFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_userProfileFragment_to_lihatFotoFragment"
             app:destination="@id/lihatFotoFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -96,6 +75,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
     </fragment>
     <fragment
         android:id="@+id/userBillingFragment"
@@ -112,11 +94,6 @@
         android:name="com.radenmas.smart.water.meter.ui.user.UserWebServerFragment"
         android:label="fragment_webserver_user"
         tools:layout="@layout/fragment_web_server_user" />
-    <fragment
-        android:id="@+id/userNotificationFragment"
-        android:name="com.radenmas.smart.water.meter.ui.user.UserNotificationFragment"
-        android:label="fragment_notification_user"
-        tools:layout="@layout/fragment_notification_user" />
     <fragment
         android:id="@+id/userChangeProfileFragment"
         android:name="com.radenmas.smart.water.meter.ui.user.UserChangeProfileFragment"
@@ -154,11 +131,6 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/guideFragment"
-        android:name="com.radenmas.smart.water.meter.ui.about.GuideFragment"
-        android:label="fragment_guide"
-        tools:layout="@layout/fragment_guide" />
-    <fragment
         android:id="@+id/lihatFotoFragment"
         android:name="com.radenmas.smart.water.meter.ui.foto.LihatFotoFragment"
         android:label="fragment_lihat_foto"
@@ -182,4 +154,9 @@
         android:name="com.radenmas.smart.water.meter.ui.about.TermsConditionsFragment"
         android:label="fragment_terms_conditions"
         tools:layout="@layout/fragment_terms_conditions" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.radenmas.smart.water.meter.ui.about.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>

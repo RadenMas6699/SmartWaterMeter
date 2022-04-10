@@ -109,10 +109,6 @@ class UserProfileFragment : Fragment() {
             findNavController().navigate(changeProfile)
         }
 
-        b.rvGuide.setOnClickListener {
-            findNavController().navigate(R.id.action_userProfileFragment_to_guideFragment)
-        }
-
         b.rvTermsConditions.setOnClickListener {
             findNavController().navigate(R.id.action_userProfileFragment_to_termsConditionsFragment)
         }
@@ -122,11 +118,7 @@ class UserProfileFragment : Fragment() {
         }
 
         b.rvHelp.setOnClickListener {
-            val aduan =
-                UserProfileFragmentDirections.actionUserProfileFragmentToUserPengaduanFragment(
-                    idPelanggan
-                )
-            findNavController().navigate(aduan)
+            findNavController().navigate(R.id.action_userProfileFragment_to_helpFragment)
         }
 
         b.btnLogout.setOnClickListener {

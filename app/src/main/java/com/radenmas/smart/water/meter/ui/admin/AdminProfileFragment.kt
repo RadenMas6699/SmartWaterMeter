@@ -96,10 +96,6 @@ class AdminProfileFragment : Fragment() {
 
         }
 
-        b.rvGuide.setOnClickListener {
-
-        }
-
         b.rvTerm.setOnClickListener {
             findNavController().navigate(R.id.action_adminProfileFragment_to_termsConditionsFragment)
         }

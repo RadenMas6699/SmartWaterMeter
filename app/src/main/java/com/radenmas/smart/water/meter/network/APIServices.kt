@@ -140,7 +140,8 @@ interface APIServices {
     @POST(Config.UPDATE_STATUS_TAGIHAN)
     fun updateStatusTagihan(
         @Field("id_tagihan") id_tagihan: String,
-        @Field("status") status: String
+        @Field("status") status: String,
+        @Field("tgl_bayar") tgl_bayar: String
     ): Call<DefaultResponse>
 
 }

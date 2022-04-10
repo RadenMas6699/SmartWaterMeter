@@ -68,6 +68,7 @@
             android:fontFamily="@font/roboto"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:visibility="gone"
             android:text="@string/forgot_password"
             android:textColor="@color/primary"
             android:textSize="14sp" />

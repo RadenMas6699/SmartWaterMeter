@@ -88,7 +88,8 @@ class AdminDetailBillingFragment : Fragment() {
             paidOff.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
             paidOff.show()
 
-            dp.tvDescConfirm.text = "Apakah $name telah membayar tagihan pada periode $period?"
+            val desc = "Apakah $name telah membayar tagihan pada periode $period?"
+            dp.tvDescConfirm.text = desc
 
             dp.btnNo.setOnClickListener {
                 paidOff.dismiss()
@@ -97,7 +98,11 @@ class AdminDetailBillingFragment : Fragment() {
             dp.btnYes.setOnClickListener {
                 paidOff.dismiss()
                 AppUtils.showLoading(requireContext())
-                Retro.instance.updateStatusTagihan(idTagihan!!, Constant.paid_off).enqueue(object :
+                Retro.instance.updateStatusTagihan(
+                    idTagihan,
+                    Constant.paid_off,
+                    "2021-01-04"
+                ).enqueue(object :
                     Callback<DefaultResponse> {
                     override fun onResponse(
                         call: Call<DefaultResponse>,

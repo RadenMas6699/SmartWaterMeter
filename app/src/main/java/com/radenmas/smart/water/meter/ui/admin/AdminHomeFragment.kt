@@ -96,10 +96,6 @@ class AdminHomeFragment : Fragment() {
             findNavController().navigate(R.id.action_adminHomeFragment_to_adminWebserverFragment)
         }
 
-        b.imgNotif.setOnClickListener {
-
-        }
-
         b.cardUser.setOnClickListener {
             findNavController().navigate(R.id.action_adminHomeFragment_to_adminUserFragment)
         }

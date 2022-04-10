@@ -60,19 +60,11 @@
                 android:id="@+id/imgWebServer"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:layout_toStartOf="@id/imgNotif"
+                android:layout_alignParentEnd="true"
                 android:contentDescription="@string/webserver"
                 android:padding="10dp"
                 android:src="@drawable/ic_web_server_outline" />
 
-            <ImageView
-                android:id="@+id/imgNotif"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_alignParentEnd="true"
-                android:contentDescription="@string/notification"
-                android:padding="9dp"
-                android:src="@drawable/ic_notification_outline" />
         </RelativeLayout>
     </com.google.android.material.appbar.MaterialToolbar>
 
