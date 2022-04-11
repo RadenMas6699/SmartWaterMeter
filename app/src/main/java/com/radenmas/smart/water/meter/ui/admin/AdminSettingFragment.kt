@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.radenmas.smart.water.meter.databinding.FragmentSettingAdminBinding
+import com.radenmas.smart.water.meter.utils.AppUtils
 
 class AdminSettingFragment : Fragment() {
 
@@ -31,6 +32,14 @@ class AdminSettingFragment : Fragment() {
     private fun onClick() {
         b.imgBack.setOnClickListener {
             activity?.onBackPressed()
+        }
+
+        b.calibrationWater.setOnClickListener {
+            AppUtils.toast(requireContext(),"Kalibrasi Smart Water Meter")
+        }
+
+        b.btnReset.setOnClickListener {
+            AppUtils.toast(requireContext(),"Reset Smart Water Meter")
         }
     }
 

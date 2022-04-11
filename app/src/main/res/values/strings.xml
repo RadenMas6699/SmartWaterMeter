@@ -92,7 +92,7 @@
     <string name="email">Email</string>
     <string name="phone">Telepon</string>
     <string name="whatsapp">WhatsApp</string>
-    <string name="url_smartpdam">https://smartpdam.com</string>
+    <string name="url_smartpdam">http://smartpdam.com</string>
     <string name="email_smartpdam">radenmas.dev@gmail.com</string>
     <string name="phone_smartpdam">+6285298106699</string>
 </resources>

@@ -156,7 +156,7 @@
         tools:layout="@layout/fragment_terms_conditions" />
     <fragment
         android:id="@+id/helpFragment"
-        android:name="com.radenmas.smart.water.meter.ui.about.HelpFragment"
+        android:name="com.radenmas.smart.water.meter.ui.user.UserHelpFragment"
         android:label="fragment_help"
-        tools:layout="@layout/fragment_help" />
+        tools:layout="@layout/fragment_help_user" />
 </navigation>

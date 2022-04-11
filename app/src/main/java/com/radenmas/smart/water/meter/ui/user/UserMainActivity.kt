@@ -5,14 +5,13 @@
 
 package com.radenmas.smart.water.meter.ui.user
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.ui.auth.LoginFragment
 
 class UserMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +20,5 @@ class UserMainActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         setContentView(R.layout.activity_user_main)
-
-
     }
 }
