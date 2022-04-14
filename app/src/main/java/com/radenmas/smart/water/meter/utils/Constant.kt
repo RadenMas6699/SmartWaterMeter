@@ -73,10 +73,12 @@ object Constant {
     const val desc_logout = "Apakah Anda yakin ingin keluar dari aplikasi ini?"
     const val no = "Tidak"
     const val yes = "Ya"
+
     const val sent = "Terkirim"
     const val processed = "Diproses"
     const val finish = "Selesai"
     const val rejected = "Ditolak"
+
     const val paid_off = "Lunas"
     const val not_yet_paid_off = "Belum Lunas"
     const val pattern_input_date = "yyyy-MM-dd"

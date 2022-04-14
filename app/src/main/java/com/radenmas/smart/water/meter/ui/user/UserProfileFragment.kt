@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.databinding.FragmentProfileUserBinding
 import com.radenmas.smart.water.meter.databinding.DialogLogoutBinding
+import com.radenmas.smart.water.meter.databinding.FragmentProfileUserBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
 import com.radenmas.smart.water.meter.utils.AppUtils
 import com.radenmas.smart.water.meter.utils.Constant

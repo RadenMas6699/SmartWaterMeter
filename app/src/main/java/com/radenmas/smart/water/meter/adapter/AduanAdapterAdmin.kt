@@ -33,6 +33,8 @@ class AduanAdapterAdmin(val context: Context) :
 
     private val history: MutableList<AduanResponse> = mutableListOf()
 
+    lateinit var dialog: BottomSheetDialog
+
     inner class HistoryViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
         private val imgUser: CircleImageView = item.findViewById(R.id.imgUser)
@@ -98,7 +100,7 @@ class AduanAdapterAdmin(val context: Context) :
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.bindKeluhan(history[position])
         holder.itemView.setOnClickListener {
-            val dialog = BottomSheetDialog(context, R.style.DialogStyle)
+            dialog = BottomSheetDialog(context, R.style.DialogStyle)
             dialog.setCancelable(true)
             dialog.setContentView(R.layout.bottom_sheet_detail_aduan_admin)
             dialog.show()
@@ -108,10 +110,12 @@ class AduanAdapterAdmin(val context: Context) :
             val tvUserID: TextView? = dialog.findViewById(R.id.tvUserID)
             val tvTitleAduan: TextView? = dialog.findViewById(R.id.tvTitleAduan)
             val tvDescAduan: TextView? = dialog.findViewById(R.id.tvDescAduan)
-            val etNoteRejected: TextView? = dialog.findViewById(R.id.etNoteRejected)
+            val etReplyAduan: TextView? = dialog.findViewById(R.id.etReplyAduan)
             val llConfirm: LinearLayout? = dialog.findViewById(R.id.llConfirm)
+            val llNotes: LinearLayout? = dialog.findViewById(R.id.llNotes)
             val btnReject: MaterialButton? = dialog.findViewById(R.id.btnReject)
             val btnAccept: MaterialButton? = dialog.findViewById(R.id.btnAccept)
+            val btnFinish: MaterialButton? = dialog.findViewById(R.id.btnFinish)
             val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
 
             if (history[position].avatar == Constant.default) {
@@ -130,56 +134,66 @@ class AduanAdapterAdmin(val context: Context) :
             tvDescAduan?.text = history[position].desc
 
             if (history[position].status == Constant.sent) {
+                llNotes?.visibility = View.VISIBLE
                 llConfirm?.visibility = View.VISIBLE
             } else {
+                llNotes?.visibility = View.GONE
                 llConfirm?.visibility = View.GONE
             }
 
+            if (history[position].status == Constant.processed) {
+                btnFinish?.visibility = View.VISIBLE
+            } else {
+                btnFinish?.visibility = View.GONE
+            }
+
+
+
             btnAccept?.setOnClickListener {
-                if (etNoteRejected!!.text.isBlank()) {
+                updateStatusKeluhan(
+                    history[position].id_keluhan,
+                    Constant.processed,
+                    "Aduan Diterima"
+                )
+            }
+
+            btnReject?.setOnClickListener {
+                if (etReplyAduan!!.text.isBlank()) {
                     AppUtils.toast(context, "Berikan Alasan Atas Penolakan")
                 } else {
-                    Retro.instance.updateStatusKeluhan(
-                        history[position].id_keluhan, Constant.processed
-                    ).enqueue(object : Callback<DefaultResponse> {
-                        override fun onResponse(
-                            call: Call<DefaultResponse>,
-                            response: Response<DefaultResponse>
-                        ) {
-                            AppUtils.toast(context, "Aduan Diterima")
-                            dialog.dismiss()
-                        }
-
-                        override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                            dialog.dismiss()
-                        }
-
-                    })
+                    updateStatusKeluhan(
+                        history[position].id_keluhan,
+                        Constant.rejected,
+                        "Aduan Ditolak"
+                    )
                 }
             }
-            btnReject?.setOnClickListener {
-                Retro.instance.updateStatusKeluhan(
-                    history[position].id_keluhan, Constant.rejected
-                ).enqueue(object : Callback<DefaultResponse> {
-                    override fun onResponse(
-                        call: Call<DefaultResponse>,
-                        response: Response<DefaultResponse>
-                    ) {
-                        AppUtils.toast(context, "Aduan Ditolak")
-                        dialog.dismiss()
-                    }
 
-                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                        dialog.dismiss()
-                    }
-
-                })
+            btnFinish?.setOnClickListener {
+                updateStatusKeluhan(history[position].id_keluhan, Constant.finish, "Aduan Selesai")
             }
-
             imgDismiss?.setOnClickListener {
                 dialog.dismiss()
             }
         }
+    }
+
+    fun updateStatusKeluhan(id: String, status: String, msg: String) {
+        Retro.instance.updateStatusKeluhan(
+            id, status
+        ).enqueue(object : Callback<DefaultResponse> {
+            override fun onResponse(
+                call: Call<DefaultResponse>,
+                response: Response<DefaultResponse>
+            ) {
+                AppUtils.toast(context, msg)
+                dialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                dialog.dismiss()
+            }
+        })
     }
 
     override fun getItemCount(): Int {
