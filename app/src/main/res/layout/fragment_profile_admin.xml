@@ -26,8 +26,8 @@
                 android:id="@+id/imgBack"
                 android:layout_width="28dp"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/back"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/back"
                 android:src="@drawable/ic_arrow_left" />
 
             <TextView
@@ -235,12 +235,13 @@
                 app:strokeWidth="1dp" />
 
             <TextView
+                android:id="@+id/tvAppVersion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="24dp"
-                android:text="Version 1.2"
+                android:text="Versi 1.0"
                 android:textColor="@color/divider"
                 android:textSize="12sp" />
         </LinearLayout>

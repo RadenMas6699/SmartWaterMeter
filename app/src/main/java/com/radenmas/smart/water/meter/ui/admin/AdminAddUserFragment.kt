@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import com.radenmas.smart.water.meter.databinding.FragmentAddUserAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,9 +63,9 @@ class AdminAddUserFragment : Fragment() {
                 year.isBlank() ||
                 type.isBlank()
             ) {
-                AppUtils.toast(requireContext(), "Lengkapi yang masih kosong")
+                Utils.toast(requireContext(), "Lengkapi yang masih kosong")
             } else {
-                AppUtils.showLoading(requireContext())
+                Utils.showLoading(requireContext())
 
                 addUser(userID.toInt(), fullname, ktp, phone, address, date, year, type, status)
             }
@@ -98,8 +98,8 @@ class AdminAddUserFragment : Fragment() {
                 call: Call<DefaultResponse>,
                 response: Response<DefaultResponse>
             ) {
-                AppUtils.dismissLoading()
-                AppUtils.toast(requireContext(), "Pelanggan berhasil ditambahkan")
+                Utils.dismissLoading()
+                Utils.toast(requireContext(), "Pelanggan berhasil ditambahkan")
 
                 b.etUserID.text.clear()
                 b.etFullName.text.clear()
@@ -112,8 +112,8 @@ class AdminAddUserFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                AppUtils.dismissLoading()
-                AppUtils.toast(requireContext(), "Pelanggan gagal ditambahkan")
+                Utils.dismissLoading()
+                Utils.toast(requireContext(), "Pelanggan gagal ditambahkan")
             }
 
         })

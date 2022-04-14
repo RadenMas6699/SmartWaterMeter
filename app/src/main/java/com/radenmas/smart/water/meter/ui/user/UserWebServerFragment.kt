@@ -19,7 +19,7 @@ import com.android.volley.toolbox.Volley
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import com.radenmas.smart.water.meter.databinding.FragmentWebServerUserBinding
 import com.radenmas.smart.water.meter.network.Config
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 
 class UserWebServerFragment : Fragment() {
     private lateinit var b: FragmentWebServerUserBinding
@@ -97,7 +97,7 @@ class UserWebServerFragment : Fragment() {
         stringRelay = StringRequest(
             Request.Method.GET,
             url,
-            { response -> AppUtils.toast(requireContext(), response.toString()) },
+            { response -> Utils.toast(requireContext(), response.toString()) },
             {})
         requestQueue?.add(stringRelay)
     }

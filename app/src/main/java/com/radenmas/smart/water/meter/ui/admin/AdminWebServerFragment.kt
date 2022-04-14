@@ -21,7 +21,7 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentWebServerAdminBinding
 import com.radenmas.smart.water.meter.network.Config
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 
 
 class AdminWebServerFragment : Fragment() {
@@ -104,7 +104,7 @@ class AdminWebServerFragment : Fragment() {
         stringRelay = StringRequest(
             Request.Method.GET,
             url,
-            { response -> AppUtils.toast(requireContext(), response.toString()) },
+            { response -> Utils.toast(requireContext(), response.toString()) },
             {})
         requestQueue?.add(stringRelay)
     }

@@ -20,7 +20,7 @@ import com.radenmas.smart.water.meter.adapter.AduanAdapterAdmin
 import com.radenmas.smart.water.meter.databinding.FragmentPengaduanAdminBinding
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,7 +48,7 @@ class AdminPengaduanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AppUtils.showLoading(requireContext())
+        Utils.showLoading(requireContext())
         getHistoryKeluhanFilter(resources.getString(R.string.sent))
     }
 
@@ -59,7 +59,7 @@ class AdminPengaduanFragment : Fragment() {
                     call: Call<List<AduanResponse>>,
                     response: Response<List<AduanResponse>>
                 ) {
-                    AppUtils.dismissLoading()
+                    Utils.dismissLoading()
                     val dataKeluhan = response.body()
                     for (c in dataKeluhan!!) {
                         aduanAdapterAdmin.setKeluhan(dataKeluhan)

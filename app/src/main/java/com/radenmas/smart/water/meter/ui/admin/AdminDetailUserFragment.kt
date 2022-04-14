@@ -14,11 +14,8 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentDetailUserAdminBinding
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AdminDetailUserFragment : Fragment() {
 
@@ -62,7 +59,7 @@ class AdminDetailUserFragment : Fragment() {
         b.tvUserKTP.text = ktp
         b.tvUserPhone.text = phone
         b.tvUserAddress.text = address
-        b.tvUserRegistered.text = AppUtils.formatDate(registered)
+        b.tvUserRegistered.text = Utils.formatDate(registered)
     }
 
     private fun onClick() {

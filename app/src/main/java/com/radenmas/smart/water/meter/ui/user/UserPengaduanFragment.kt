@@ -25,7 +25,7 @@ import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.utils.Constant
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,7 +55,7 @@ class UserPengaduanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AppUtils.showLoading(requireContext())
+        Utils.showLoading(requireContext())
         getHistoryAll(args.idPelanggan)
     }
 
@@ -137,7 +137,7 @@ class UserPengaduanFragment : Fragment() {
                 val title: String = bs.etTitleAduan.text.toString().trim()
                 val desc: String = bs.etDescAduan.text.toString().trim()
                 if (title.isEmpty() || desc.isEmpty()) {
-                    AppUtils.toast(requireContext(),"Lengkapi yang masih kosong")
+                    Utils.toast(requireContext(),"Lengkapi yang masih kosong")
                 } else {
                     createAduan(args.idPelanggan, title, desc, resources.getString(R.string.sent))
                 }
@@ -208,7 +208,7 @@ class UserPengaduanFragment : Fragment() {
                 call: Call<List<AduanResponse>>,
                 response: Response<List<AduanResponse>>
             ) {
-                AppUtils.dismissLoading()
+                Utils.dismissLoading()
                 val dataHistory = response.body()
                 for (c in dataHistory!!) {
                     b.rvAduanUser.visibility = View.VISIBLE

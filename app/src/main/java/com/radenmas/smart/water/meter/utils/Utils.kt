@@ -7,7 +7,9 @@ package com.radenmas.smart.water.meter.utils
 
 import android.app.Dialog
 import android.content.Context
+import android.view.View
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.radenmas.smart.water.meter.R
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -16,7 +18,7 @@ import java.util.*
 /**
  * Created by RadenMas on 21/03/2022.
  */
-object AppUtils {
+object Utils {
     private lateinit var progress: Dialog
 
     fun showLoading(context: Context) {
@@ -32,6 +34,21 @@ object AppUtils {
 
     fun toast(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun snack(view: View, msg: String) {
+        Snackbar.make(
+            view,
+            msg,
+            Snackbar.LENGTH_LONG
+        ).show()
+    }
+
+    fun snackInfinite(view: View, msg: String): Snackbar {
+        return Snackbar.make(
+            view,
+            msg, Snackbar.LENGTH_INDEFINITE
+        )
     }
 
     fun formatDate(stringDate: String): String {

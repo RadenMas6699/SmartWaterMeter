@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.TagihanResponse
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -34,8 +34,8 @@ class TagihanAdapterUser(val context: Context) :
 
         fun bindTagihan(b: TagihanResponse) {
 
-            tvTitle.text = AppUtils.formatPeriod(b.month, b.year)
-            tvPrice.text = AppUtils.formatRupiah(b.total_bill)
+            tvTitle.text = Utils.formatPeriod(b.month, b.year)
+            tvPrice.text = Utils.formatRupiah(b.total_bill)
             tvStatues.text = b.status
             when (b.status) {
                 Constant.paid_off -> {
@@ -84,15 +84,15 @@ class TagihanAdapterUser(val context: Context) :
             val tvPayDate: TextView? = dialog.findViewById(R.id.tvPayDate)
             val imgDismiss: ImageView? = dialog.findViewById(R.id.imgDismiss)
 
-            tvPeriod?.text = AppUtils.formatPeriod(tagihan[position].month, tagihan[position].year)
-            tvPemakaian?.text = AppUtils.formatUsage(tagihan[position].usage)
-            tvTagihan?.text = AppUtils.formatRupiah(tagihan[position].total_bill)
-            tvUsageCost?.text = AppUtils.formatRupiah(tagihan[position].bill.toInt())
-            tvMaintenanceCost?.text = AppUtils.formatRupiah(tagihan[position].maintenance.toInt())
+            tvPeriod?.text = Utils.formatPeriod(tagihan[position].month, tagihan[position].year)
+            tvPemakaian?.text = Utils.formatUsage(tagihan[position].usage)
+            tvTagihan?.text = Utils.formatRupiah(tagihan[position].total_bill)
+            tvUsageCost?.text = Utils.formatRupiah(tagihan[position].bill.toInt())
+            tvMaintenanceCost?.text = Utils.formatRupiah(tagihan[position].maintenance.toInt())
 
             when (tagihan[position].status) {
                 Constant.paid_off -> {
-                    tvPayDate?.text = AppUtils.formatDate(tagihan[position].pay_date)
+                    tvPayDate?.text = Utils.formatDate(tagihan[position].pay_date)
                 }
                 Constant.not_yet_paid_off -> {
                     tvPayDate?.text = Constant.dash

@@ -5,7 +5,6 @@
 
 package com.radenmas.smart.water.meter.ui.user
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle

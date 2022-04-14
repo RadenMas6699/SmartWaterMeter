@@ -19,7 +19,7 @@ import com.radenmas.smart.water.meter.model.LoginResponse
 import com.radenmas.smart.water.meter.network.Retro
 import com.radenmas.smart.water.meter.ui.admin.AdminMainActivity
 import com.radenmas.smart.water.meter.ui.user.UserMainActivity
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
@@ -71,7 +71,7 @@ class LoginFragment : Fragment() {
             if (strUsername.isEmpty() || strPassword.isEmpty()) {
                 Toast.makeText(context, "Lengkapi yang masih kosong", Toast.LENGTH_SHORT).show()
             } else {
-                AppUtils.showLoading(requireContext())
+                Utils.showLoading(requireContext())
 
                 postLogin(strUsername, strPassword)
             }
@@ -89,13 +89,13 @@ class LoginFragment : Fragment() {
                 call: Call<LoginResponse>,
                 response: retrofit2.Response<LoginResponse>
             ) {
-                AppUtils.dismissLoading()
+                Utils.dismissLoading()
                 when {
                     response.body()?.level.equals(
                         Constant.user,
                         ignoreCase = true
                     ) -> {
-                        val registered = AppUtils.formatDate(response.body()?.registered.toString())
+                        val registered = Utils.formatDate(response.body()?.registered.toString())
                         saveDataUser(
                             response.body()?.id_pelanggan.toString(),
                             response.body()?.name.toString(),
@@ -123,14 +123,14 @@ class LoginFragment : Fragment() {
                         activity?.finish()
                     }
                     else -> {
-                        AppUtils.toast(requireContext(), "Gagal Masuk")
+                        Utils.toast(requireContext(), "Gagal Masuk")
                     }
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                AppUtils.dismissLoading()
-                AppUtils.toast(requireContext(), "Gagal Masuk : ${t.message}")
+                Utils.dismissLoading()
+                Utils.toast(requireContext(), "Gagal Masuk : ${t.message}")
             }
         })
     }

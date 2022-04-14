@@ -6,6 +6,7 @@
 package com.radenmas.smart.water.meter.ui.admin
 
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +18,15 @@ import com.radenmas.smart.water.meter.databinding.DialogPaidOffBinding
 import com.radenmas.smart.water.meter.databinding.FragmentDetailBillingAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class AdminDetailBillingFragment : Fragment() {
 
@@ -57,11 +62,11 @@ class AdminDetailBillingFragment : Fragment() {
 
         b.tvUserID.text = idPelanggan
         b.tvName.text = name
-        b.tvPeriod.text = AppUtils.formatPeriod(month, year)
-        b.tvUsage.text = AppUtils.formatUsage(usage)
-        b.tvUsageCost.text = AppUtils.formatRupiah(bill.toInt())
-        b.tvMaintenanceCost.text = AppUtils.formatRupiah(maintenance.toInt())
-        b.tvTagihan.text = AppUtils.formatRupiah(totalBill)
+        b.tvPeriod.text = Utils.formatPeriod(month, year)
+        b.tvUsage.text = Utils.formatUsage(usage)
+        b.tvUsageCost.text = Utils.formatRupiah(bill.toInt())
+        b.tvMaintenanceCost.text = Utils.formatRupiah(maintenance.toInt())
+        b.tvTagihan.text = Utils.formatRupiah(totalBill)
     }
 
     private fun onClick() {
@@ -75,7 +80,7 @@ class AdminDetailBillingFragment : Fragment() {
             val name: String = args.name
             val month: String = args.month
             val year: String = args.year
-            val period = AppUtils.formatPeriod(month, year)
+            val period = Utils.formatPeriod(month, year)
 
             dp = DialogPaidOffBinding.inflate(
                 layoutInflater
@@ -96,20 +101,31 @@ class AdminDetailBillingFragment : Fragment() {
             }
 
             dp.btnYes.setOnClickListener {
+                var payDate: String? = null
+                payDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val current = LocalDateTime.now()
+                    val formatter = DateTimeFormatter.ofPattern(Constant.pattern_input_date)
+                    current.format(formatter)
+                } else {
+                    val date = Date()
+                    val formatter = SimpleDateFormat(Constant.pattern_input_date)
+                    formatter.format(date)
+                }
+
                 paidOff.dismiss()
-                AppUtils.showLoading(requireContext())
+                Utils.showLoading(requireContext())
                 Retro.instance.updateStatusTagihan(
                     idTagihan,
                     Constant.paid_off,
-                    "2021-01-04"
+                    payDate
                 ).enqueue(object :
                     Callback<DefaultResponse> {
                     override fun onResponse(
                         call: Call<DefaultResponse>,
                         response: Response<DefaultResponse>
                     ) {
-                        AppUtils.dismissLoading()
-                        AppUtils.toast(requireContext(), "Tagihan berhasil dilunasi")
+                        Utils.dismissLoading()
+                        Utils.toast(requireContext(), "Tagihan berhasil dilunasi")
                         activity?.onBackPressed()
                     }
 

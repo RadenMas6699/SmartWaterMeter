@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.ui.admin.AdminBillingFragmentDirections
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -46,8 +46,8 @@ class TagihanAdapterAdmin(val context: Context) :
             }
 
             tvTitle.text = b.id_pelanggan
-            tvDesc.text = AppUtils.formatPeriod(b.month,b.year)
-            tvPrice.text = AppUtils.formatRupiah(b.total_bill)
+            tvDesc.text = Utils.formatPeriod(b.month,b.year)
+            tvPrice.text = Utils.formatRupiah(b.total_bill)
             tvStatues.text = b.status
             tvStatues.setBackgroundResource(R.drawable.bg_statues_red)
             tvStatues.setTextColor(Color.parseColor(Constant.color_red))

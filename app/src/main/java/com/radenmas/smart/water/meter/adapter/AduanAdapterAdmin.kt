@@ -21,7 +21,7 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
@@ -58,7 +58,7 @@ class AduanAdapterAdmin(val context: Context) :
             tvTitle.text = b.title
             tvUserID.text = b.id_pelanggan
             tvDesc.text = b.desc
-            tvDate.text = AppUtils.formatDate(b.date)
+            tvDate.text = Utils.formatDate(b.date)
 
             tvStatues.text = b.status
             when (b.status) {
@@ -95,7 +95,6 @@ class AduanAdapterAdmin(val context: Context) :
             LayoutInflater.from(context).inflate(R.layout.list_aduan_admin, parent, false)
         )
     }
-
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.bindKeluhan(history[position])
@@ -147,8 +146,6 @@ class AduanAdapterAdmin(val context: Context) :
                 btnFinish?.visibility = View.GONE
             }
 
-
-
             btnAccept?.setOnClickListener {
                 updateStatusKeluhan(
                     history[position].id_keluhan,
@@ -159,7 +156,7 @@ class AduanAdapterAdmin(val context: Context) :
 
             btnReject?.setOnClickListener {
                 if (etReplyAduan!!.text.isBlank()) {
-                    AppUtils.toast(context, "Berikan Alasan Atas Penolakan")
+                    Utils.toast(context, "Berikan Alasan Atas Penolakan")
                 } else {
                     updateStatusKeluhan(
                         history[position].id_keluhan,
@@ -178,7 +175,7 @@ class AduanAdapterAdmin(val context: Context) :
         }
     }
 
-    fun updateStatusKeluhan(id: String, status: String, msg: String) {
+    private fun updateStatusKeluhan(id: String, status: String, msg: String) {
         Retro.instance.updateStatusKeluhan(
             id, status
         ).enqueue(object : Callback<DefaultResponse> {
@@ -186,7 +183,7 @@ class AduanAdapterAdmin(val context: Context) :
                 call: Call<DefaultResponse>,
                 response: Response<DefaultResponse>
             ) {
-                AppUtils.toast(context, msg)
+                Utils.toast(context, msg)
                 dialog.dismiss()
             }
 

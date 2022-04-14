@@ -22,7 +22,7 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentChangeProfileUserBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
@@ -93,7 +93,7 @@ class UserChangeProfileFragment : Fragment() {
             val address: String = b.etAddress.text.toString()
 
             if (fullname.isEmpty() || phone.isEmpty() || address.isEmpty()) {
-                AppUtils.toast(requireContext(), "Lengkapi yang masih kosong")
+                Utils.toast(requireContext(), "Lengkapi yang masih kosong")
             } else {
                 progress = Dialog(requireActivity())
                 progress.setContentView(R.layout.dialog_progress)
@@ -125,7 +125,7 @@ class UserChangeProfileFragment : Fragment() {
     }
 
     private fun UploadFoto() {
-        AppUtils.showLoading(requireContext())
+        Utils.showLoading(requireContext())
         val storageReference =
             FirebaseStorage.getInstance().getReference("User").child(idPelanggan.toString())
         if (filePath != null) {
@@ -141,8 +141,8 @@ class UserChangeProfileFragment : Fragment() {
                                         call: Call<DefaultResponse>,
                                         response: Response<DefaultResponse>
                                     ) {
-                                        AppUtils.dismissLoading()
-                                        AppUtils.toast(
+                                        Utils.dismissLoading()
+                                        Utils.toast(
                                             requireContext(), "Foto profil berhasil diubah")
 
                                         Glide.with(requireContext())
@@ -157,17 +157,17 @@ class UserChangeProfileFragment : Fragment() {
                                         call: Call<DefaultResponse>,
                                         t: Throwable
                                     ) {
-                                        AppUtils.toast(requireContext(), "Foto profil gagal diubah")
+                                        Utils.toast(requireContext(), "Foto profil gagal diubah")
                                     }
 
                                 })
                         }
                 }
                 .addOnFailureListener { e: Exception ->
-                    AppUtils.toast(requireContext(), "Foto profil gagal diubah")
+                    Utils.toast(requireContext(), "Foto profil gagal diubah")
                 }
         } else {
-            AppUtils.toast(requireContext(), "Gambar belum dipilih")
+            Utils.toast(requireContext(), "Gambar belum dipilih")
         }
     }
 
@@ -191,13 +191,13 @@ class UserChangeProfileFragment : Fragment() {
                     address
                 )
                 progress.dismiss()
-                AppUtils.toast(requireContext(), "Data Pelanggan Berhasil Diupdate")
+                Utils.toast(requireContext(), "Data Pelanggan Berhasil Diupdate")
                 activity?.onBackPressed()
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                 progress.dismiss()
-                AppUtils.toast(requireContext(), "Data Pelanggan Gagal Diupdate")
+                Utils.toast(requireContext(), "Data Pelanggan Gagal Diupdate")
             }
 
         })

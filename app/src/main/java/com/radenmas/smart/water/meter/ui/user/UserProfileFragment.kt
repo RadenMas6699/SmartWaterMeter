@@ -19,7 +19,7 @@ import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.DialogLogoutBinding
 import com.radenmas.smart.water.meter.databinding.FragmentProfileUserBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 
 
@@ -91,7 +91,7 @@ class UserProfileFragment : Fragment() {
 
         b.imgProfile.setOnClickListener {
             if (avatar == Constant.default) {
-                AppUtils.toast(requireContext(), "Tidak ada foto profil")
+                Utils.toast(requireContext(), "Tidak ada foto profil")
             } else {
                 val seeImage =
                     UserProfileFragmentDirections.actionUserProfileFragmentToLihatFotoFragment(

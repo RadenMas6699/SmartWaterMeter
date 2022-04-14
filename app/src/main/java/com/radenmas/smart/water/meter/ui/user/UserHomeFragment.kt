@@ -30,7 +30,7 @@ import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
@@ -199,7 +199,7 @@ class UserHomeFragment : Fragment() {
                 call: Call<TagihanResponse>,
                 response: Response<TagihanResponse>
             ) {
-                b.tvTagihan.text = AppUtils.formatNumber(response.body()?.total_bill!!)
+                b.tvTagihan.text = Utils.formatNumber(response.body()?.total_bill!!)
                 b.tvPemakaian.text = response.body()?.usage.toString()
             }
 

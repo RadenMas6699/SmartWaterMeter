@@ -16,11 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.model.AduanResponse
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AduanAdapterUser(val context: Context) :
     RecyclerView.Adapter<AduanAdapterUser.HistoryViewHolder>() {
@@ -37,7 +34,7 @@ class AduanAdapterUser(val context: Context) :
         fun bindKeluhan(b: AduanResponse) {
             tvTitle.text = b.title
             tvDesc.text = b.desc
-            tvDate.text = AppUtils.formatDate(b.date)
+            tvDate.text = Utils.formatDate(b.date)
 
             tvStatues.text = b.status
             when (b.status) {

@@ -5,6 +5,7 @@
 
 <resources>
     <string name="app_name">Smart Water Meter</string>
+    <string name="app_version">Versi %1$s</string>
 <!--    <string name="app_pref">app_pref</string>-->
 <!--    <string name="level">level</string>-->
     <string name="dev_name">M Sukron Kurniawan</string>

@@ -15,7 +15,7 @@ import com.radenmas.smart.water.meter.adapter.TagihanAdapterAdmin
 import com.radenmas.smart.water.meter.databinding.FragmentBillingAdminBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.AppUtils
+import com.radenmas.smart.water.meter.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +36,7 @@ class AdminBillingFragment : Fragment() {
         paymentAdmin = TagihanAdapterAdmin(requireActivity())
         b.rvBillAll.adapter = paymentAdmin
 
-        AppUtils.showLoading(requireContext())
+        Utils.showLoading(requireContext())
 
         onClick()
 
@@ -54,7 +54,7 @@ class AdminBillingFragment : Fragment() {
                 call: Call<List<TagihanResponse>>,
                 response: Response<List<TagihanResponse>>
             ) {
-                AppUtils.dismissLoading()
+                Utils.dismissLoading()
                 val dataTagihan = response.body()
                 for (c in dataTagihan!!) {
                     b.rvBillAll.visibility = View.VISIBLE
@@ -68,7 +68,6 @@ class AdminBillingFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<TagihanResponse>>, t: Throwable) {
-
             }
 
         })
