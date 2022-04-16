@@ -9,6 +9,7 @@ data class LoginResponse(
     val id_admin: String,
     val id_pelanggan: String,
     val name: String,
+    val payment: String,
     val level: String,
     val ktp: String,
     val phone: String,

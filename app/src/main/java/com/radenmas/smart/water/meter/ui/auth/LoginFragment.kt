@@ -99,6 +99,7 @@ class LoginFragment : Fragment() {
                         saveDataUser(
                             response.body()?.id_pelanggan.toString(),
                             response.body()?.name.toString(),
+                            response.body()?.payment.toString(),
                             response.body()?.level.toString(),
                             response.body()?.ktp.toString(),
                             response.body()?.phone.toString(),
@@ -138,6 +139,7 @@ class LoginFragment : Fragment() {
     private fun saveDataUser(
         id_pelanggan: String,
         name: String,
+        payment: String,
         level: String,
         ktp: String,
         phone: String,
@@ -147,6 +149,7 @@ class LoginFragment : Fragment() {
     ) {
         editor.putString(Constant.data_id_pelanggan, id_pelanggan)
         editor.putString(Constant.data_name, name)
+        editor.putString(Constant.data_payment, payment)
         editor.putString(Constant.data_level, level)
         editor.putString(Constant.data_ktp, ktp)
         editor.putString(Constant.data_phone, phone)

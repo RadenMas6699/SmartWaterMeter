@@ -30,8 +30,8 @@ import com.radenmas.smart.water.meter.adapter.TagihanAdapterUser
 import com.radenmas.smart.water.meter.databinding.FragmentHomeUserBinding
 import com.radenmas.smart.water.meter.model.TagihanResponse
 import com.radenmas.smart.water.meter.network.Retro
-import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
+import com.radenmas.smart.water.meter.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,6 +44,7 @@ class UserHomeFragment : Fragment() {
 
     private lateinit var idPelanggan: String
     private lateinit var name: String
+    private lateinit var payment: String
     private lateinit var avatar: String
 
     override fun onCreateView(
@@ -211,6 +212,7 @@ class UserHomeFragment : Fragment() {
     private fun initView() {
         idPelanggan = sharedPref.getString(Constant.data_id_pelanggan, null).toString()
         name = sharedPref.getString(Constant.data_name, null).toString()
+        payment = sharedPref.getString(Constant.data_payment, null).toString()
         avatar = sharedPref.getString(Constant.data_avatar, null).toString()
 
         if (avatar == Constant.default) {

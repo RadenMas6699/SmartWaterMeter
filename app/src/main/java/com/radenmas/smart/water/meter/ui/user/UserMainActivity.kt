@@ -6,6 +6,7 @@
 package com.radenmas.smart.water.meter.ui.user
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
@@ -13,11 +14,12 @@ import android.os.CountDownTimer
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.radenmas.smart.water.meter.databinding.ActivityUserMainBinding
+import com.radenmas.smart.water.meter.utils.Constant
 import com.radenmas.smart.water.meter.utils.Utils
 
 class UserMainActivity : AppCompatActivity() {
     private lateinit var b: ActivityUserMainBinding
-
+    private lateinit var sharedPref: SharedPreferences
     private var timerCekKoneksi: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
