@@ -134,15 +134,14 @@ class UserPengaduanFragment : Fragment() {
                 dialog.dismiss()
             }
             bs.btnSendAduan.setOnClickListener {
-                val title: String = bs.etTitleAduan.text.toString().trim()
-                val desc: String = bs.etDescAduan.text.toString().trim()
+                val title: String = bs.etTitleAduan.text.toString()
+                val desc: String = bs.etDescAduan.text.toString()
                 if (title.isEmpty() || desc.isEmpty()) {
                     Utils.toast(requireContext(),"Lengkapi yang masih kosong")
                 } else {
                     createAduan(args.idPelanggan, title, desc, resources.getString(R.string.sent))
                 }
             }
-
         }
     }
 

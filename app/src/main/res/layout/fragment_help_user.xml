@@ -72,7 +72,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/ic_message_outline"
+                        android:src="@drawable/ic_globe"
                         app:tint="@color/green" />
 
                     <LinearLayout
@@ -168,7 +168,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/ic_message_outline"
+                        android:src="@drawable/ic_phone_outline"
                         app:tint="@color/green" />
 
                     <LinearLayout
@@ -217,7 +217,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/ic_message_outline"
+                        android:src="@drawable/ic_whatsapp"
                         app:tint="@color/green" />
 
                     <LinearLayout

@@ -41,9 +41,6 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_userHomeFragment_to_prabayarWebServerFragment"
-            app:destination="@id/prabayarWebServerFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -162,9 +159,4 @@
         android:name="com.radenmas.smart.water.meter.ui.user.UserHelpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help_user" />
-    <fragment
-        android:id="@+id/prabayarWebServerFragment"
-        android:name="com.radenmas.smart.water.meter.ui.user.PrabayarWebServerFragment"
-        android:label="fragment_web_server_prabayar"
-        tools:layout="@layout/fragment_web_server_prabayar" />
 </navigation>
