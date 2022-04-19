@@ -27,65 +27,30 @@
                 android:paddingTop="20dp"
                 android:paddingEnd="16dp"
                 android:paddingBottom="18dp"
-                android:text="@string/pengaduan"
+                android:text="@string/set_call_water"
                 android:textColor="@color/white_text"
                 android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/jenis_pengaduan"
-                android:textColor="@color/primary_text"
-                android:textSize="16sp" />
-
             <EditText
-                android:id="@+id/etTitleAduan"
+                android:id="@+id/etValue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="@android:color/transparent"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="top"
-                android:hint="Contoh: Air Tidak Mengalir"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto"
-                android:text="@string/deskripsi"
-                android:textColor="@color/primary_text"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/etDescAduan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="top"
-                android:hint="@string/deskripsi"
-                android:minLines="5"
+                android:gravity="center"
+                android:hint="@string/set_value"
+                android:inputType="numberDecimal"
                 android:textSize="15sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSendAduan"
+                android:id="@+id/btnSave"
                 style="@style/ButtonStyle2"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/send"
+                android:text="@string/save"
                 app:backgroundTint="@color/primary" />
         </LinearLayout>
 

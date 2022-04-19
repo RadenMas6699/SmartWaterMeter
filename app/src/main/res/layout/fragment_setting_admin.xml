@@ -71,7 +71,7 @@
 
                 <TextView
                     style="@style/TitleNameSettings"
-                    android:text="Atur Kalibrasi Air" />
+                    android:text="@string/set_call_water" />
 
                 <TextView style="@style/TitleDescSettings" />
             </RelativeLayout>

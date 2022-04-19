@@ -7,6 +7,7 @@ package com.radenmas.smart.water.meter.ui.admin
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,10 +29,10 @@ class AdminWebServerFragment : Fragment() {
 
     private lateinit var b: FragmentWebServerAdminBinding
 
-    private var requestQueue: RequestQueue? = null
-    private var stringCircle: StringRequest? = null
-    private var stringData: StringRequest? = null
-    private var stringRelay: StringRequest? = null
+    private lateinit var requestQueue: RequestQueue
+    private lateinit var stringCircle: StringRequest
+    private lateinit var stringData: StringRequest
+    private lateinit var stringRelay: StringRequest
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +45,7 @@ class AdminWebServerFragment : Fragment() {
 
         onClick()
 
-        val handler = Handler()
+        val handler = Handler(Looper.getMainLooper())
         val task: Runnable = object : Runnable {
             override fun run() {
                 handler.postDelayed(this, 1000)
@@ -86,7 +87,7 @@ class AdminWebServerFragment : Fragment() {
                 progress.progress = value
             },
             {})
-        requestQueue?.add(stringCircle)
+        requestQueue.add(stringCircle)
     }
 
     private fun getData(url: String, text: TextView) {
@@ -97,7 +98,7 @@ class AdminWebServerFragment : Fragment() {
                 text.text = response.toString()
             },
             {})
-        requestQueue?.add(stringData)
+        requestQueue.add(stringData)
     }
 
     private fun setRelay(url: String) {
@@ -106,13 +107,13 @@ class AdminWebServerFragment : Fragment() {
             url,
             { response -> Utils.toast(requireContext(), response.toString()) },
             {})
-        requestQueue?.add(stringRelay)
+        requestQueue.add(stringRelay)
     }
 
     override fun onStop() {
         super.onStop()
-        requestQueue?.cancelAll(stringCircle)
-        requestQueue?.cancelAll(stringData)
+        requestQueue.cancelAll(stringCircle)
+        requestQueue.cancelAll(stringData)
     }
 
 }

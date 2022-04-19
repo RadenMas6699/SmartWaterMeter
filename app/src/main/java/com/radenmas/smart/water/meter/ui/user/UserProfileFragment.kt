@@ -16,18 +16,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.databinding.DialogLogoutBinding
+import com.radenmas.smart.water.meter.databinding.DialogConfirmBinding
 import com.radenmas.smart.water.meter.databinding.FragmentProfileUserBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
-import com.radenmas.smart.water.meter.utils.Utils
 import com.radenmas.smart.water.meter.utils.Constant
+import com.radenmas.smart.water.meter.utils.Utils
 
 
 class UserProfileFragment : Fragment() {
 
     private lateinit var b: FragmentProfileUserBinding
     private lateinit var logout: Dialog
-    private lateinit var dl: DialogLogoutBinding
+    private lateinit var dl: DialogConfirmBinding
 
     private lateinit var sharedPref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
@@ -122,7 +122,7 @@ class UserProfileFragment : Fragment() {
         }
 
         b.btnLogout.setOnClickListener {
-            dl = DialogLogoutBinding.inflate(
+            dl = DialogConfirmBinding.inflate(
                 layoutInflater
             )
             val v = dl.root
@@ -132,6 +132,8 @@ class UserProfileFragment : Fragment() {
             logout.setCancelable(false)
             logout.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
             logout.show()
+
+            dl.tvDescConfirm.text = resources.getString(R.string.desc_logout)
 
             dl.btnNo.setOnClickListener {
                 logout.dismiss()

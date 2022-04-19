@@ -58,6 +58,7 @@
     <string name="dash">-</string>
     <string name="confirm">Konfirmasi</string>
     <string name="desc_logout">Apakah Anda yakin ingin keluar dari aplikasi ini?</string>
+    <string name="desc_reset">Apakah Anda yakin ingin mereset data alat ini?</string>
     <string name="no">Tidak</string>
     <string name="yes">Ya</string>
     <string name="sent">Terkirim</string>
@@ -98,4 +99,6 @@
     <string name="phone_smartpdam">+6285298106699</string>
     <string name="prabayar">Prabayar</string>
     <string name="pascabayar">Pascabayar</string>
+    <string name="set_call_water">Atur Kalibrasi Air</string>
+    <string name="set_value">Atur Nilai</string>
 </resources>

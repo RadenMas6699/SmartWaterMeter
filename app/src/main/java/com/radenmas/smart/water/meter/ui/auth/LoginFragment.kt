@@ -131,7 +131,7 @@ class LoginFragment : Fragment() {
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Utils.dismissLoading()
-                Utils.toast(requireContext(), "Gagal Masuk : ${t.message}")
+                Utils.toast(requireContext(), "Gagal Masuk")
             }
         })
     }
