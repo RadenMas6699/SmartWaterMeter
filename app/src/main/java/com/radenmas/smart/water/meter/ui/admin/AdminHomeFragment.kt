@@ -8,19 +8,21 @@ package com.radenmas.smart.water.meter.ui.admin
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentHomeAdminBinding
 import com.radenmas.smart.water.meter.model.DefaultResponse
 import com.radenmas.smart.water.meter.network.Retro
 import com.radenmas.smart.water.meter.utils.Constant
+import com.radenmas.smart.water.meter.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +33,7 @@ class AdminHomeFragment : Fragment() {
     private lateinit var sharedPref: SharedPreferences
 
     private lateinit var name: String
+    private lateinit var id_admin: String
     private lateinit var avatar: String
 
     override fun onCreateView(
@@ -48,14 +51,11 @@ class AdminHomeFragment : Fragment() {
         onClick()
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            val token = task.result
-//            b.token.text = token
-            Log.d("TOKEN", token)
-            //cdK0YfrcS-K1OEoxsJyTg5:APA91bHhNVwmFELePDY3gE4UBw94BNhvcbChTgr5UqotOhIHN4E6EA06aLwZ-1kC8sHamJVuFLHtk6lxyeDMhRoUlo3jCRHia2bm73CS9UZ3Y5bzp52LRwKBXuqg3i-6R5rPTjqIhyms
+            val token = task.result.toString()
+            b.token.text = token
+            val dbToken = Firebase.database.getReference("Token")
+            dbToken.child(id_admin).child("token").setValue(token)
         }
-
-
-//        getNotifAdmin()
 
         return v
     }
@@ -80,6 +80,7 @@ class AdminHomeFragment : Fragment() {
     }
 
     private fun initView() {
+        id_admin = sharedPref.getString(Constant.data_id_admin, null).toString()
         name = sharedPref.getString(Constant.data_name, null).toString()
         avatar = sharedPref.getString(Constant.data_avatar, null).toString()
 

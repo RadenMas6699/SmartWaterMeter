@@ -184,6 +184,7 @@
                         app:cpb_progressbar_color_end="@color/green"
                         app:cpb_progressbar_color_start="@color/semi_green"
                         app:cpb_progressbar_width="6dp"
+                        app:cpb_progress_max="1"
                         app:cpb_round_border="true"
                         app:cpb_start_angle="180" />
 

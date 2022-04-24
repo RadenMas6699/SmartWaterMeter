@@ -9,18 +9,22 @@ object Config {
     // URL WEB SERVER
     private const val BASE_URL_WEB_SERVER = "http://192.168.4.1/"
     const val URL_DEBIT = BASE_URL_WEB_SERVER + "debit"
-
-    const val URL_TOTAL = BASE_URL_WEB_SERVER + "total"
+    const val URL_USAGE = BASE_URL_WEB_SERVER + "usage"
+    const val URL_CALIBRATION = BASE_URL_WEB_SERVER + "calibration"
     const val URL_BILLING = BASE_URL_WEB_SERVER + "harga"
-    const val URL_RELAY_ON = BASE_URL_WEB_SERVER + "led1/on"
-    const val URL_RELAY_OFF = BASE_URL_WEB_SERVER + "led1/off"
+    const val URL_RELAY_ON = BASE_URL_WEB_SERVER + "selenoid/on"
+    const val URL_RELAY_OFF = BASE_URL_WEB_SERVER + "selenoid/off"
     const val URL_SET_PRICE = BASE_URL_WEB_SERVER + "getHarga"
     const val URL_SET_PRESS = BASE_URL_WEB_SERVER + "getTekanan?setPress="
-    const val URL_RESET = BASE_URL_WEB_SERVER + "hapus/on"
+    const val URL_SET_CALIBRATION = BASE_URL_WEB_SERVER + "setCalibration?setCalibration="
+    const val URL_RESET = BASE_URL_WEB_SERVER + "reset/on"
 
     // DATABASE SERVER
     const val BASE_URL = "http://smartpdam.com/api/"
     const val POST_LOGIN = "login/api_login"
+
+    // NOTIF
+    const val POST_NOTIF = "test/notify"
 
     // KELUHAN
     const val GET_KELUHAN_USER = "keluhan/get_keluhan_user"

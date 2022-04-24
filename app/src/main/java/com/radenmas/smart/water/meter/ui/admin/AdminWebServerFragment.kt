@@ -5,6 +5,7 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -49,8 +50,8 @@ class AdminWebServerFragment : Fragment() {
         val task: Runnable = object : Runnable {
             override fun run() {
                 handler.postDelayed(this, 1000)
-                getData(Config.URL_TOTAL, b.tvBill)
-                getData(Config.URL_BILLING, b.tvUsage)
+                getDataNumber(Config.URL_USAGE, b.tvUsage)
+                getData(Config.URL_CALIBRATION, b.tvBill)
                 getDataCircle(Config.URL_DEBIT, b.progressDebit, b.tvDebit)
             }
         }
@@ -77,16 +78,23 @@ class AdminWebServerFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getDataCircle(url: String, progress: CircularProgressBar, text: TextView) {
         stringCircle = StringRequest(
             Request.Method.GET,
             url,
             { response ->
-                text.text = response
-                val value = response.toFloat()
-                progress.progress = value
+                if (response != "nan") {
+                    text.text = "$response L/s"
+                    val value = response.toFloat()
+                    progress.progress = value
+                } else {
+                    text.text = "0 L/s"
+                    progress.progress = 0f
+                }
+
             },
-            {})
+            { })
         requestQueue.add(stringCircle)
     }
 
@@ -95,9 +103,22 @@ class AdminWebServerFragment : Fragment() {
             Request.Method.GET,
             url,
             { response ->
-                text.text = response.toString()
+                val value = response.toString()
+                text.text = value
             },
-            {})
+            { })
+        requestQueue.add(stringData)
+    }
+
+    private fun getDataNumber(url: String, text: TextView) {
+        stringData = StringRequest(
+            Request.Method.GET,
+            url,
+            { response ->
+                val value = response.toFloat().toInt()
+                text.text = Utils.formatNumber(value)
+            },
+            { })
         requestQueue.add(stringData)
     }
 
@@ -105,8 +126,8 @@ class AdminWebServerFragment : Fragment() {
         stringRelay = StringRequest(
             Request.Method.GET,
             url,
-            { response -> Utils.toast(requireContext(), response.toString()) },
-            {})
+            { },
+            { })
         requestQueue.add(stringRelay)
     }
 

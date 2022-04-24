@@ -44,7 +44,7 @@ class UserWebServerFragment : Fragment() {
         val task: Runnable = object : Runnable {
             override fun run() {
                 handler.postDelayed(this, 1000)
-                getData(Config.URL_TOTAL, b.tvBill)
+                getData(Config.URL_USAGE, b.tvBill)
                 getData(Config.URL_BILLING, b.tvUsage)
                 getDataCircle(Config.URL_DEBIT, b.progressDebit, b.tvDebit)
             }

@@ -7,6 +7,7 @@ package com.radenmas.smart.water.meter.utils
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
@@ -14,6 +15,8 @@ import com.radenmas.smart.water.meter.R
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 /**
  * Created by RadenMas on 21/03/2022.
@@ -134,5 +137,17 @@ object Utils {
             }
         }
         return "$bulan $year"
+    }
+
+    fun reduceBitmapSize(bitmap: Bitmap, MAX_SIZE: Int): Bitmap? {
+        val ratioSquare: Double
+        val bitmapHeight: Int = bitmap.height
+        val bitmapWidth: Int = bitmap.width
+        ratioSquare = (bitmapHeight * bitmapWidth / MAX_SIZE).toDouble()
+        if (ratioSquare <= 1) return bitmap
+        val ratio = sqrt(ratioSquare)
+        val requiredHeight = (bitmapHeight / ratio).roundToInt()
+        val requiredWidth = (bitmapWidth / ratio).roundToInt()
+        return Bitmap.createScaledBitmap(bitmap, requiredWidth, requiredHeight, true)
     }
 }

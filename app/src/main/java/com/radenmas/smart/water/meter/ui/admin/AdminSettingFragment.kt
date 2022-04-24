@@ -66,14 +66,15 @@ class AdminSettingFragment : Fragment() {
                 if (value.isBlank()) {
                     Utils.toast(requireContext(), "Masukkan Nilai Kalibrasi")
                 } else {
-                    val intValue = value.toInt()
+                    val floatValue = value.toFloat()
 
                     val requestQueue = Volley.newRequestQueue(context)
                     val stringRequest = StringRequest(
                         Request.Method.GET,
-                        Config.URL_SET_PRESS + intValue,
+                        Config.URL_SET_CALIBRATION + floatValue,
                         {
-                            Utils.toast(requireContext(), "Berhasil Atur Kalibrasi Air")
+//                            Utils.toast(requireContext(), "Berhasil Atur Kalibrasi Air")
+                            Utils.toast(requireContext(), it.toString())
                             dialog.dismiss()
                         },
                         {

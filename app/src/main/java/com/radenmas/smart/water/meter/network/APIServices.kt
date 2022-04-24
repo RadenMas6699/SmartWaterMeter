@@ -16,6 +16,13 @@ interface APIServices {
 
     // LOGIN
     @FormUrlEncoded
+    @POST(Config.POST_NOTIF)
+    fun postNotif(
+        @Field("to") to: String
+    ): Call<DefaultResponse>
+
+    // LOGIN
+    @FormUrlEncoded
     @POST(Config.POST_LOGIN)
     fun postLogin(
         @Field("username") username: String,
