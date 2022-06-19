@@ -20,16 +20,16 @@ android {
         applicationId "com.radenmas.smart.water.meter"
         minSdk 21
         targetSdk 31
-        versionCode 4
-        versionName "1.4"
+        versionCode 5
+        versionName "1.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -50,9 +50,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.test:core-ktx:1.4.0'
     implementation 'com.google.firebase:firebase-config-ktx:21.1.0'
@@ -66,6 +66,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.5'
     implementation 'com.google.firebase:firebase-core:21.0.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
+    implementation 'com.google.firebase:firebase-messaging:23.0.5'
+    implementation "com.google.firebase:firebase-iid:21.1.0"
 
     // Networking
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -107,13 +109,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 
-    // Pusher
-    implementation 'com.pusher:pusher-java-client:2.2.6'
-    implementation 'com.pusher:push-notifications-android:1.9.0'
-
-
-    implementation 'com.google.firebase:firebase-messaging:23.0.5'
-    implementation "com.google.firebase:firebase-iid:21.1.0"
 
 
 }

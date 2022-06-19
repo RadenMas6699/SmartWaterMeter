@@ -7,16 +7,14 @@ package com.radenmas.smart.water.meter.ui.admin
 
 import android.os.Build
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.pusher.pushnotifications.PushNotifications
 import com.radenmas.smart.water.meter.databinding.ActivityAdminMainBinding
 
 class AdminMainActivity : AppCompatActivity() {
     private lateinit var b: ActivityAdminMainBinding
 
-    private var timerCekKoneksi: CountDownTimer? = null
+//    private var timerCekKoneksi: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,36 +26,6 @@ class AdminMainActivity : AppCompatActivity() {
 
 //        runnabelCekKoneksi()
 
-//        pusher()
-
-//        PushNotifications.start(applicationContext, "8184bf14-ce14-41d9-959a-5473a36cd2bf")
-//        PushNotifications.addDeviceInterest("hello")
-    }
-
-    private fun pusher() {
-//        val options = PusherOptions()
-//        options.setCluster("ap1")
-//
-//        val pusher = Pusher("4a73725a5a62ffc1fcc9", options)
-//
-//        pusher.connect(object : ConnectionEventListener {
-//            override fun onConnectionStateChange(change: ConnectionStateChange) {
-//                Log.i("Pusher", "State changed from ${change.previousState} to ${change.currentState}")
-//            }
-//
-//            override fun onError(
-//                message: String,
-//                code: String,
-//                e: Exception
-//            ) {
-//                Log.i("Pusher", "There was a problem connecting! code ($code), message ($message), exception($e)")
-//            }
-//        }, ConnectionState.ALL)
-//
-//        val channel = pusher.subscribe("my-channel")
-//        channel.bind("my-event") { event ->
-//            Log.i("Pusher","Received event with data: $event")
-//        }
     }
 
 //    @Suppress("DEPRECATION")

@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -67,18 +66,17 @@ class UserHomeFragment : Fragment() {
     }
 
     private fun lineChart(data: ArrayList<Entry>) {
-        val kasusLineDataSet = LineDataSet(data, "Data")
-        kasusLineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+        val lineDataSet = LineDataSet(data, "Data")
+        lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
 
-        kasusLineDataSet.setDrawFilled(true)
-        kasusLineDataSet.fillDrawable =
-            ContextCompat.getDrawable(requireContext(), R.drawable.bg_chart)
-        kasusLineDataSet.lineWidth = 1.5f
+        lineDataSet.setDrawFilled(true)
 
-        kasusLineDataSet.color = ResourcesCompat.getColor(resources, R.color.primary, null)
+        lineDataSet.lineWidth = 1.5f
 
-        kasusLineDataSet.setDrawCircles(false)
-        kasusLineDataSet.setDrawValues(false)
+        lineDataSet.color = ResourcesCompat.getColor(resources, R.color.primary, null)
+
+        lineDataSet.setDrawCircles(false)
+        lineDataSet.setDrawValues(false)
 
         val xAxis: XAxis = b.chart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -95,7 +93,7 @@ class UserHomeFragment : Fragment() {
         b.chart.legend.isEnabled = false
         b.chart.description.isEnabled = false
         b.chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        b.chart.data = LineData(kasusLineDataSet)
+        b.chart.data = LineData(lineDataSet)
         b.chart.animateXY(100, 500)
     }
 
