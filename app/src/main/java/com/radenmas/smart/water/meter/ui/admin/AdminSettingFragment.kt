@@ -5,7 +5,6 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,6 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.databinding.DialogConfirmBinding
 import com.radenmas.smart.water.meter.databinding.FragmentSettingAdminBinding
 import com.radenmas.smart.water.meter.network.Config
 import com.radenmas.smart.water.meter.utils.Utils
@@ -27,8 +25,8 @@ class AdminSettingFragment : Fragment() {
 
     private lateinit var b: FragmentSettingAdminBinding
 
-    private lateinit var confirm: Dialog
-    private lateinit var dl: DialogConfirmBinding
+//    private lateinit var confirm: Dialog
+//    private lateinit var dl: DialogConfirmBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,37 +85,50 @@ class AdminSettingFragment : Fragment() {
         }
 
         b.btnReset.setOnClickListener {
-            dl = DialogConfirmBinding.inflate(
-                layoutInflater
-            )
-            val v = dl.root
 
-            confirm = Dialog(requireContext())
-            confirm.setContentView(v)
-            confirm.setCancelable(false)
-            confirm.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
-            confirm.show()
+            val requestQueue = Volley.newRequestQueue(context)
+            val stringRequest = StringRequest(
+                Request.Method.GET,
+                Config.URL_RESET,
+                {
+                    Utils.toast(requireContext(), "Berhasil Mereset Data Air")
+                },
+                {
+                    Utils.toast(requireContext(), "Gagal Mereset Data Air")
+                })
+            requestQueue.add(stringRequest)
 
-            dl.tvDescConfirm.text = resources.getString(R.string.desc_reset)
-
-            dl.btnNo.setOnClickListener {
-                confirm.dismiss()
-            }
-
-            dl.btnYes.setOnClickListener {
-                val requestQueue = Volley.newRequestQueue(context)
-                val stringRequest = StringRequest(
-                    Request.Method.GET,
-                    Config.URL_RESET,
-                    {
-                        Utils.toast(requireContext(), "Berhasil Mereset Data Air")
-                    },
-                    {
-                        Utils.toast(requireContext(), "Gagal Mereset Data Air")
-                    })
-                requestQueue.add(stringRequest)
-                confirm.dismiss()
-            }
+//            dl = DialogConfirmBinding.inflate(
+//                layoutInflater
+//            )
+//            val v = dl.root
+//
+//            confirm = Dialog(requireContext())
+//            confirm.setContentView(v)
+//            confirm.setCancelable(false)
+//            confirm.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
+//            confirm.show()
+//
+//            dl.tvDescConfirm.text = resources.getString(R.string.desc_reset)
+//
+//            dl.btnNo.setOnClickListener {
+//                confirm.dismiss()
+//            }
+//
+//            dl.btnYes.setOnClickListener {
+//                val requestQueue = Volley.newRequestQueue(context)
+//                val stringRequest = StringRequest(
+//                    Request.Method.GET,
+//                    Config.URL_RESET,
+//                    {
+//                        Utils.toast(requireContext(), "Berhasil Mereset Data Air")
+//                    },
+//                    {
+//                        Utils.toast(requireContext(), "Gagal Mereset Data Air")
+//                    })
+//                requestQueue.add(stringRequest)
+//                confirm.dismiss()
+//            }
         }
     }
 

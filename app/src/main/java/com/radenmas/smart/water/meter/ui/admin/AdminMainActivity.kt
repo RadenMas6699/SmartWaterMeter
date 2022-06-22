@@ -14,8 +14,6 @@ import com.radenmas.smart.water.meter.databinding.ActivityAdminMainBinding
 class AdminMainActivity : AppCompatActivity() {
     private lateinit var b: ActivityAdminMainBinding
 
-//    private var timerCekKoneksi: CountDownTimer? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -24,32 +22,5 @@ class AdminMainActivity : AppCompatActivity() {
         b = ActivityAdminMainBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-//        runnabelCekKoneksi()
-
     }
-
-//    @Suppress("DEPRECATION")
-//    private fun isNetworkAvailable(): Boolean {
-//        val connectivityManager =
-//            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//
-//        return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)!!.state == android.net.NetworkInfo.State.CONNECTED || connectivityManager.getNetworkInfo(
-//            ConnectivityManager.TYPE_WIFI
-//        )!!.state == android.net.NetworkInfo.State.CONNECTED
-//    }
-
-//    private fun runnabelCekKoneksi() {
-//        val snackbar = Utils.snackInfinite(b.root, "Mohon periksa koneksi internet Anda")
-//        timerCekKoneksi = object : CountDownTimer(300000, 5000) {
-//            override fun onTick(millisUntilFinished: Long) {
-//                if (!isNetworkAvailable()) {
-//                    snackbar.show()
-//                } else {
-//                    snackbar.dismiss()
-//                }
-//            }
-//
-//            override fun onFinish() {}
-//        }.start()
-//    }
 }

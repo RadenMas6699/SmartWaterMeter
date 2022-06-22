@@ -5,7 +5,6 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -16,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.radenmas.smart.water.meter.R
-import com.radenmas.smart.water.meter.databinding.DialogConfirmBinding
 import com.radenmas.smart.water.meter.databinding.FragmentProfileAdminBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
 import com.radenmas.smart.water.meter.utils.Constant
@@ -25,8 +23,8 @@ import com.radenmas.smart.water.meter.utils.Utils
 class AdminProfileFragment : Fragment() {
 
     private lateinit var b: FragmentProfileAdminBinding
-    private lateinit var logout: Dialog
-    private lateinit var dl: DialogConfirmBinding
+//    private lateinit var logout: Dialog
+//    private lateinit var dl: DialogConfirmBinding
 
     private lateinit var sharedPref: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
@@ -105,28 +103,33 @@ class AdminProfileFragment : Fragment() {
         }
 
         b.btnLogout.setOnClickListener {
-            dl = DialogConfirmBinding.inflate(
-                layoutInflater
-            )
-            val v = dl.root
 
-            logout = Dialog(requireActivity())
-            logout.setContentView(v)
-            logout.setCancelable(false)
-            logout.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
-            logout.show()
+            editor.clear().commit()
+            startActivity(Intent(activity, AuthActivity::class.java))
+            requireActivity().finish()
 
-            dl.tvDescConfirm.text = resources.getString(R.string.desc_logout)
-
-            dl.btnNo.setOnClickListener {
-                logout.dismiss()
-            }
-
-            dl.btnYes.setOnClickListener {
-                editor.clear().commit()
-                startActivity(Intent(activity, AuthActivity::class.java))
-                requireActivity().finish()
-            }
+//            dl = DialogConfirmBinding.inflate(
+//                layoutInflater
+//            )
+//            val v = dl.root
+//
+//            logout = Dialog(requireActivity())
+//            logout.setContentView(v)
+//            logout.setCancelable(false)
+//            logout.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
+//            logout.show()
+//
+//            dl.tvDescConfirm.text = resources.getString(R.string.desc_logout)
+//
+//            dl.btnNo.setOnClickListener {
+//                logout.dismiss()
+//            }
+//
+//            dl.btnYes.setOnClickListener {
+//                editor.clear().commit()
+//                startActivity(Intent(activity, AuthActivity::class.java))
+//                requireActivity().finish()
+//            }
         }
     }
 
