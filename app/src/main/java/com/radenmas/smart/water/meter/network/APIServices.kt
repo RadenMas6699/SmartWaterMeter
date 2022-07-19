@@ -14,11 +14,12 @@ import retrofit2.http.POST
 
 interface APIServices {
 
-    // LOGIN
+    // NOTIFICATION
     @FormUrlEncoded
-    @POST(Config.POST_NOTIF)
-    fun postNotif(
-        @Field("to") to: String
+    @POST(Config.POST_NOTIFICATION)
+    fun postNotification(
+        @Field("title") title: String,
+        @Field("message") message: String
     ): Call<DefaultResponse>
 
     // LOGIN

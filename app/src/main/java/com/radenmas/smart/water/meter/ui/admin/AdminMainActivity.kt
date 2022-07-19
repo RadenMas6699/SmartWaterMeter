@@ -10,9 +10,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.radenmas.smart.water.meter.R
@@ -28,6 +32,8 @@ class AdminMainActivity : AppCompatActivity() {
         }
         b = ActivityAdminMainBinding.inflate(layoutInflater)
         setContentView(b.root)
+
+        Firebase.messaging.subscribeToTopic("admin")
 
         val versionName = packageManager.getPackageInfo(packageName, 0).versionName
         val packageName = packageManager.getPackageInfo(packageName, 0).packageName

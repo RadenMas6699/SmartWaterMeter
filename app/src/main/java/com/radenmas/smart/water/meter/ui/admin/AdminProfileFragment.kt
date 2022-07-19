@@ -14,6 +14,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import com.radenmas.smart.water.meter.R
 import com.radenmas.smart.water.meter.databinding.FragmentProfileAdminBinding
 import com.radenmas.smart.water.meter.ui.auth.AuthActivity
@@ -104,32 +106,11 @@ class AdminProfileFragment : Fragment() {
 
         b.btnLogout.setOnClickListener {
 
+            Firebase.messaging.unsubscribeFromTopic("admin")
+
             editor.clear().commit()
             startActivity(Intent(activity, AuthActivity::class.java))
             requireActivity().finish()
-
-//            dl = DialogConfirmBinding.inflate(
-//                layoutInflater
-//            )
-//            val v = dl.root
-//
-//            logout = Dialog(requireActivity())
-//            logout.setContentView(v)
-//            logout.setCancelable(false)
-//            logout.window!!.setBackgroundDrawableResource(R.drawable.bg_progress)
-//            logout.show()
-//
-//            dl.tvDescConfirm.text = resources.getString(R.string.desc_logout)
-//
-//            dl.btnNo.setOnClickListener {
-//                logout.dismiss()
-//            }
-//
-//            dl.btnYes.setOnClickListener {
-//                editor.clear().commit()
-//                startActivity(Intent(activity, AuthActivity::class.java))
-//                requireActivity().finish()
-//            }
         }
     }
 

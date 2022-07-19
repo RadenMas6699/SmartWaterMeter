@@ -13,6 +13,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.ktx.messaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.radenmas.smart.water.meter.R
@@ -28,6 +30,8 @@ class UserMainActivity : AppCompatActivity() {
         }
         b = ActivityUserMainBinding.inflate(layoutInflater)
         setContentView(b.root)
+
+        Firebase.messaging.subscribeToTopic("user")
 
         val versionName = packageManager.getPackageInfo(packageName, 0).versionName
         val packageName = packageManager.getPackageInfo(packageName, 0).packageName

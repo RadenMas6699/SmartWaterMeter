@@ -123,7 +123,6 @@ class UserHomeFragment : Fragment() {
         kasus.add(Entry(21F, 113F))
         kasus.add(Entry(22F, 196F))
         kasus.add(Entry(23F, 106F))
-
         lineChart(kasus)
     }
 
@@ -136,7 +135,6 @@ class UserHomeFragment : Fragment() {
         kasus.add(Entry(4F, 181F))
         kasus.add(Entry(5F, 218F))
         kasus.add(Entry(6F, 247F))
-
         lineChart(kasus)
     }
 

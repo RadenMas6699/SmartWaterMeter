@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_adminBillingFragment"
             app:destination="@id/adminBillingFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminInformationFragment"
+            app:destination="@id/adminInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/adminProfileFragment"
@@ -205,4 +208,9 @@
         android:name="com.radenmas.smart.water.meter.ui.about.TermsConditionsFragment"
         android:label="fragment_terms_conditions"
         tools:layout="@layout/fragment_terms_conditions" />
+    <fragment
+        android:id="@+id/adminInformationFragment"
+        android:name="com.radenmas.smart.water.meter.ui.admin.AdminInformationFragment"
+        android:label="fragment_information_admin"
+        tools:layout="@layout/fragment_information_admin" />
 </navigation>

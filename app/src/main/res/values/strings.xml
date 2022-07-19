@@ -101,4 +101,7 @@
     <string name="pascabayar">Pascabayar</string>
     <string name="set_call_water">Atur Kalibrasi Air</string>
     <string name="set_value">Atur Nilai</string>
+    <string name="information">Informasi</string>
+    <string name="jenis_informasi">Jenis Informasi</string>
+    <string name="message">Pesan</string>
 </resources>

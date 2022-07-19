@@ -24,7 +24,7 @@ object Config {
     const val POST_LOGIN = "login/api_login"
 
     // NOTIF
-    const val POST_NOTIF = "test/notify"
+    const val POST_NOTIFICATION = "test/notification_user"
 
     // KELUHAN
     const val GET_KELUHAN_USER = "keluhan/get_keluhan_user"
