@@ -8,6 +8,7 @@ package com.radenmas.smart.water.meter.service
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.net.Uri
 import androidx.core.app.NotificationCompat
@@ -39,7 +40,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val channel = NotificationChannel(
             CHANNEL_ID,
             "Notif",
-            NotificationManager.IMPORTANCE_HIGH
+            NotificationManager.IMPORTANCE_MAX
         )
         channel.enableVibration(true)
         channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
@@ -47,12 +48,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val builder: Notification.Builder = Notification.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
             .setContentTitle(title)
             .setContentText(text)
+            .setStyle(Notification.BigTextStyle().bigText(text))
+            .setShowWhen(true)
             .setSound(soundUri)
             .setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
         NotificationManagerCompat.from(this).notify(1, builder.build())
 
     }

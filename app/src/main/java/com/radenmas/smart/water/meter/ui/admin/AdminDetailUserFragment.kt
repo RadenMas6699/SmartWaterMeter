@@ -5,6 +5,8 @@
 
 package com.radenmas.smart.water.meter.ui.admin
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +67,13 @@ class AdminDetailUserFragment : Fragment() {
     private fun onClick() {
         b.imgBack.setOnClickListener {
             activity?.onBackPressed()
+        }
+        b.rlAddress.setOnClickListener {
+            val addr = b.tvUserAddress.text.toString()
+            val gmmIntentUri = Uri.parse("geo:0,0?q=$addr")
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
         }
     }
 
