@@ -22,7 +22,8 @@
     <string name="usage_cost">Biaya Pemakaian</string>
     <string name="statistik">Statistik</string>
     <string name="skip">Lewati</string>
-    <string name="m3">M3</string>
+<!--    <string name="m3">M\u00B3</string>-->
+    <string name="m3">L</string>
     <string name="billing">Tagihan</string>
     <string name="billing_history">Riwayat Tagihan</string>
     <string name="view_all">Lihat semua</string>
@@ -69,9 +70,9 @@
     <string name="search_user">Cari Nama Pelanggan</string>
     <string name="all">Semua</string>
     <string name="back">back</string>
-    <string name="_24_jam">24 Jam</string>
-    <string name="_7_hari">7 Hari</string>
-    <string name="_1_bulan">1 Bulan</string>
+    <string name="_24_jam">Hari</string>
+    <string name="_7_hari">Minggu</string>
+    <string name="_1_bulan">Bulan</string>
     <string name="detail_pengaduan">Detail Pengaduan</string>
     <string name="detail_billing">Detail Tagihan</string>
     <string name="reject">Tolak</string>
@@ -104,4 +105,5 @@
     <string name="information">Informasi</string>
     <string name="jenis_informasi">Jenis Informasi</string>
     <string name="message">Pesan</string>
+    <string name="limit">Limit</string>
 </resources>

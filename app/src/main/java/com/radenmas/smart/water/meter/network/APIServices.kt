@@ -129,10 +129,22 @@ interface APIServices {
     ): Call<List<TagihanResponse>>
 
     @FormUrlEncoded
-    @POST(Config.GET_CHART_MONTH)
+    @POST(Config.GET_CHART_DAILY)
+    fun getChartDay(
+        @Field("id_pelanggan") id_pelanggan: String
+    ): Call<List<ChartResponse>>
+
+    @FormUrlEncoded
+    @POST(Config.GET_CHART_WEEKLY)
+    fun getChartWeek(
+        @Field("id_pelanggan") id_pelanggan: String
+    ): Call<List<ChartResponse>>
+
+    @FormUrlEncoded
+    @POST(Config.GET_CHART_MONTHLY)
     fun getChartMonth(
         @Field("id_pelanggan") id_pelanggan: String
-    ): Call<List<TagihanResponse>>
+    ): Call<List<ChartResponse>>
 
 
     @FormUrlEncoded

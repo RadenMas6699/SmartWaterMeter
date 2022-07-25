@@ -10,6 +10,7 @@ object Config {
     private const val BASE_URL_WEB_SERVER = "http://192.168.4.1/"
     const val URL_DEBIT = BASE_URL_WEB_SERVER + "debit"
     const val URL_USAGE = BASE_URL_WEB_SERVER + "usage"
+    const val URL_LIMIT = BASE_URL_WEB_SERVER + "limit"
     const val URL_CALIBRATION = BASE_URL_WEB_SERVER + "calibration"
     const val URL_BILLING = BASE_URL_WEB_SERVER + "harga"
     const val URL_RELAY_ON = BASE_URL_WEB_SERVER + "selenoid/on"
@@ -17,6 +18,7 @@ object Config {
     const val URL_SET_PRICE = BASE_URL_WEB_SERVER + "getHarga"
     const val URL_SET_PRESS = BASE_URL_WEB_SERVER + "getTekanan?setPress="
     const val URL_SET_CALIBRATION = BASE_URL_WEB_SERVER + "setCalibration?setCalibration="
+    const val URL_SET_LIMIT = BASE_URL_WEB_SERVER + "limit?setLimit="
     const val URL_RESET = BASE_URL_WEB_SERVER + "reset/on"
 
     // DATABASE SERVER
@@ -48,5 +50,8 @@ object Config {
     const val GET_TOTAL_TAGIHAN_USER = "tagihan/get_total_tagihan_user"
     const val GET_TAGIHAN_ADMIN = "tagihan/get_tagihan_admin"
     const val UPDATE_STATUS_TAGIHAN = "tagihan/update_status_tagihan"
-    const val GET_CHART_MONTH = "tagihan/get_chart_month"
+
+    const val GET_CHART_DAILY = "chart/get_chart_daily"
+    const val GET_CHART_WEEKLY = "chart/get_chart_weekly"
+    const val GET_CHART_MONTHLY = "chart/get_chart_monthly"
 }

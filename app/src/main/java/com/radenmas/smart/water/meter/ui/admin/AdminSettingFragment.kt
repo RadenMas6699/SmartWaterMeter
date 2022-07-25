@@ -71,7 +71,6 @@ class AdminSettingFragment : Fragment() {
                         Request.Method.GET,
                         Config.URL_SET_CALIBRATION + floatValue,
                         {
-//                            Utils.toast(requireContext(), "Berhasil Atur Kalibrasi Air")
                             Utils.toast(requireContext(), it.toString())
                             dialog.dismiss()
                         },

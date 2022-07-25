@@ -44,8 +44,8 @@ class UserWebServerFragment : Fragment() {
         val task: Runnable = object : Runnable {
             override fun run() {
                 handler.postDelayed(this, 1000)
-                getData(Config.URL_USAGE, b.tvBill)
-                getData(Config.URL_BILLING, b.tvUsage)
+                getData(Config.URL_USAGE, b.tvUsage)
+                getData(Config.URL_LIMIT, b.tvLimit)
                 getDataCircle(Config.URL_DEBIT, b.progressDebit, b.tvDebit)
             }
         }
@@ -66,6 +66,23 @@ class UserWebServerFragment : Fragment() {
                 setRelay(Config.URL_RELAY_OFF)
             }
         }
+        b.btnSave.setOnClickListener {
+            val limit = b.etLimit.text.toString()
+            if (limit.isNotEmpty()){
+                val requestQueue = Volley.newRequestQueue(context)
+                val stringRequest = StringRequest(
+                    Request.Method.GET,
+                    Config.URL_SET_LIMIT + limit,
+                    {
+                        b.etLimit.text.clear()
+                        Utils.toast(requireContext(), "Berhasil Atur Limit Air")
+                    },
+                    {
+                        Utils.toast(requireContext(), "Gagal Atur Limit Air")
+                    })
+                requestQueue.add(stringRequest)
+            }
+        }
 
     }
 
@@ -74,9 +91,15 @@ class UserWebServerFragment : Fragment() {
             Request.Method.GET,
             url,
             { response ->
-                text.text = response
-                val value = response.toFloat()
-                progress.progress = value
+                if (response != "nan") {
+                    text.text = "$response L/s"
+                    val value = response.toFloat()
+                    progress.progress = value
+                } else {
+                    text.text = "0 L/s"
+                    progress.progress = 0f
+                }
+
             },
             {})
         requestQueue?.add(stringCircle)

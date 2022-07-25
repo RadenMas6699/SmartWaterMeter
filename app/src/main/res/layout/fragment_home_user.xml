@@ -219,10 +219,25 @@
                     app:strokeColor="@color/white_text" />
             </LinearLayout>
 
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/chart"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/m3"
+                    android:textColor="@color/primary_text"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/llPayment"

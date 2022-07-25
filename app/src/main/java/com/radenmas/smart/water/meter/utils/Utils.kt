@@ -76,7 +76,8 @@ object Utils {
     }
 
     fun formatUsage(value: String): String {
-        return "$value M3"
+//        return "$value M\u00B3"
+        return "$value L"
     }
 
     fun formatToken(value: String): String {
