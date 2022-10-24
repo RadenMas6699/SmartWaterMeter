@@ -22,7 +22,7 @@ object Config {
     const val URL_RESET = BASE_URL_WEB_SERVER + "reset/on"
 
     // DATABASE SERVER
-    const val BASE_URL = "http://smartpdam.com/api/"
+    const val BASE_URL = "https://smartpdam.com/api/"
     const val POST_LOGIN = "login/api_login"
 
     // NOTIF

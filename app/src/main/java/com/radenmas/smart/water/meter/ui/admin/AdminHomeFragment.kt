@@ -50,12 +50,6 @@ class AdminHomeFragment : Fragment() {
         initView()
         onClick()
 
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-//            val token = task.result.toString()
-//            val dbToken = Firebase.database.getReference("Token")
-//            dbToken.child(id_admin).child("token").setValue(token)
-//        }
-
         return v
     }
 
@@ -112,5 +106,4 @@ class AdminHomeFragment : Fragment() {
             findNavController().navigate(R.id.action_adminHomeFragment_to_adminInformationFragment)
         }
     }
-
 }

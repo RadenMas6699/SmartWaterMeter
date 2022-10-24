@@ -33,7 +33,6 @@
     <string name="akun">Akun</string>
     <string name="ubah_profil">Ubah Profil</string>
     <string name="tentang">Tentang</string>
-<!--    <string name="guide">Panduan</string>-->
     <string name="terms">Syarat dan Ketentuan</string>
     <string name="privacy">Kebijakan Privasi</string>
     <string name="help">Pusat Bantuan</string>
@@ -106,4 +105,5 @@
     <string name="jenis_informasi">Jenis Informasi</string>
     <string name="message">Pesan</string>
     <string name="limit">Limit</string>
+    <string name="calibration">Kalibrasi</string>
 </resources>

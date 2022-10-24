@@ -50,8 +50,9 @@ class AdminWebServerFragment : Fragment() {
         val task: Runnable = object : Runnable {
             override fun run() {
                 handler.postDelayed(this, 1000)
-                getDataNumber(Config.URL_USAGE, b.tvUsage)
-                getData(Config.URL_CALIBRATION, b.tvBill)
+                getData(Config.URL_USAGE, b.tvUsage)
+                getData(Config.URL_LIMIT, b.tvLimit)
+                getData(Config.URL_CALIBRATION, b.tvCalibration)
                 getDataCircle(Config.URL_DEBIT, b.progressDebit, b.tvDebit)
             }
         }
@@ -74,6 +75,25 @@ class AdminWebServerFragment : Fragment() {
                 setRelay(Config.URL_RELAY_ON)
             } else if (!isChecked) {
                 setRelay(Config.URL_RELAY_OFF)
+            }
+        }
+
+        b.btnSave.setOnClickListener {
+            val limit = b.etLimit.text.toString()
+            if (limit.isNotEmpty()) {
+                val requestQueue = Volley.newRequestQueue(context)
+                val stringRequest = StringRequest(
+                    Request.Method.GET,
+                    Config.URL_SET_LIMIT + limit,
+                    {
+                        b.etLimit.text.clear()
+                        b.etLimit.clearFocus()
+                        Utils.toast(requireContext(), "Berhasil Atur Limit Air")
+                    },
+                    {
+                        Utils.toast(requireContext(), "Gagal Atur Limit Air")
+                    })
+                requestQueue.add(stringRequest)
             }
         }
     }

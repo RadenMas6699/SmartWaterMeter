@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -131,7 +132,8 @@ class LoginFragment : Fragment() {
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Utils.dismissLoading()
-                Utils.toast(requireContext(), "Gagal Masuk : $t")
+                Utils.toast(requireContext(), "Gagal Masuk : ${t.message}")
+                Log.d("XXX", "GAGAL : $t")
             }
         })
     }

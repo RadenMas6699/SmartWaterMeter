@@ -253,7 +253,7 @@ class UserHomeFragment : Fragment() {
                 response: Response<TagihanResponse>
             ) {
                 b.tvTagihan.text = Utils.formatNumber(response.body()?.total_bill!!)
-                b.tvPemakaian.text = response.body()?.usage.toString()
+                b.tvPemakaian.text = response.body()?.usage?.toFloat().toString()
             }
 
             override fun onFailure(call: Call<TagihanResponse>, t: Throwable) {

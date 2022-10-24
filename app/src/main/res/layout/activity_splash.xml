@@ -3,7 +3,7 @@
   ~ Copyright (c) 2022.
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,10 +18,6 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
@@ -46,12 +42,9 @@
         style="@style/SpinKitView.Large.ThreeBounce"
         android:layout_width="46dp"
         android:layout_height="46dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/tvAppVersion"
         android:layout_centerHorizontal="true"
-        app:SpinKit_Color="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/tvAppVersion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:SpinKit_Color="@color/white" />
 
     <TextView
         android:id="@+id/tvAppVersion"
@@ -62,9 +55,6 @@
         android:layout_marginBottom="32dp"
         android:fontFamily="@font/roboto"
         android:textColor="@color/white_text"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="12sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

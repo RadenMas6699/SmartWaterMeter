@@ -46,6 +46,7 @@ class UserWebServerFragment : Fragment() {
                 handler.postDelayed(this, 1000)
                 getData(Config.URL_USAGE, b.tvUsage)
                 getData(Config.URL_LIMIT, b.tvLimit)
+                getData(Config.URL_CALIBRATION, b.tvCalibration)
                 getDataCircle(Config.URL_DEBIT, b.progressDebit, b.tvDebit)
             }
         }
@@ -66,15 +67,17 @@ class UserWebServerFragment : Fragment() {
                 setRelay(Config.URL_RELAY_OFF)
             }
         }
+
         b.btnSave.setOnClickListener {
             val limit = b.etLimit.text.toString()
-            if (limit.isNotEmpty()){
+            if (limit.isNotEmpty()) {
                 val requestQueue = Volley.newRequestQueue(context)
                 val stringRequest = StringRequest(
                     Request.Method.GET,
                     Config.URL_SET_LIMIT + limit,
                     {
                         b.etLimit.text.clear()
+                        b.etLimit.clearFocus()
                         Utils.toast(requireContext(), "Berhasil Atur Limit Air")
                     },
                     {
@@ -83,7 +86,6 @@ class UserWebServerFragment : Fragment() {
                 requestQueue.add(stringRequest)
             }
         }
-
     }
 
     private fun getDataCircle(url: String, progress: CircularProgressBar, text: TextView) {
