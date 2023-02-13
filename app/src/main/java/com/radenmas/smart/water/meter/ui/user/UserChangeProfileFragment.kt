@@ -171,7 +171,6 @@ class UserChangeProfileFragment : Fragment() {
         }
     }
 
-
     private fun updateProfile(
         idPelanggan: String,
         fullname: String,
