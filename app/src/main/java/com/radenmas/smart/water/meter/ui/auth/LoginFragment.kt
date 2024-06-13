@@ -96,7 +96,6 @@ class LoginFragment : Fragment() {
                         Constant.user,
                         ignoreCase = true
                     ) -> {
-                        val registered = Utils.formatDate(response.body()?.registered.toString())
                         saveDataUser(
                             response.body()?.id_pelanggan.toString(),
                             response.body()?.name.toString(),
@@ -105,8 +104,7 @@ class LoginFragment : Fragment() {
                             response.body()?.ktp.toString(),
                             response.body()?.phone.toString(),
                             response.body()?.address.toString(),
-                            response.body()?.avatar.toString(),
-                            registered
+                            response.body()?.avatar.toString()
                         )
                         startActivity(Intent(context, UserMainActivity::class.java))
                         activity?.finish()
@@ -133,7 +131,6 @@ class LoginFragment : Fragment() {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Utils.dismissLoading()
                 Utils.toast(requireContext(), "Gagal Masuk : ${t.message}")
-                Log.d("XXX", "GAGAL : $t")
             }
         })
     }
@@ -146,8 +143,7 @@ class LoginFragment : Fragment() {
         ktp: String,
         phone: String,
         address: String,
-        avatar: String,
-        registered: String
+        avatar: String
     ) {
         editor.putString(Constant.data_id_pelanggan, id_pelanggan)
         editor.putString(Constant.data_name, name)
@@ -157,7 +153,6 @@ class LoginFragment : Fragment() {
         editor.putString(Constant.data_phone, phone)
         editor.putString(Constant.data_address, address)
         editor.putString(Constant.data_avatar, avatar)
-        editor.putString(Constant.data_registered, registered)
 
         editor.apply()
     }

@@ -14,6 +14,5 @@ data class LoginResponse(
 	val ktp: String,
 	val phone: String,
 	val address: String,
-	val avatar: String,
-	val registered: String
+	val avatar: String
 )
